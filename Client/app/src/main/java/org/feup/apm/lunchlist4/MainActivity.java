@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onCreate(savedInstanceState);
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
-      bar.setIcon(R.drawable.medium_logo);
+      bar.setIcon(R.drawable.medium_logo2);
       bar.setDisplayShowHomeEnabled(true);
     }
     setContentView(R.layout.activity_main);
