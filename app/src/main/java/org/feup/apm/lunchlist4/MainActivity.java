@@ -1,7 +1,8 @@
-package org.feup.apm.lunchlist3b;
+package org.feup.apm.lunchlist4;
 
+import android.content.Context;
 import android.content.Intent;
-import androidx.annotation.NonNull;
+import android.database.Cursor;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -19,7 +20,10 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
   public final static String ID_EXTRA="org.feup.apm.lunchlist.POS";
-  LunchApp app;
+  RestaurantsHelper helper;
+  static long currentId = -1;
+  Cursor model;
+  RestaurantAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -30,13 +34,22 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       bar.setDisplayShowHomeEnabled(true);
     }
     setContentView(R.layout.activity_main);
+    helper = new RestaurantsHelper(this);
+
+    model = helper.getAll();
+    startManagingCursor(model);
+    adapter=new RestaurantAdapter(model);
 
     ListView list = findViewById(R.id.listview);
-    app = (LunchApp)getApplicationContext();
-    app.adapter=new RestaurantAdapter();
-    list.setAdapter(app.adapter);
+    list.setAdapter(adapter);
     list.setEmptyView(findViewById(R.id.empty_list));
     list.setOnItemClickListener(this);
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    helper.close();
   }
 
   @Override
@@ -49,8 +62,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   public boolean onOptionsItemSelected(MenuItem item) {
     if (item.getItemId()==R.id.toast) {
       String message="No restaurant selected";
-      if (app.current!=null)
-        message=String.format("%s:\n%s", app.current.getName(), app.current.getNotes());
+      if (currentId != -1) {
+        Cursor c = helper.getById(String.valueOf(currentId));
+        c.moveToNext();
+        message = String.format("%s:\n%s", helper.getName(c), helper.getNotes(c));
+        c.close();
+      }
       Toast.makeText(this, message, Toast.LENGTH_LONG).show();
       return(true);
     }
@@ -64,8 +81,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   @Override
   public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
     Intent i=new Intent(this, DetailsActivity.class);
-    app.current = app.restaurants.get(pos);
-    i.putExtra(ID_EXTRA, pos);
+    currentId = id;
+    i.putExtra(ID_EXTRA, String.valueOf(id));
     startActivity(i);
   }
 
@@ -73,27 +90,28 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
    * Sub class with the custom ListView adapter   *
    *                                              */
 
-  class RestaurantAdapter extends ArrayAdapter<Restaurant> {
-    RestaurantAdapter() {
-      super(MainActivity.this, R.layout.row, app.restaurants);
+  class RestaurantAdapter extends CursorAdapter {
+    RestaurantAdapter(Cursor c) {
+      super(MainActivity.this, c);
     }
 
     @Override
-    public @NonNull View getView(int position, View convertView, @NonNull ViewGroup parent) {
-      View row = convertView;   // if Android is recycling
-      if (row == null)
-        row = getLayoutInflater().inflate(R.layout.row, parent, false);    // get our custom layout
-      Restaurant r = app.restaurants.get(position);
-      ((TextView)row.findViewById(R.id.title)).setText(r.getName());      // fill restaurant name
-      ((TextView)row.findViewById(R.id.address)).setText(r.getAddress());      // fill restaurant address
-      ImageView symbol = row.findViewById(R.id.symbol);                   // choose an icon for type
-      if (r.getType().equals("sit"))
+    public View newView(Context context, Cursor c, ViewGroup parent) {
+      View row=getLayoutInflater().inflate(R.layout.row, parent, false);
+      ((TextView)row.findViewById(R.id.title)).setText(helper.getName(c));
+      ((TextView)row.findViewById(R.id.address)).setText(helper.getAddress(c));
+      ImageView symbol = row.findViewById(R.id.symbol);
+      if (helper.getType(c).equals("sit"))
         symbol.setImageResource(R.drawable.ball_red);
-      else if (r.getType().equals("take"))
+      else if (helper.getType(c).equals("take"))
         symbol.setImageResource(R.drawable.ball_yellow);
       else
-        symbol.setImageResource((R.drawable.ball_green));
-      return (row);
+        symbol.setImageResource(R.drawable.ball_green);
+      return(row);
+    }
+
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
     }
   }
 }

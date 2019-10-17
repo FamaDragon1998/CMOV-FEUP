@@ -3,8 +3,8 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 29
     defaultConfig {
-        applicationId 'org.feup.apm.lunchlist3b'
-        minSdkVersion 21
+        applicationId 'org.feup.apm.lunchlist4'
+        minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
