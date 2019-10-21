@@ -4,7 +4,7 @@ var router = express.Router();
 /* Everything related to Products*/
 
 //Returns information of a product 
-router.get('/{id}', function(req, res, next) {
+router.get('/:id', function(req, res, next) {
   res.send('respond with product info');
 });
 
@@ -14,7 +14,7 @@ router.post('/user/login', function(req, res, next) {
 });
 
 //Returns Transactions of a User
-router.get('/user/{id}/transactions', function(req, res, next) {
+router.get('/user/:id/transactions', function(req, res, next) {
   res.send('respond with a resource');
 });
 
