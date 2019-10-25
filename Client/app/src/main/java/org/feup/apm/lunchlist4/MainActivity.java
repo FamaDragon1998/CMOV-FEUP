@@ -18,12 +18,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
   public final static String ID_EXTRA="org.feup.apm.lunchlist.POS";
-  RestaurantsHelper helper;
+  TransactionsHelper helper;
   static long currentId = -1;
   Cursor model;
-  RestaurantAdapter adapter;
+  TransactionAdapter adapter;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +35,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       bar.setDisplayShowHomeEnabled(true);
     }
     setContentView(R.layout.activity_main);
-    helper = new RestaurantsHelper(this);
+    helper = new TransactionsHelper(this);
 
     model = helper.getAll();
     startManagingCursor(model);
-    adapter=new RestaurantAdapter(model);
+    adapter=new TransactionAdapter(model);
 
     ListView list = findViewById(R.id.listview);
     list.setAdapter(adapter);
@@ -72,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return(true);
     }
     else if (item.getItemId() == R.id.add) {
-      startActivity(new Intent(this, DetailsActivity.class));
+      startActivity(new Intent(this, transition_details.class));
+      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
       return(true);
     }
     return(super.onOptionsItemSelected(item));
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   @Override
   public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-    Intent i=new Intent(this, DetailsActivity.class);
+    Intent i=new Intent(this, transition_details.class);
     currentId = id;
     i.putExtra(ID_EXTRA, String.valueOf(id));
     startActivity(i);
@@ -99,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public View newView(Context context, Cursor c, ViewGroup parent) {
       View row=getLayoutInflater().inflate(R.layout.row, parent, false);
       ((TextView)row.findViewById(R.id.title)).setText(helper.getName(c));
-      ((TextView)row.findViewById(R.id.address)).setText(helper.getAddress(c));
+     // ((TextView)row.findViewById(R.id.address)).setText(helper.getAddress(c));
       ImageView symbol = row.findViewById(R.id.symbol);
       if (helper.getType(c).equals("sit"))
         symbol.setImageResource(R.drawable.ball_red);
@@ -107,6 +109,29 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         symbol.setImageResource(R.drawable.ball_yellow);
       else
         symbol.setImageResource(R.drawable.ball_green);
+      return(row);
+    }
+
+    @Override
+    public void bindView(View view, Context context, Cursor cursor) {
+    }
+  }
+
+  class TransactionAdapter extends CursorAdapter {
+    TransactionAdapter(Cursor c) {
+      super(MainActivity.this, c);
+    }
+
+    @Override
+    public View newView(Context context, Cursor c, ViewGroup parent) {
+      View row=getLayoutInflater().inflate(R.layout.row, parent, false);
+      ((TextView)row.findViewById(R.id.title)).setText("insert title here");
+      ((TextView)row.findViewById(R.id.description)).setText("insert description here");
+      ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
+
+      ImageView symbol = row.findViewById(R.id.symbol);
+      symbol.setImageResource(R.drawable.batmanoutfit);
+
       return(row);
     }
 

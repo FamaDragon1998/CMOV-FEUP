@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 
 public class DetailsActivity extends AppCompatActivity {
-  RestaurantsHelper helper;
+  TransactionsHelper helper;
   String rId;
 
   @Override
@@ -21,7 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
       bar.setDisplayShowHomeEnabled(true);
     }
     setContentView(R.layout.activity_details);
-    helper = new RestaurantsHelper(this);
+    helper = new TransactionsHelper(this);
     findViewById(R.id.bt_save).setOnClickListener((View v)->onBtSaveClick());
 
     rId=getIntent().getStringExtra(MainActivity.ID_EXTRA);
@@ -64,6 +64,7 @@ public class DetailsActivity extends AppCompatActivity {
           ((EditText)findViewById(R.id.ed_notes)).getText().toString() );
     }
     finish();
+    overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
   }
 
   void load() {
