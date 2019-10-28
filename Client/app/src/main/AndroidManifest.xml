@@ -8,6 +8,10 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".NewTransaction"></activity>
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,12 +21,10 @@
         </activity>
         <activity
             android:name=".DetailsActivity"
-            android:label="Details">
-        </activity>
+            android:label="Details" />
         <activity
             android:name=".DetailsTransaction"
-            android:label="DetailsTran">
-        </activity>
+            android:label="Transaction Details" />
     </application>
 
 </manifest>

@@ -18,6 +18,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.feup.apm.lunchlist4.ui.login.LoginActivity;
+
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
   public final static String ID_EXTRA="org.feup.apm.lunchlist.POS";
@@ -29,6 +31,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    startActivityForResult(new Intent(this, LoginActivity.class),123);
+    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
       bar.setIcon(R.drawable.medium_logo2);
@@ -89,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
   }
 
+
   /*                                              *
    * Sub class with the custom ListView adapter   *
    *                                              */
@@ -127,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public View newView(Context context, Cursor c, ViewGroup parent) {
       View row=getLayoutInflater().inflate(R.layout.row, parent, false);
       ((TextView)row.findViewById(R.id.title)).setText("insert title here");
-      ((TextView)row.findViewById(R.id.description)).setText("insert description here");
+      ((TextView)row.findViewById(R.id.description)).setText("X" +" items");
       ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
 
       ImageView symbol = row.findViewById(R.id.symbol);
@@ -139,5 +144,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public void bindView(View view, Context context, Cursor cursor) {
     }
+
+
   }
+
+
 }

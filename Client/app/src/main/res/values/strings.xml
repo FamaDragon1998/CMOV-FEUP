@@ -9,9 +9,18 @@
     <string name="tv_notes">Notes:</string>
     <string name="bt_save">Save</string>
     <string name="check_cart">Check Cart</string>
-    <string name="mn_it_add">Add new Product</string>
+    <string name="mn_it_add">Add new Transaction</string>
     <string name="lv_empty_msg">Activate the menu item to add a restaurant!</string>
     <string name="ed_name_hint">Name</string>
     <string name="ed_address_hint">Address</string>
     <string name="ed_notes_hint">Notes</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
 </resources>
