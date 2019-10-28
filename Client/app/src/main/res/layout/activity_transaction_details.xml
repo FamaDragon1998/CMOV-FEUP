@@ -5,14 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".transition_details">
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="134dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/batmanoutfit" />
+    tools:context=".DetailsProduct">
 
     <TextView
         android:id="@+id/name"
@@ -21,10 +14,19 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="20dp"
+        android:layout_weight="0"
         android:gravity="center_horizontal"
         android:text="insert name here"
         android:textColor="#E44646"
         android:textSize="24sp" />
+
+
+    <ListView
+        android:id="@+id/products"
+        android:layout_width="match_parent"
+        android:layout_height="498dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1" />
 
     <TextView
         android:id="@+id/price"
@@ -32,31 +34,20 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
+        android:layout_weight="0"
         android:gravity="center_horizontal"
         android:text="5€"
         android:textColor="#FF0000"
         android:textSize="36sp" />
-
-    <TextView
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginRight="20dp"
-        android:foregroundGravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-        android:textSize="14sp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_gravity="right"
-        android:layout_marginTop="30dp"
         android:layout_marginRight="20dp"
+        android:onClick="backButton"
         android:text="Button" />
 </LinearLayout>

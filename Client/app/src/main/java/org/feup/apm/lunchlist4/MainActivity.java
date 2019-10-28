@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return(true);
     }
     else if (item.getItemId() == R.id.add) {
-      startActivity(new Intent(this, transition_details.class));
+      startActivity(new Intent(this, DetailsTransaction.class));
       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
       return(true);
     }
@@ -82,10 +82,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   @Override
   public void onItemClick(AdapterView<?> adapterView, View view, int pos, long id) {
-    Intent i=new Intent(this, transition_details.class);
+    Intent i=new Intent(this, DetailsTransaction.class);
     currentId = id;
     i.putExtra(ID_EXTRA, String.valueOf(id));
     startActivity(i);
+    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
   }
 
   /*                                              *
