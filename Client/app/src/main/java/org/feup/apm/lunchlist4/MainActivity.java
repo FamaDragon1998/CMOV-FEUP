@@ -65,19 +65,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   @Override
   public boolean onOptionsItemSelected(MenuItem item) {
-    if (item.getItemId()==R.id.toast) {
-      String message="No restaurant selected";
-      if (currentId != -1) {
-        Cursor c = helper.getById(String.valueOf(currentId));
-        c.moveToNext();
-        message = String.format("%s:\n%s", helper.getName(c), helper.getNotes(c));
-        c.close();
-      }
-      Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-      return(true);
-    }
-    else if (item.getItemId() == R.id.add) {
-      startActivity(new Intent(this, DetailsTransaction.class));
+
+    if (item.getItemId() == R.id.add) {
+      startActivity(new Intent(this, NewTransaction.class));
       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
       return(true);
     }

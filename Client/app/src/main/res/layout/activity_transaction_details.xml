@@ -49,5 +49,5 @@
         android:layout_gravity="right"
         android:layout_marginRight="20dp"
         android:onClick="backButton"
-        android:text="Button" />
+        android:text="Back" />
 </LinearLayout>
