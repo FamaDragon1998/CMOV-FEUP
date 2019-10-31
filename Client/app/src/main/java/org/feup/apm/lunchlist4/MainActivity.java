@@ -27,12 +27,17 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   static long currentId = -1;
   Cursor model;
   TransactionAdapter adapter;
+  static boolean checkFirstTime=false;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    startActivityForResult(new Intent(this, LoginActivity.class),123);
-    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    if (!checkFirstTime)
+    {
+      startActivityForResult(new Intent(this, LoginActivity.class),123);
+      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+    checkFirstTime=true;
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
       bar.setIcon(R.drawable.medium_logo2);
