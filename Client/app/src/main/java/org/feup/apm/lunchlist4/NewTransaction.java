@@ -2,22 +2,26 @@ package org.feup.apm.lunchlist4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 public class NewTransaction extends AppCompatActivity {
+    static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     TransactionsHelper helper;
     static long currentId = -1;
     Cursor model;
     NewTransaction.ProductAdapter adapter;
+    //String qrResult;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,9 @@ public class NewTransaction extends AppCompatActivity {
         list.setAdapter(adapter);
         list.setEmptyView(findViewById(R.id.empty_list));
         //list.setOnItemClickListener(this);
+        Button QRButton;
+        QRButton = findViewById(R.id.scan);
+        QRButton.setOnClickListener((v)->scan(true));
     }
 
 
@@ -63,5 +70,23 @@ public class NewTransaction extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
+    }
+
+    public void addProduct(View view)
+    {
+        //startActivity(new Intent(this, ScanActivity.class));
+        //overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
+
+    }
+
+    public void scan(boolean qrcode) {
+        try {
+            Intent intent = new Intent(ACTION_SCAN);
+            //intent.putExtra("SCAN_MODE", qrcode ? "QR_CODE_MODE" : "PRODUCT_MODE");
+            startActivityForResult(intent, 0);
+        }
+        catch (ActivityNotFoundException anfe) {
+          //  showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+        }
     }
 }

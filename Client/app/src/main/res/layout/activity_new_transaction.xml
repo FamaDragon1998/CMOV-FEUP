@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,40 +8,42 @@
     android:orientation="vertical"
     tools:context=".NewTransaction">
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal">
+    <Button
+        android:id="@+id/scan"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="addProduct"
+        android:text="Add Product"
+        app:layout_constraintBottom_toTopOf="@id/products"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/button2"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Add Product" />
+    <ListView
+        android:id="@+id/products"
+        android:layout_width="0dp"
+        android:layout_height="300dp"
+        app:layout_constraintBottom_toBottomOf="@id/totalrow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/scan">
 
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="270dp"
-        android:layout_margin="10dp">
-
-        <ListView
-            android:id="@+id/products"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </TableRow>
+    </ListView>
 
     <TableRow
+        android:id="@+id/totalrow"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_margin="5dp"
-        android:gravity="center_horizontal|center_vertical">
+        android:layout_height="100dp"
+        android:gravity="center_horizontal|center_vertical"
+        app:layout_constraintBottom_toTopOf="@id/discountrow"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/products">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/tvresult"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Total: " />
@@ -53,32 +55,18 @@
             android:text="5€"
             android:textColor="@color/colorPrimary"
             android:textSize="30sp" />
-    </TableRow>
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp">
-
-        <CheckBox
-            android:id="@+id/voucher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Use Voucher?" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="X vouchers left" />
 
     </TableRow>
 
+
     <TableRow
+        android:id="@+id/discountrow"
         android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_margin="10dp">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/voucherow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/totalrow">
 
         <CheckBox
             android:id="@+id/discount"
@@ -94,28 +82,53 @@
             android:text="X discount stored" />
     </TableRow>
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+   <TableRow
+       android:id="@+id/voucherow"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       app:layout_constraintBottom_toTopOf="@id/buttonrow"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/discountrow">
 
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:onClick="backButton"
-            android:text="Back" />
+       <CheckBox
+           android:id="@+id/voucher"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:text="Use Voucher?" />
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:layout_weight="1"
-            android:text="Finish" />
-    </TableRow>
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="X vouchers left" />
 
-</LinearLayout>
+   </TableRow>
+
+       <TableRow
+           android:id="@+id/buttonrow"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           app:layout_constraintBottom_toBottomOf="parent"
+           app:layout_constraintLeft_toLeftOf="parent"
+           app:layout_constraintRight_toRightOf="parent"
+           app:layout_constraintTop_toBottomOf="@id/voucherow">
+
+           <Button
+               android:id="@+id/button4"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:text="Finish" />
+
+           <Button
+               android:id="@+id/button3"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
+               android:onClick="backButton"
+               android:text="Back" />
+       </TableRow>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
