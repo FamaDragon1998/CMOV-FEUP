@@ -2,8 +2,7 @@ module.exports = (sequelize, type) => {
     return sequelize.define('User', {
         id: {
             type: type.UUID,
-            primaryKey: true,
-            autoIncrement: true
+            primaryKey: true
         },
         username: {
             type: type.STRING,
@@ -24,7 +23,7 @@ module.exports = (sequelize, type) => {
             allowNull: false
         },
         card_cvs:{
-            type: type.STRING,
+            type: type.INTEGER,
             allowNull: false
         },
         total_spent:{

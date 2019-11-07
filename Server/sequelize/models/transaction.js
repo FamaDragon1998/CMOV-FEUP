@@ -2,8 +2,7 @@ module.exports = (sequelize, type) => {
     return sequelize.define('Transaction', {
         id: {
             type: type.UUID,
-            primaryKey: true,
-            autoIncrement: true
+            primaryKey: true
         },
         voucher:{
             type: type.UUID,
