@@ -1,6 +1,6 @@
-package org.feup.apm.lunchlist4.data;
+package org.feup.apm.ACME.data;
 
-import org.feup.apm.lunchlist4.data.model.LoggedInUser;
+import org.feup.apm.ACME.data.model.LoggedInUser;
 
 import java.io.IOException;
 

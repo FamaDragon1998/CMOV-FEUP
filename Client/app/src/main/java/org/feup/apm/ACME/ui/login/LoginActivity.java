@@ -1,11 +1,10 @@
-package org.feup.apm.lunchlist4.ui.login;
+package org.feup.apm.ACME.ui.login;
 
 import android.app.Activity;
 
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -22,13 +21,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Context;
 
-import org.feup.apm.lunchlist4.DetailsTransaction;
-import org.feup.apm.lunchlist4.MainActivity;
-import org.feup.apm.lunchlist4.R;
-import org.feup.apm.lunchlist4.ui.login.LoginViewModel;
-import org.feup.apm.lunchlist4.ui.login.LoginViewModelFactory;
+import org.feup.apm.ACME.R;
 
 public class LoginActivity extends AppCompatActivity {
 

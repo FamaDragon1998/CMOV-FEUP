@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.ACME;
 
 import android.content.ContentValues;
 import android.content.Context;

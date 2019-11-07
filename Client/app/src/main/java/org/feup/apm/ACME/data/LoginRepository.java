@@ -1,6 +1,6 @@
-package org.feup.apm.lunchlist4.data;
+package org.feup.apm.ACME.data;
 
-import org.feup.apm.lunchlist4.data.model.LoggedInUser;
+import org.feup.apm.ACME.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and

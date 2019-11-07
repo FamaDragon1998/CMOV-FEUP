@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4.data.model;
+package org.feup.apm.ACME.data.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository
