@@ -22,7 +22,7 @@ import org.feup.apm.lunchlist4.ui.login.LoginActivity;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
-  public final static String ID_EXTRA="org.feup.apm.lunchlist.POS";
+  public final static String ID_EXTRA="org.feup.apm.lunchlist4.POS";
   TransactionsHelper helper;
   static long currentId = -1;
   Cursor model;

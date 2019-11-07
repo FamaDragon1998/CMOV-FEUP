@@ -30,7 +30,7 @@ public class TransactionsHelper extends SQLiteOpenHelper {
     cv.put("address", address);
     cv.put("type", type);
     cv.put("notes", notes);
-    return getWritableDatabase().insert("Restaurants", "name", cv);
+    return getWritableDatabase().insert("Transactions", "name", cv);
   }
 
   public void update(String id, String name, String address, String type, String notes) {
@@ -40,16 +40,16 @@ public class TransactionsHelper extends SQLiteOpenHelper {
     cv.put("address", address);
     cv.put("type", type);
     cv.put("notes", notes);
-    getWritableDatabase().update("Restaurants", cv, "_id=?", args);
+    getWritableDatabase().update("Transactions", cv, "_id=?", args);
   }
 
   public Cursor getAll() {
-    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Restaurants ORDER BY name", null));
+    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Transactions ORDER BY name", null));
   }
 
   public Cursor getById(String id) {
     String[] args={id};
-    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Restaurants WHERE _id=?", args));
+    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Transactions WHERE _id=?", args));
   }
 
   public String getName(Cursor c) {
