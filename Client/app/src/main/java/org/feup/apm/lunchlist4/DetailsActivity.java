@@ -1,4 +1,4 @@
-package org.feup.apm.ACME;
+package org.feup.apm.lunchlist4;
 
 import android.database.Cursor;
 import androidx.appcompat.app.ActionBar;

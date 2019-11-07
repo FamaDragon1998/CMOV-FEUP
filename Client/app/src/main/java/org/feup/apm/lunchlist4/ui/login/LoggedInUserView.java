@@ -1,4 +1,4 @@
-package org.feup.apm.ACME.ui.login;
+package org.feup.apm.lunchlist4.ui.login;
 
 /**
  * Class exposing authenticated user details to the UI.

@@ -1,4 +1,4 @@
-package org.feup.apm.ACME.ui.login;
+package org.feup.apm.lunchlist4.ui.login;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -6,10 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 import android.util.Patterns;
 
-import org.feup.apm.ACME.data.LoginRepository;
-import org.feup.apm.ACME.data.Result;
-import org.feup.apm.ACME.data.model.LoggedInUser;
-import org.feup.apm.ACME.R;
+import org.feup.apm.lunchlist4.data.LoginRepository;
+import org.feup.apm.lunchlist4.data.Result;
+import org.feup.apm.lunchlist4.data.model.LoggedInUser;
+import org.feup.apm.lunchlist4.R;
 
 public class LoginViewModel extends ViewModel {
 

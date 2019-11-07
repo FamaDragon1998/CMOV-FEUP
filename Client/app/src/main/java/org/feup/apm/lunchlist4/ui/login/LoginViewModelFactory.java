@@ -1,11 +1,11 @@
-package org.feup.apm.ACME.ui.login;
+package org.feup.apm.lunchlist4.ui.login;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import org.feup.apm.ACME.data.LoginDataSource;
-import org.feup.apm.ACME.data.LoginRepository;
+import org.feup.apm.lunchlist4.data.LoginDataSource;
+import org.feup.apm.lunchlist4.data.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

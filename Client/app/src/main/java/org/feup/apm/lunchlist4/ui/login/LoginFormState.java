@@ -1,4 +1,4 @@
-package org.feup.apm.ACME.ui.login;
+package org.feup.apm.lunchlist4.ui.login;
 
 import androidx.annotation.Nullable;
 

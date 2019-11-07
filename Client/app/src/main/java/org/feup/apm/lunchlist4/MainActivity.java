@@ -1,4 +1,4 @@
-package org.feup.apm.ACME;
+package org.feup.apm.lunchlist4;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,8 +16,9 @@ import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import org.feup.apm.ACME.ui.login.LoginActivity;
+import org.feup.apm.lunchlist4.ui.login.LoginActivity;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
