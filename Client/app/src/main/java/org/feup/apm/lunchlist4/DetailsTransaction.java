@@ -54,9 +54,6 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
           //  ((TextView)row.findViewById(R.id.description)).setText("X"+"items);
             ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
 
-            ImageView symbol = row.findViewById(R.id.symbol);
-            symbol.setImageResource(R.drawable.batmanoutfit);
-
             return(row);
         }
 

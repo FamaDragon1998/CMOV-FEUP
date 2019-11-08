@@ -89,34 +89,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   }
 
 
-  /*                                              *
-   * Sub class with the custom ListView adapter   *
-   *                                              */
-
-  class RestaurantAdapter extends CursorAdapter {
-    RestaurantAdapter(Cursor c) {
-      super(MainActivity.this, c);
-    }
-
-    @Override
-    public View newView(Context context, Cursor c, ViewGroup parent) {
-      View row=getLayoutInflater().inflate(R.layout.row, parent, false);
-      ((TextView)row.findViewById(R.id.title)).setText(helper.getName(c));
-     // ((TextView)row.findViewById(R.id.address)).setText(helper.getAddress(c));
-      ImageView symbol = row.findViewById(R.id.symbol);
-      if (helper.getType(c).equals("sit"))
-        symbol.setImageResource(R.drawable.ball_red);
-      else if (helper.getType(c).equals("take"))
-        symbol.setImageResource(R.drawable.ball_yellow);
-      else
-        symbol.setImageResource(R.drawable.ball_green);
-      return(row);
-    }
-
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-    }
-  }
 
   class TransactionAdapter extends CursorAdapter {
     TransactionAdapter(Cursor c) {
@@ -127,11 +99,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public View newView(Context context, Cursor c, ViewGroup parent) {
       View row=getLayoutInflater().inflate(R.layout.row, parent, false);
       ((TextView)row.findViewById(R.id.title)).setText("insert title here");
-      ((TextView)row.findViewById(R.id.description)).setText("X" +" items");
       ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
 
-      ImageView symbol = row.findViewById(R.id.symbol);
-      symbol.setImageResource(R.drawable.batmanoutfit);
 
       return(row);
     }

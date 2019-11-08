@@ -10,22 +10,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a356072b-b812-444a-963f-0b85ad4d6788" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/Product.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/QrCodeActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_qr_code.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_transaction.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_new_transaction.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/row_1line.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/row_1line.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/database/database.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/database/database.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Server/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../Server/package-lock.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,17 +34,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_1line.xml">
           <provider selected="true" editor-type-id="android-designer2" />
           <provider editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2034">
-              <caret line="192" column="34" lean-forward="true" selection-start-line="192" selection-start-column="34" selection-end-line="192" selection-end-column="34" />
+            <state relative-caret-position="252">
+              <caret line="88" selection-start-line="88" selection-end-line="88" />
               <folding>
                 <element signature="e#5655#5731#0" expanded="true" />
               </folding>
@@ -81,15 +78,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
               <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="5" column="53" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -126,8 +114,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1270">
-              <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
+            <state relative-caret-position="246">
+              <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
             </state>
           </provider>
         </entry>
@@ -153,7 +141,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getLoginResult</find>
       <find>welcome</find>
       <find>updateUiWithUser</find>
       <find>context</find>
@@ -183,6 +170,7 @@
       <find>generateQRcode</find>
       <find>setOnClickListener</find>
       <find>getMessage</find>
+      <find>newView</find>
     </findStrings>
     <dirStrings>
       <dir>C:\Users\Ricardo\Documents\GitHub\CMOV-FEUP\Client\app</dir>
@@ -204,7 +192,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_transition_details.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/product_details.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsProducts.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/ui/login/LoginActivity.java" />
@@ -215,16 +202,17 @@
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/ScanActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_transaction_details.xml" />
         <option value="$PROJECT_DIR$/app/build/generated/source/buildConfig/androidTest/debug/org/feup/apm/ACME/test/BuildConfig.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/TransactionsHelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/QrCodeActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_new_transaction.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/content_qr_code.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/Product.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/row_1line.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java" />
       </list>
     </option>
   </component>
@@ -435,7 +423,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.28895614" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.28895614" />
       <window_info id="Structure" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
@@ -450,7 +438,7 @@
       <window_info anchor="bottom" id="TODO" order="4" sideWeight="0.4977307" weight="0.17348608" />
       <window_info anchor="bottom" id="Terminal" order="5" sideWeight="0.49621785" weight="0.3289689" />
       <window_info anchor="bottom" id="Version Control" order="6" sideWeight="0.4977307" weight="0.3289689" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.5400908" visible="true" weight="0.30114567" />
+      <window_info active="true" anchor="bottom" id="Build" order="7" sideWeight="0.5400908" visible="true" weight="0.30114567" />
       <window_info anchor="bottom" id="Android Profiler" order="8" sideWeight="0.49924356" weight="0.3289689" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.3289689" />
       <window_info anchor="right" id="Preview" order="0" />
@@ -606,13 +594,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="28" column="36" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_details.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
@@ -724,23 +705,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2034">
-          <caret line="192" column="34" lean-forward="true" selection-start-line="192" selection-start-column="34" selection-end-line="192" selection-end-column="34" />
-          <folding>
-            <element signature="e#5655#5731#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1270">
-          <caret line="43" column="35" selection-start-line="43" selection-start-column="35" selection-end-line="43" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
@@ -752,6 +716,30 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/row_1line.xml">
       <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/DetailsTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="54" column="70" selection-start-line="54" selection-start-column="70" selection-end-line="54" selection-end-column="70" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="116" lean-forward="true" selection-start-line="116" selection-end-line="116" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/org/feup/apm/lunchlist4/NewTransaction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="e#5655#5731#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

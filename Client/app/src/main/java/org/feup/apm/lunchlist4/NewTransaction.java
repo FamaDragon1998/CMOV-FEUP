@@ -86,9 +86,7 @@ public class NewTransaction extends AppCompatActivity {
             ((TextView)row.findViewById(R.id.title)).setText("insert title here");
             //  ((TextView)row.findViewById(R.id.description)).setText("X"+"items);
             ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
-
-            ImageView symbol = row.findViewById(R.id.symbol);
-            symbol.setImageResource(R.drawable.batmanoutfit);
+            
 
             return(row);
         }
