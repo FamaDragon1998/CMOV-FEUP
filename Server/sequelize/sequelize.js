@@ -16,7 +16,8 @@ const sequelize = new Sequelize('codementor', 'root', 'root', {
 
 const User = UserModel(sequelize, Sequelize)
 const Transaction = TransactionModel(sequelize, Sequelize)
-Transaction.belongsTo(User);
+
+//User.hasMany(Transaction, {as: "user"});
 
 sequelize
   .authenticate()
@@ -31,8 +32,8 @@ sequelize
   .sync({force:true})
     .then(() => {
     Transaction.bulkCreate([
-      {id: 1, voucher: 745747, total_value: 120, flag: true, user_id:2},
-      {id: 2, voucher: 111111, total_value: 1, flag: false, user_id:1},
+      {id: 1, voucher: 745747, total_value: 120, flag: true, user:2},
+      {id: 2, voucher: 111111, total_value: 1, flag: false, user:1},
     ])
   })
   .then(() => {

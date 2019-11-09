@@ -13,7 +13,8 @@ router.post('/register', function(req, res, next) {
 
 //Logs in
 router.post('/login', function(req, res, next) {
-  res.send('respond with a resource');
+  User.findOne({ where: {username: req.body.username, password:req.body.password} })
+    .then(user => res.json(user))
 });
 
 //Returns Unused Vouchers of a User
@@ -28,14 +29,16 @@ router.get('/:name', function(req, res, next) {
 });
 
 //Returns all transactions of a user
-router.get('/transactions', function(req, res, next) {
-  Transaction.findOne({ where: {user_id: req.body.user_id} })
+router.get('/transactionsAll', function(req, res, next) {
+  Transaction.findAll()
     .then(transactions => res.json(transactions))
+  /*Transaction.findAll({ where: {userId: req.body.userId} })
+    .then(transactions => res.json(transactions))*/
 });
 
 //Return a transaction of a user
 router.get('/transactions/:id', function(req, res, next) {
-  Transaction.findOne({ where: {user_id: req.body.user_id, transaction_id: req.params.id} })
+  Transaction.findOne({ where: {userId: req.body.userId, transaction_id: req.params.id} })
     .then(transactions => res.json(transactions))
 });
 

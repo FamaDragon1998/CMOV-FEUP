@@ -28,7 +28,8 @@ module.exports = (sequelize, type) => {
         },
         total_spent:{
             type: type.FLOAT,
-            allowNull: false
+            allowNull: false,
+            defaultValue: 0
         },
         stored_discount:{
             type: type.FLOAT,
