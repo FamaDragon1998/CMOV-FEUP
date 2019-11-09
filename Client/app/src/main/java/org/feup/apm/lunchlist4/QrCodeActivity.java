@@ -53,7 +53,7 @@ public class QrCodeActivity extends AppCompatActivity {
 
     public void backButton(View view)
     {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, NewTransaction.class));
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
     }

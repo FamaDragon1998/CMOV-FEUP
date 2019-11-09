@@ -43,7 +43,7 @@ public class NewTransaction extends AppCompatActivity {
 
     private List<Product> basket;
 
-    TextView messageTv;
+    TextView vouocher;
     CheckBox vouchercheck,discountcheck;
     Button finishbutton;
 
@@ -124,6 +124,11 @@ public class NewTransaction extends AppCompatActivity {
                 try {
                     baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
                     basket.add(new Product(contents));
+                    TextView list = findViewById(R.id.scantest);
+                    list.setText(contents);
+
+                   /* adapter.add("Clicked : "+clickCounter++);
+                    adapter.notifyDataSetChanged();*/
 
                 }
                 catch (Exception ex) {
@@ -162,7 +167,7 @@ public class NewTransaction extends AppCompatActivity {
             if (size > 400)
                 print = "(too big)";
 
-            messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
+          //  messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
         }
         catch (UnsupportedEncodingException e) {
            // errorTv.setText(e.getMessage());
