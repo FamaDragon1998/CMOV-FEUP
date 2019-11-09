@@ -22,13 +22,10 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.Context;
 
-import org.feup.apm.lunchlist4.DetailsTransaction;
 import org.feup.apm.lunchlist4.MainActivity;
 import org.feup.apm.lunchlist4.R;
-import org.feup.apm.lunchlist4.ui.login.LoginViewModel;
-import org.feup.apm.lunchlist4.ui.login.LoginViewModelFactory;
+import org.feup.apm.lunchlist4.Register;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -133,5 +130,12 @@ public class LoginActivity extends AppCompatActivity {
 
     private void showLoginFailed(@StringRes Integer errorString) {
         Toast.makeText(getApplicationContext(), errorString, Toast.LENGTH_SHORT).show();
+    }
+
+    public void toregister(View view)
+    {
+        startActivity(new Intent(this, Register.class));
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+
     }
 }
