@@ -16,6 +16,7 @@ const sequelize = new Sequelize('codementor', 'root', 'root', {
 
 const User = UserModel(sequelize, Sequelize)
 const Transaction = TransactionModel(sequelize, Sequelize)
+Transaction.belongsTo(User);
 
 sequelize
   .authenticate()
@@ -25,10 +26,15 @@ sequelize
   .catch(error => {
     console.log("error", error);
   })
-
   
   sequelize
   .sync({force:true})
+    .then(() => {
+    Transaction.bulkCreate([
+      {id: 1, voucher: 745747, total_value: 120, flag: true, user_id:2},
+      {id: 2, voucher: 111111, total_value: 1, flag: false, user_id:1},
+    ])
+  })
   .then(() => {
     User.bulkCreate([
       {id: 1, username: "John", email: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
@@ -38,34 +44,9 @@ sequelize
       console.log("error", error);
     })
   })
-/*   .then(() => {
-    User.bulkCreate([
-      {id: 1, username: "John", email: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
-      {id: 2, username: "Kimbolas", email: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
-    ])
-    console.log("connection");
-  }) */
-
-/* var data = {
-  tables: {
-    user: [
-    
-    transaction: [
-      {id: 1, voucher: 745747, total_value: 120, flag: true},
-      {id: 2, voucher: 111111, total_value: 1, flag: false},
-      {id: 3, voucher: null, total_value: 55, flag: false},
-    ],
-  },
-} */
-
-//const Tag = TagModel(sequelize, Sequelize)
-/* 
-Blog.belongsToMany(Tag, { through: BlogTag, unique: false })
-Tag.belongsToMany(Blog, { through: BlogTag, unique: false }) */
-//Transaction.belongsTo(User);
 
 module.exports = {
   User,
-  //Transaction,
+  Transaction,
   sequelize
 }
