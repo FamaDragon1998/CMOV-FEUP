@@ -25,4 +25,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="title_activity_qr_code">QrCodeActivity</string>
     <string name="tv_message_template">Value(%d b): \"%s\"</string>
+    <string name="check_profile">Check Profile Page</string>
 </resources>

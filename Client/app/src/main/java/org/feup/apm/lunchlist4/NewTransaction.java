@@ -65,7 +65,6 @@ public class NewTransaction extends AppCompatActivity {
         QRButton = findViewById(R.id.scan);
         QRButton.setOnClickListener((v)->scan(true));
 
-        messageTv = findViewById(R.id.tv_title);
 
         vouchercheck = (CheckBox)findViewById(R.id.voucher);
         discountcheck = (CheckBox)findViewById(R.id.discount);
@@ -86,7 +85,7 @@ public class NewTransaction extends AppCompatActivity {
             ((TextView)row.findViewById(R.id.title)).setText("insert title here");
             //  ((TextView)row.findViewById(R.id.description)).setText("X"+"items);
             ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
-            
+
 
             return(row);
         }
@@ -125,11 +124,9 @@ public class NewTransaction extends AppCompatActivity {
                 try {
                     baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
                     basket.add(new Product(contents));
-                    messageTv.setText("Format: " + format + "\nMessage: " + basket + "\n\nHex: " + byteArrayToHex(baMess) +"\nVoucher: "+vouchercheck.isChecked()+"\nDiscount: "+discountcheck.isChecked());
 
                 }
                 catch (Exception ex) {
-                    messageTv.setText(ex.getMessage());
                     return;
                 }
             }
