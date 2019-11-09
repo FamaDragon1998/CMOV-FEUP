@@ -1,6 +1,28 @@
 # CMOV-FEUP
 
 
+## Stuff to do:
+
+### Client
+* Profile page
+* Transaction Page
+* Reads QRCode and saves in basket
+* Generates QRCode in basket
+* Nice Design
+
+### Terminal 
+
+* Ler QRCode
+* Enviar informaçao ao Server
+
+### Server
+
+* All routes working
+* All database queries working
+
+
+Apos tudo funcionar, por keys a dar
+
 Usar ISO-8859-1 para alguma coisa, acho eu byte[] to String
 
 Barcode Scanner no play store
