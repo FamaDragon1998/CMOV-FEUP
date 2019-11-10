@@ -26,9 +26,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".DetailsActivity"
-            android:label="Details" />
-        <activity
             android:name=".DetailsTransaction"
             android:label="Transaction Details" />
     </application>

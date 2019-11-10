@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class TransactionsHelper extends SQLiteOpenHelper {
-  private static final String DATABASE_NAME = "lunchlist.db";
+  private static final String DATABASE_NAME = "transactions.db";
   private static final int SCHEMA_VERSION = 1;
 
   public TransactionsHelper(Context context) {
@@ -16,7 +16,7 @@ public class TransactionsHelper extends SQLiteOpenHelper {
 
   @Override
   public void onCreate(SQLiteDatabase db) {
-    db.execSQL("CREATE TABLE Transactions(_id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, address TEXT, type TEXT, notes TEXT)");
+    db.execSQL("CREATE TABLE Transactions(_id INTEGER PRIMARY KEY AUTOINCREMENT, date TEXT, price FLOAT)");
   }
 
   @Override
@@ -24,47 +24,39 @@ public class TransactionsHelper extends SQLiteOpenHelper {
     // no-op; dealing with version 1 only
   }
 
-  public long insert(String name, String address, String type, String notes) {
+  public long insert(String date, float price) {
     ContentValues cv=new ContentValues();
-    cv.put("name", name);
-    cv.put("address", address);
-    cv.put("type", type);
-    cv.put("notes", notes);
-    return getWritableDatabase().insert("Transactions", "name", cv);
+    cv.put("date", date);
+    cv.put("price", price);
+    return getWritableDatabase().insert("Transactions", "date", cv);
   }
 
-  public void update(String id, String name, String address, String type, String notes) {
+
+  public void update(String id, String date, Float price) {
     ContentValues cv=new ContentValues();
     String[] args={id};
-    cv.put("name", name);
-    cv.put("address", address);
-    cv.put("type", type);
-    cv.put("notes", notes);
+    cv.put("date", date);
+    cv.put("price", price);
     getWritableDatabase().update("Transactions", cv, "_id=?", args);
   }
 
   public Cursor getAll() {
-    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Transactions ORDER BY name", null));
+    return(getReadableDatabase().rawQuery("SELECT _id, date, price  FROM Transactions ORDER BY date", null));
   }
 
   public Cursor getById(String id) {
     String[] args={id};
-    return(getReadableDatabase().rawQuery("SELECT _id, name, address, type, notes FROM Transactions WHERE _id=?", args));
+    return(getReadableDatabase().rawQuery("SELECT _id, date, price FROM Transactions WHERE _id=?", args));
   }
 
-  public String getName(Cursor c) {
+  public String getDate(Cursor c) {
     return(c.getString(1));
   }
 
-  public String getAddress(Cursor c) {
-    return(c.getString(2));
+  public Float getPrice(Cursor c) {
+    return(Float.parseFloat(c.getString(2)));
   }
 
-  public String getType(Cursor c) {
-    return(c.getString(3));
-  }
 
-  public String getNotes(Cursor c) {
-    return(c.getString(4));
-  }
+
 }

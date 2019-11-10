@@ -11,6 +11,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -28,12 +29,13 @@ import com.google.zxing.common.BitMatrix;
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    TransactionsHelper helper;
+    ProductsHelper helper;
     static long currentId = -1;
     Cursor model;
     NewTransaction.ProductAdapter adapter;
@@ -52,7 +54,7 @@ public class NewTransaction extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_transaction);
 
-        helper = new TransactionsHelper(this);
+        helper = new ProductsHelper(this);
 
         model = helper.getAll();
         startManagingCursor(model);
@@ -71,6 +73,7 @@ public class NewTransaction extends AppCompatActivity {
 
         finishbutton =  (Button) findViewById(R.id.generateQRcode);
         finishbutton.setOnClickListener((v)->generateQRcode(""));
+        basket = new ArrayList<Product>();
     }
 
 
@@ -122,17 +125,23 @@ public class NewTransaction extends AppCompatActivity {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
                 try {
-                    baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-                    basket.add(new Product(contents));
-                    TextView list = findViewById(R.id.scantest);
-                    list.setText(contents);
+                    Product productscanned = new Product(contents);
+                   // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
+                    basket.add(productscanned);
 
-                   /* adapter.add("Clicked : "+clickCounter++);
-                    adapter.notifyDataSetChanged();*/
+                    helper.insert(productscanned.getName(),productscanned.getPrice());
+
+                    model = helper.getAll();
+                    startManagingCursor(model);
+                    adapter=new NewTransaction.ProductAdapter(model);
+
+                    ListView list = findViewById(R.id.products);
+                    list.setAdapter(adapter);
+
 
                 }
                 catch (Exception ex) {
-                    return;
+                    Log.d("content","exception",ex);
                 }
             }
         }
