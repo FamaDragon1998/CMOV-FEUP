@@ -6,26 +6,42 @@ import android.net.Uri;
 import android.os.Bundle;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
   static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
   TextView message;
 
+  private RequestQueue queue;
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    Button QRButton, barButton;
-
+    Button QRButton;
+    queue = Volley.newRequestQueue(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     message = findViewById(R.id.message);
     QRButton = findViewById(R.id.scan1);
-    barButton = findViewById(R.id.scan2);
-    QRButton.setOnClickListener((v)->scan(true));
-    barButton.setOnClickListener((v)->scan(false));
+    QRButton.setOnClickListener((v) -> scan(true));
   }
 
   @Override
@@ -40,12 +56,15 @@ public class MainActivity extends AppCompatActivity {
   }
 
   public void scan(boolean qrcode) {
+    HashMap info = new HashMap();
+    info.put("email", "email");
+    info.put("password", "password");
+    postData(info);
     try {
       Intent intent = new Intent(ACTION_SCAN);
       intent.putExtra("SCAN_MODE", qrcode ? "QR_CODE_MODE" : "PRODUCT_MODE");
       startActivityForResult(intent, 0);
-    }
-    catch (ActivityNotFoundException anfe) {
+    } catch (ActivityNotFoundException anfe) {
       showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
     }
   }
@@ -72,8 +91,13 @@ public class MainActivity extends AppCompatActivity {
         String format = data.getStringExtra("SCAN_RESULT_FORMAT");
         try {
           baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-        }
-        catch (Exception ex) {
+          HashMap info = new HashMap();
+          info.put("email", "email");
+          info.put("password", "password");
+
+          postData(info);
+
+        } catch (Exception ex) {
           message.setText(ex.getMessage());
           return;
         }
@@ -82,9 +106,33 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
+  public void postData(HashMap data) {
+    Log.d("posting", "posting data");
+    String url = "http:/192.168.1.5:3000/user/checkout"; //IP Address
+    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
+            new Response.Listener<JSONObject>() {
+              @Override
+              public void onResponse(JSONObject response) {
+                Log.d("sucess", response.toString());
+              }
+            },
+            new Response.ErrorListener() {
+              @Override
+              public void onErrorResponse(VolleyError error) {
+                Log.d("error", error.toString());
+
+              }
+            }
+    ) {
+      //here I want to post data to sever
+    };
+    queue.add(jsonobj);
+
+  }
+
   String byteArrayToHex(byte[] ba) {
     StringBuilder sb = new StringBuilder(ba.length * 2);
-    for(byte b: ba)
+    for (byte b : ba)
       sb.append(String.format("%02x", b));
     return sb.toString();
   }
