@@ -30,17 +30,6 @@
         android:textSize="18sp">
     </Button>
 
-    <Button
-        android:id="@+id/scan2"
-        android:layout_width="250dp"
-        android:layout_height="60dp"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
-        android:gravity="center"
-        android:text="@string/bt_bar"
-        android:textSize="18sp">
-    </Button>
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">

@@ -44,7 +44,24 @@ router.get('/transactions/:id', function(req, res, next) {
 
 //Checkout basket
 router.post('/checkout', function(req, res, next) {
-  res.send('respond with a resource');
+  let products = req.body.products;
+  let total = 0;
+  for(let i = 0; i < products.length; i++){
+    let res = str.split(";");
+    let id = res[0];
+    let price = res[1];
+    total += price;
+  }
+ // Transaction.create(req.body)
+  //.then(user => res.json(user))
+  
+  res.send(
+
+    {
+      "response": "ACK"
+    }
+    
+  );
 });
 
 

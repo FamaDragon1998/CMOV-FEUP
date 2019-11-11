@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">ScanQR</string>
-    <string name="act_title">Scan Codes</string>
-    <string name="bt_qr">QR Code</string>
-    <string name="bt_bar">Bar Code</string>
+    <string name="app_name">ACME Terminal</string>
+    <string name="act_title">Checkout your Basket</string>
+    <string name="bt_qr">Checkout</string>
+    <string name="ip_address">10.227.159.153</string>
 </resources>

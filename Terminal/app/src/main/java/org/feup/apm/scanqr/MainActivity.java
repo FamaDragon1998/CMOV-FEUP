@@ -10,22 +10,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
 
 public class MainActivity extends AppCompatActivity {
   static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
@@ -57,9 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
   public void scan(boolean qrcode) {
     HashMap info = new HashMap();
-    info.put("email", "email");
-    info.put("password", "password");
-    postData(info);
+    ArrayList<String> products = new ArrayList<>();
+    products.add("1212;3.0");
+    products.add("2323;20.0");
+
+    info.put("userID", "1"); //userID
+    info.put("discount", "true"); //discount use
+    info.put("voucher", "232323"); //or null
+    info.put("products",products); //products
+
+    checkoutBasket(info);
     try {
       Intent intent = new Intent(ACTION_SCAN);
       intent.putExtra("SCAN_MODE", qrcode ? "QR_CODE_MODE" : "PRODUCT_MODE");
@@ -92,10 +98,13 @@ public class MainActivity extends AppCompatActivity {
         try {
           baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
           HashMap info = new HashMap();
-          info.put("email", "email");
-          info.put("password", "password");
+          info.put("userID", "1"); //userID
+          info.put("discount", "true"); //discount use
+          info.put("voucher", "232323"); //or null
+          info.put(1212, 2); //products
+          info.put(23232, 4);
 
-          postData(info);
+          checkoutBasket(info);
 
         } catch (Exception ex) {
           message.setText(ex.getMessage());
@@ -106,14 +115,22 @@ public class MainActivity extends AppCompatActivity {
     }
   }
 
-  public void postData(HashMap data) {
+  public void checkoutBasket(HashMap data) {
     Log.d("posting", "posting data");
-    String url = "http:/192.168.1.5:3000/user/checkout"; //IP Address
+    String url = "http:/" + getString(R.string.ip_address) + ":3000/user/checkout";
     JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
             new Response.Listener<JSONObject>() {
               @Override
               public void onResponse(JSONObject response) {
-                Log.d("sucess", response.toString());
+                try {
+                  if (response.getString("response").equals("ACK"))
+                    Log.d("success", response.toString());
+                  else
+                    Log.d("not successful", response.toString());
+
+                } catch (JSONException e) {
+                  e.printStackTrace();
+                }
               }
             },
             new Response.ErrorListener() {
@@ -124,7 +141,6 @@ public class MainActivity extends AppCompatActivity {
               }
             }
     ) {
-      //here I want to post data to sever
     };
     queue.add(jsonobj);
 
@@ -136,4 +152,5 @@ public class MainActivity extends AppCompatActivity {
       sb.append(String.format("%02x", b));
     return sb.toString();
   }
+
 }
