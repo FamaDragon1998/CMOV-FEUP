@@ -38,8 +38,8 @@ sequelize
   })
   .then(() => {
     User.bulkCreate([
-      {id: 1, username: "John", email: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
-      {id: 2, username: "Kimbolas", email: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
+      {id: 1, username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
+      {id: 2, username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
     ])
     .catch(error => {
       console.log("error", error);
