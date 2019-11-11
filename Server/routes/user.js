@@ -14,7 +14,7 @@ router.post('/register', function(req, res, next) {
 //Logs in
 router.post('/login', function(req, res, next) {
   User.findOne({ where: {username: req.body.username, password:req.body.password} })
-    .then(user => res.json(user))
+    .then(user => res.json({user}))
 });
 
 //Returns Unused Vouchers of a User
@@ -44,24 +44,7 @@ router.get('/transactions/:id', function(req, res, next) {
 
 //Checkout basket
 router.post('/checkout', function(req, res, next) {
-  let products = req.body.products;
-  let total = 0;
-  for(let i = 0; i < products.length; i++){
-    let res = str.split(";");
-    let id = res[0];
-    let price = res[1];
-    total += price;
-  }
- // Transaction.create(req.body)
-  //.then(user => res.json(user))
-  
-  res.send(
-
-    {
-      "response": "ACK"
-    }
-    
-  );
+  res.send('respond with a resource');
 });
 
 

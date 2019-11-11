@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import org.feup.apm.lunchlist4.ui.login.LoginActivity;
 
 public class Register extends AppCompatActivity {
 
