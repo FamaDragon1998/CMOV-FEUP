@@ -6,6 +6,7 @@ import android.database.Cursor;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.CursorAdapter;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -26,41 +28,51 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.feup.apm.lunchlist4.ui.login.LoginActivity;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
   public final static String ID_EXTRA="org.feup.apm.lunchlist4.POS";
+  private static final String FILE_NAME = "transactions.txt";
   TransactionsHelper helper;
   static long currentId = -1;
   Cursor model;
   TransactionAdapter adapter;
-  static boolean checkFirstTime=false;
   private RequestQueue queue;
-
+  User user;
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    if (!checkFirstTime)
-    {
-      startActivityForResult(new Intent(this, LoginActivity.class),123);
-      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
-    }
-    checkFirstTime=true;
+    setContentView(R.layout.activity_main);
+
+    user = (User) getIntent().getSerializableExtra("user");
+    //Log.d("user", user.getUsername());
+
+    save(findViewById(R.id.loadlabel));
+
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
       bar.setIcon(R.drawable.medium_logo2);
       bar.setDisplayShowHomeEnabled(true);
     }
-    setContentView(R.layout.activity_main);
+    load(findViewById(R.id.loadlabel));
+
+
     helper = new TransactionsHelper(this);
 
     model = helper.getAll();
     startManagingCursor(model);
-    adapter=new TransactionAdapter(model);
+    adapter = new TransactionAdapter(model);
 
     ListView list = findViewById(R.id.listview);
     list.setAdapter(adapter);
@@ -69,7 +81,68 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     queue = Volley.newRequestQueue(this);
 
+
   }
+
+  public void save(View v) {
+    String text = "ok Boomer";
+    FileOutputStream fos = null;
+
+    try {
+      fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+      fos.write(text.getBytes());
+
+      Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
+              Toast.LENGTH_LONG).show();
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (fos != null) {
+        try {
+          fos.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
+  public void load(View v) {
+    FileInputStream fis = null;
+
+    TextView loadlabel;
+    loadlabel = findViewById(R.id.loadlabel);
+    try {
+      fis = openFileInput(FILE_NAME);
+      InputStreamReader isr = new InputStreamReader(fis);
+      BufferedReader br = new BufferedReader(isr);
+      StringBuilder sb = new StringBuilder();
+      String text;
+
+      while ((text = br.readLine()) != null) {
+        sb.append(text).append("\n");
+      }
+
+      Log.d("load", sb.toString());
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (fis != null) {
+        try {
+          fis.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+  }
+
+
 
   @Override
   protected void onDestroy() {
@@ -92,7 +165,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return(true);
     }
     else if (item.getItemId() == R.id.profile) {
-      startActivity(new Intent(this, Profile.class));
+      Intent i = new Intent(this, Profile.class);
+      i.putExtra("user", user);
+      startActivity(i);
       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
       return (true);
     }
@@ -133,13 +208,14 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   }
 
   //Exemplo de como fazer as coisas. Usa-se este para ir buscar as transactions
-  public void postData(HashMap data) {
+  public void Login(HashMap data) {
     Log.d("posting", "posting data");
-    String url = "http:/192.168.1.5:3000/user/checkout"; //IP Address
-    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.GET, url, null,
+    String url = "http:/192.168.1.5:3000/user/login"; //IP Address
+    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
             new Response.Listener<JSONObject>() {
               @Override
               public void onResponse(JSONObject response) {
+                User user = new User(response);
                 Log.d("sucess", response.toString());
               }
             },

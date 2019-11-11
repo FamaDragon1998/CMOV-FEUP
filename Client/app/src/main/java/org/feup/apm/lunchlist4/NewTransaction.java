@@ -14,6 +14,7 @@ import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CursorAdapter;
@@ -30,6 +31,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -53,14 +55,25 @@ public class NewTransaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_transaction);
+       // String[] product={"4","oleola","40"};
+        ListView list = findViewById(R.id.products);
+       // ArrayAdapter<CharSequence> aa = ArrayAdapter.createFromResource(this, R.array.products, android.R.layout.simple_list_item_1);
+        //list.setAdapter(aa);
 
-        helper = new ProductsHelper(this);
+     /*   String[] testArray = getResources().getStringArray(R.array.test);
+        List<String> testList = Arrays.asList(testArray);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getBaseContext(),android.R.layout.simple_list_item_1, testList);
+        list.setAdapter(adapter);*/
+
+
+        /*helper = new ProductsHelper(this);
 
         model = helper.getAll();
         startManagingCursor(model);
         adapter=new NewTransaction.ProductAdapter(model);
-        ListView list = findViewById(R.id.products);
-        list.setAdapter(adapter);
+
+        list.setAdapter(adapter);*/
         list.setEmptyView(findViewById(R.id.empty_list));
         //list.setOnItemClickListener(this);
         Button QRButton;
