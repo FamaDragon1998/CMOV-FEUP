@@ -2,9 +2,7 @@ package org.feup.apm.lunchlist4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -18,10 +16,10 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         user = (User) getIntent().getSerializableExtra("user");
 
+        TextView username= (TextView) findViewById(R.id.username);
+        username.setText(user.getUsername());
         TextView name= (TextView) findViewById(R.id.name);
-        name.setText(user.getUsername());
-        TextView email= (TextView) findViewById(R.id.email);
-        email.setText(user.getEmail());
+        name.setText(user.getName());
         TextView balance= (TextView) findViewById(R.id.balance);
         balance.setText(user.getTotal_spent().toString());
         TextView discount= (TextView) findViewById(R.id.discount);

@@ -22,7 +22,7 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:id="@+id/namelabel"
+                android:id="@+id/usernamelabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
@@ -31,7 +31,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/name"
+                android:id="@+id/username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
@@ -45,16 +45,16 @@
             android:layout_marginBottom="20dp">
 
             <TextView
-                android:id="@+id/emaillabel"
+                android:id="@+id/namelabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right|center_vertical"
-                android:text="Email: "
+                android:text="Name: "
                 android:textColor="#F44336"
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/email"
+                android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
