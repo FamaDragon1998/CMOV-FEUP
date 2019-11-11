@@ -3,6 +3,7 @@ package org.feup.apm.lunchlist4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -15,6 +16,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         user = (User) getIntent().getSerializableExtra("user");
+        Log.d("user", user.getUsername());
 
         TextView username= (TextView) findViewById(R.id.username);
         username.setText(user.getUsername());
@@ -26,18 +28,9 @@ public class Profile extends AppCompatActivity {
         discount.setText(user.getStored_discount().toString());
        // TextView vouchers= (TextView) findViewById(R.id.vouchers);
        // name.setText(user.getTotal_spent().toString());
-        Button back;
-        back = findViewById(R.id.back);
-        back.setOnClickListener((v)->goback());
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener((v)->finish());
 
     }
 
-    public void goback() {
-       /* Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("user", user);
-        startActivity(i);
-
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);*/
-       finish();
-    }
 }
