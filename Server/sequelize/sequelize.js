@@ -1,6 +1,9 @@
 const Sequelize = require('sequelize')
 const UserModel = require('./models/user')
 const TransactionModel = require('./models/transaction')
+const VoucherModel = require('./models/voucher')
+const ProductModel = require('./models/product')
+const TransactionProductModel = require('./models/voucher')
 
 const sequelize = new Sequelize('codementor', 'root', 'root', {
   host: 'localhost',
@@ -16,9 +19,16 @@ const sequelize = new Sequelize('codementor', 'root', 'root', {
 
 const User = UserModel(sequelize, Sequelize)
 const Transaction = TransactionModel(sequelize, Sequelize)
+const Voucher = VoucherModel(sequelize, Sequelize);
+const Product = ProductModel(sequelize, Sequelize);
+const TransactionProduct = TransactionProductModel(sequelize, Sequelize);
 
 User.hasMany(Transaction);
 Transaction.belongsTo(User);
+
+User.hasMany(Voucher);
+Voucher.belongsTo(User);
+Voucher.belongsTo(Transaction);
 
 sequelize
   .authenticate()
@@ -42,6 +52,28 @@ sequelize
       {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
       {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
     ])
+    .then(() => {
+      Product.bulkCreate([
+        {id: 1, name: "Explosives", value: 10},
+        {id: 2, name: "Yo", value: 1},
+        {id: 3, name: "Yo2", value: 3},
+      ])
+    .then(() => {
+      Voucher.bulkCreate([
+        {id: 12123, used:true, flag: true, UserId:1, TransactionId:1},
+        {id: 12333, used:false, flag: false, UserId:1, TransactionId:null},
+        {id: 13445, used:false, flag: false, UserId:2, TransactionId: null},
+        {id: 54121, used:false, flag: false, UserId:2, TransactionId: null},
+      ])
+      .then(() => {
+        ProductModel.bulkCreate([
+          {ProductId: 1, TransactionId:1},
+          {ProductId: 2, TransactionId:1},
+          {ProductId: 3, TransactionId:2},
+        ])
+        })
+      })
+      })
     .catch(error => {
       console.log("error", error);
     })
@@ -50,5 +82,7 @@ sequelize
 module.exports = {
   User,
   Transaction,
+  Voucher,
+  TransactionProduct,
   sequelize
 }

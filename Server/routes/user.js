@@ -3,6 +3,7 @@ var router = express.Router();
 
 const User = require('../sequelize/sequelize.js').User;
 const Transaction = require('../sequelize/sequelize.js').Transaction;
+const Voucher = require('../sequelize/sequelize.js').Voucher;
 
 
 //Register 
@@ -18,8 +19,9 @@ router.post('/login', function(req, res, next) {
 });
 
 //Returns Unused Vouchers of a User
-router.get('/:id/vouchers', function(req, res, next) {
-  res.send('respond with a voucher');
+router.get('/vouchers', function(req, res, next) {
+  Voucher.findAll({ where: {UserId: req.body.UserId, used:false} })
+  .then(vouchers => res.json(vouchers))
 }); 
 
 //Returns all transactions of a user
