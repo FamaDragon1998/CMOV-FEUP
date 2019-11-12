@@ -1,18 +1,18 @@
 module.exports = (sequelize, type) => {
     return sequelize.define('TransactionProduct', {
         ProductId: {
-            type: DataTypes.UUID,
+            type: type.UUID,
             allowNull: false,
             references: {
-              model: 'Product',
+              model: 'Products',
               key: 'id'
             }
           },
           TransactionId: {
-            type: DataTypes.UUID,
+            type: type.UUID,
             allowNull: false,
             references: {
-              model: 'Group',
+              model: 'Transactions',
               key: 'id'
             }
           }

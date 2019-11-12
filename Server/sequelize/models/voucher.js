@@ -7,12 +7,6 @@ module.exports = (sequelize, type) => {
         used:{
             type: type.BOOLEAN,
             defaultValue: false,
-        },
-        flag: {
-            type: type.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
         }
-
     })
 }

@@ -3,7 +3,7 @@ const UserModel = require('./models/user')
 const TransactionModel = require('./models/transaction')
 const VoucherModel = require('./models/voucher')
 const ProductModel = require('./models/product')
-const TransactionProductModel = require('./models/voucher')
+const TransactionProductModel = require('./models/transaction_product')
 
 const sequelize = new Sequelize('codementor', 'root', 'root', {
   host: 'localhost',
@@ -46,38 +46,37 @@ sequelize
         {id: 1, username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
         {id: 2, username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
       ])
-  })
-  .then(() => {
-    Transaction.bulkCreate([
-      {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
-      {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
-    ])
+    })
     .then(() => {
-      Product.bulkCreate([
-        {id: 1, name: "Explosives", value: 10},
-        {id: 2, name: "Yo", value: 1},
-        {id: 3, name: "Yo2", value: 3},
+      Transaction.bulkCreate([
+        {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
+        {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
       ])
-    .then(() => {
-      Voucher.bulkCreate([
-        {id: 12123, used:true, flag: true, UserId:1, TransactionId:1},
-        {id: 12333, used:false, flag: false, UserId:1, TransactionId:null},
-        {id: 13445, used:false, flag: false, UserId:2, TransactionId: null},
-        {id: 54121, used:false, flag: false, UserId:2, TransactionId: null},
-      ])
+    })
       .then(() => {
-        ProductModel.bulkCreate([
-          {ProductId: 1, TransactionId:1},
-          {ProductId: 2, TransactionId:1},
-          {ProductId: 3, TransactionId:2},
+        Product.bulkCreate([
+          {id: 1, name: "Explosives", value: 10},
+          {id: 2, name: "Yo", value: 1},
+          {id: 3, name: "Yo2", value: 3},
         ])
-        })
       })
+      .then(() => {
+        Voucher.bulkCreate([
+          {id: 12123, used:true, UserId:1, TransactionId:1},
+          {id: 12121212, used:false, UserId:1, TransactionId:1},
+
+        ])
       })
+        .then(() => {
+          TransactionProduct.bulkCreate([
+            {ProductId: 1, TransactionId:1},
+            {ProductId: 2, TransactionId:1},
+            {ProductId: 3, TransactionId:2},
+          ])
+          })
     .catch(error => {
       console.log("error", error);
     })
-  })
 
 module.exports = {
   User,
