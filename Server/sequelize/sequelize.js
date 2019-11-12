@@ -17,7 +17,8 @@ const sequelize = new Sequelize('codementor', 'root', 'root', {
 const User = UserModel(sequelize, Sequelize)
 const Transaction = TransactionModel(sequelize, Sequelize)
 
-//User.hasMany(Transaction, {as: "user"});
+User.hasMany(Transaction);
+Transaction.belongsTo(User);
 
 sequelize
   .authenticate()
@@ -31,15 +32,15 @@ sequelize
   sequelize
   .sync({force:true})
     .then(() => {
-    Transaction.bulkCreate([
-      {id: 1, voucher: 745747, total_value: 120, flag: true, user:2},
-      {id: 2, voucher: 111111, total_value: 1, flag: false, user:1},
-    ])
+      User.bulkCreate([
+        {id: 1, username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
+        {id: 2, username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
+      ])
   })
   .then(() => {
-    User.bulkCreate([
-      {id: 1, username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
-      {id: 2, username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
+    Transaction.bulkCreate([
+      {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
+      {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
     ])
     .catch(error => {
       console.log("error", error);
