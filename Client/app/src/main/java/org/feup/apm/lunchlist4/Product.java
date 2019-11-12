@@ -22,13 +22,14 @@ public class Product {
         this.name = name;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
     public void setPrice(float price) {
         this.price = price;
     }
+
 
     //id;name;price
     public Product(String content){

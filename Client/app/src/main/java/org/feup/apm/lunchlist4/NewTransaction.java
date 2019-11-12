@@ -20,6 +20,8 @@ import android.widget.CheckBox;
 import android.widget.CursorAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -39,46 +41,36 @@ public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
     ProductsHelper helper;
     static long currentId = -1;
-    Cursor model;
-    NewTransaction.ProductAdapter adapter;
+    //Cursor model;
+    //NewTransaction.ProductAdapter adapter;
     final static int DIMENSION=500;
     final static String CH_SET="ISO-8859-1";
     //String qrResult;
 
-    private List<Product> basket;
+    private Transaction basket;
 
-    TextView vouocher;
     CheckBox vouchercheck,discountcheck;
     Button finishbutton;
+
+
+
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        user = (User) getIntent().getSerializableExtra("user");
+
         setContentView(R.layout.activity_new_transaction);
-       // String[] product={"4","oleola","40"};
-        ListView list = findViewById(R.id.products);
-       // ArrayAdapter<CharSequence> aa = ArrayAdapter.createFromResource(this, R.array.products, android.R.layout.simple_list_item_1);
-        //list.setAdapter(aa);
-
-     /*   String[] testArray = getResources().getStringArray(R.array.test);
-        List<String> testList = Arrays.asList(testArray);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getBaseContext(),android.R.layout.simple_list_item_1, testList);
-        list.setAdapter(adapter);*/
+        basket = new Transaction();
+        ListView listview = findViewById(R.id.products);
 
 
-        /*helper = new ProductsHelper(this);
+        user = (User) getIntent().getSerializableExtra("user");
 
-        model = helper.getAll();
-        startManagingCursor(model);
-        adapter=new NewTransaction.ProductAdapter(model);
-
-        list.setAdapter(adapter);*/
-        list.setEmptyView(findViewById(R.id.empty_list));
-        //list.setOnItemClickListener(this);
         Button QRButton;
         QRButton = findViewById(R.id.scan);
-        QRButton.setOnClickListener((v)->scan(true));
+        QRButton.setOnClickListener((v)->scan(true,basket));
 
 
         vouchercheck = (CheckBox)findViewById(R.id.voucher);
@@ -86,41 +78,35 @@ public class NewTransaction extends AppCompatActivity {
 
         finishbutton =  (Button) findViewById(R.id.generateQRcode);
         finishbutton.setOnClickListener((v)->generateQRcode(""));
-        basket = new ArrayList<Product>();
+
+        discountcheck.setOnClickListener(((v)->togglediscount()));
+        vouchercheck.setOnClickListener(((v)->togglevoucher()));
+
     }
 
+    public void togglevoucher(){
+        //reduce voucher number
+    }
 
-    class ProductAdapter extends CursorAdapter {
-        ProductAdapter(Cursor c) {
-            super(NewTransaction.this, c);
-        }
-
-        @Override
-        public View newView(Context context, Cursor c, ViewGroup parent) {
-            View row=getLayoutInflater().inflate(R.layout.row_1line, parent, false);
-            ((TextView)row.findViewById(R.id.title)).setText("insert title here");
-            //  ((TextView)row.findViewById(R.id.description)).setText("X"+"items);
-            ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
-
-
-            return(row);
-        }
-
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
-        }
+    public void togglediscount(){
+        SeekBar sb= findViewById(R.id.seekBar);
+        sb.setClickable(true);
+        //reduce voucher
     }
 
     public void backButton(View view)
     {
-        startActivity(new Intent(this, MainActivity.class));
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("user", user);
+        startActivity(i);
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
     }
 
 
-    public void scan(boolean qrcode) {
+    public void scan(boolean qrcode,Transaction basket) {
         try {
+
             Intent intent = new Intent(ACTION_SCAN);
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE" );
             startActivityForResult(intent, 0);
@@ -140,21 +126,24 @@ public class NewTransaction extends AppCompatActivity {
                 try {
                     Product productscanned = new Product(contents);
                    // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-                    basket.add(productscanned);
+                    basket.addProducts(productscanned);
 
-                    helper.insert(productscanned.getName(),productscanned.getPrice());
 
-                    model = helper.getAll();
-                    startManagingCursor(model);
-                    adapter=new NewTransaction.ProductAdapter(model);
+
+                    Log.d("basket",basket.getProducts().get(0).getName());
+                   // helper.insert(productscanned.getName(),productscanned.getPrice());
+
+                   // model = helper.getAll();
+                   // startManagingCursor(model);
+                   // adapter=new NewTransaction.ProductAdapter(model);
 
                     ListView list = findViewById(R.id.products);
-                    list.setAdapter(adapter);
+                   // list.setAdapter(adapter);
 
 
                 }
                 catch (Exception ex) {
-                    Log.d("content","exception",ex);
+                    Log.d("error","exception",ex);
                 }
             }
         }
@@ -183,17 +172,23 @@ public class NewTransaction extends AppCompatActivity {
         for (int b=0; b<size; b++) {
             bContent[b] = (byte)(b%256);
         }
-        try {
-            content = new String(bContent, CH_SET);
+     //   try {
+            //content = new String(bContent, CH_SET);
+         CheckBox boxvoucher = (CheckBox)findViewById(R.id.voucher);
+         CheckBox boxdiscount = (CheckBox)findViewById(R.id.discount);
+            content=parsetransaction(basket.getProducts(),boxvoucher.isChecked(),1);
+         Log.d("aftercall",content);
+         Log.d("aftercall",basket.getProducts().get(0).getName());
             String print = byteArrayToHex(bContent);
+            Log.d("bcontent",bContent.toString());
             if (size > 400)
                 print = "(too big)";
 
           //  messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
-        }
-        catch (UnsupportedEncodingException e) {
+      //  }
+      //  catch (UnsupportedEncodingException e) {
            // errorTv.setText(e.getMessage());
-        }
+      //  }
 
         final String QRcodeContents = content;
         // convert in a separate thread to avoid possible ANR
@@ -209,7 +204,7 @@ public class NewTransaction extends AppCompatActivity {
             byte[] byteArray = stream.toByteArray();
 
 
-            Intent intent = new Intent(NewTransaction.this, QrCodeActivity.class);
+            Intent intent = new Intent(this, QrCodeActivity.class);
 
             intent.putExtra("image", byteArray); //Put your id to your next Intent
             startActivity(intent);
@@ -246,6 +241,19 @@ public class NewTransaction extends AppCompatActivity {
         Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
         bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
         return bitmap;
+    }
+
+
+    public String parsetransaction(List<Product> products,Boolean discount, Integer voucher){
+        String contents="";
+        for (int i=0;i<products.size();i++)
+        {
+            contents += products.get(i).getId() +";"+products.get(i).getPrice().toString();
+            if (i< products.size()-1)
+                contents+="|";
+        }
+        contents+=","+voucher+","+discount;
+       return contents;
     }
 
     public String BitMapToString(Bitmap bitmap){
