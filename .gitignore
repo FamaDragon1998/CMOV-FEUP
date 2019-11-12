@@ -13,6 +13,5 @@ Client\.idea\workspace.xml
 /build
 /captures
 .externalNativeBuild
-app/
 Client/local.properties
 Client/.gradle

@@ -16,7 +16,7 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         user = (User) getIntent().getSerializableExtra("user");
-        Log.d("user", user.getUsername());
+        Log.d("user", user.getTotal_spent().toString());
 
         TextView username= (TextView) findViewById(R.id.username);
         username.setText(user.getUsername());
