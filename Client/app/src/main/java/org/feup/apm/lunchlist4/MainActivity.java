@@ -58,14 +58,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     user = (User) getIntent().getSerializableExtra("user");
     //Log.d("user", user.getUsername());
 
-    save(findViewById(R.id.loadlabel));
 
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
       bar.setIcon(R.drawable.medium_logo2);
       bar.setDisplayShowHomeEnabled(true);
     }
-    load(findViewById(R.id.loadlabel));
 
 
     helper = new TransactionsHelper(this);
@@ -84,63 +82,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
   }
 
-  public void save(View v) {
-    String text = "ok Boomer";
-    FileOutputStream fos = null;
-
-    try {
-      fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-      fos.write(text.getBytes());
-
-      Toast.makeText(this, "Saved to " + getFilesDir() + "/" + FILE_NAME,
-              Toast.LENGTH_LONG).show();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (fos != null) {
-        try {
-          fos.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-  }
-
-  public void load(View v) {
-    FileInputStream fis = null;
-
-    TextView loadlabel;
-    loadlabel = findViewById(R.id.loadlabel);
-    try {
-      fis = openFileInput(FILE_NAME);
-      InputStreamReader isr = new InputStreamReader(fis);
-      BufferedReader br = new BufferedReader(isr);
-      StringBuilder sb = new StringBuilder();
-      String text;
-
-      while ((text = br.readLine()) != null) {
-        sb.append(text).append("\n");
-      }
-
-      Log.d("load", sb.toString());
-
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } finally {
-      if (fis != null) {
-        try {
-          fis.close();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-      }
-    }
-  }
 
 
 
@@ -160,7 +101,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   public boolean onOptionsItemSelected(MenuItem item) {
 
     if (item.getItemId() == R.id.add) {
-      startActivity(new Intent(this, NewTransaction.class));
+      Intent i = new Intent(this, NewTransaction.class);
+      i.putExtra("user", user);
+      startActivity(i);
       overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
       return(true);
     }
@@ -204,32 +147,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public void bindView(View view, Context context, Cursor cursor) {
     }
 
-
-  }
-
-  //Exemplo de como fazer as coisas. Usa-se este para ir buscar as transactions
-  public void Login(HashMap data) {
-    Log.d("posting", "posting data");
-    String url = "http:/192.168.1.5:3000/user/login"; //IP Address
-    JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
-            new Response.Listener<JSONObject>() {
-              @Override
-              public void onResponse(JSONObject response) {
-                User user = new User(response);
-                Log.d("sucess", response.toString());
-              }
-            },
-            new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.toString());
-
-              }
-            }
-    ) {
-      //here I want to post data to sever
-    };
-    queue.add(jsonobj);
 
   }
 

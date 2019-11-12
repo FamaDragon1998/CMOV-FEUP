@@ -28,10 +28,13 @@ public class QrCodeActivity extends AppCompatActivity {
     final static int DIMENSION=500;
     final static String CH_SET="ISO-8859-1";
 
+    User user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_qr_code);
+        user = (User) getIntent().getSerializableExtra("user");
 
         qrCodeIv = findViewById(R.id.qr);
 
@@ -53,7 +56,9 @@ public class QrCodeActivity extends AppCompatActivity {
 
     public void backButton(View view)
     {
-        startActivity(new Intent(this, NewTransaction.class));
+        Intent i = new Intent(this, NewTransaction.class);
+        i.putExtra("user", user);
+        startActivity(i);
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
     }

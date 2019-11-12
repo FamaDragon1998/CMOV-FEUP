@@ -1,6 +1,7 @@
 package org.feup.apm.lunchlist4;
 
 import android.util.Log;
+import android.view.SurfaceControl;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,13 +20,13 @@ public class User implements Serializable {
 
     private Float stored_discount;
 
-    private List<List<Product>> transactions;
+    private List<Transaction> transactions;
 
     private List<String> vouchers;
     private String username;
     private String name;
 
-    public User(String username, String name, int card_number, int card_cvs, Float total_spent, Float stored_discount, List<List<Product>> transactions, List<String> vouchers) {
+    public User(String username, String name, int card_number, int card_cvs, Float total_spent, Float stored_discount, List<Transaction> transactions, List<String> vouchers) {
         this.username = username;
         this.name = name;
         this.card_number = card_number;
@@ -40,7 +41,6 @@ public class User implements Serializable {
         //parse here
        // Log.d("user", response.getString("username"));
         List<String> fields = Arrays.asList(response.toString().split(","));
-        Log.d("user",response.toString());
 
         try {
             this.username = response.getString("username");
@@ -81,7 +81,7 @@ public class User implements Serializable {
         return stored_discount;
     }
 
-    public List<List<Product>> getTransactions() {
+    public List<Transaction> getTransactions() {
         return transactions;
     }
 
