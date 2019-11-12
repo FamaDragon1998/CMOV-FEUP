@@ -22,18 +22,16 @@ router.get('/:id/vouchers', function(req, res, next) {
   res.send('respond with a voucher');
 }); 
 
+//Returns all transactions of a user
+router.get('/transactionsAll', function(req, res, next) {
+  Transaction.findAll({ where: {UserId: req.body.UserId} })
+    .then(transactions => res.json(transactions))
+});
+
 //Returns info of User
 router.get('/:name', function(req, res, next) {
     User.findOne({ where: {username: req.params.name} })
     .then(users => res.json(users))
-});
-
-//Returns all transactions of a user
-router.get('/transactionsAll', function(req, res, next) {
-  Transaction.findAll()
-    .then(transactions => res.json(transactions))
-  /*Transaction.findAll({ where: {userId: req.body.userId} })
-    .then(transactions => res.json(transactions))*/
 });
 
 //Return a transaction of a user
