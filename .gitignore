@@ -10,8 +10,15 @@ Client\.idea\workspace.xml
 .idea/modules.xml
 .idea/workspace.xml
 .DS_Store
-/build
+app/build
 /captures
 .externalNativeBuild
 Client/local.properties
 Client/.gradle
+Client/app/build
+Terminal/app/build
+Client/.idea
+Client/app/.classpath
+Client/app/.project
+Terminal/app/.project
+Terminal/app/.classpath

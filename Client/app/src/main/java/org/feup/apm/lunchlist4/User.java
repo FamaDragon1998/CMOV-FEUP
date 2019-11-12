@@ -44,7 +44,7 @@ public class User implements Serializable {
 
         try {
             this.username = response.getString("username");
-            this.name= response.getString("email");
+            this.name= response.getString("name");
             this.card_number=response.getInt("card_number");
             this.card_cvs=response.getInt("card_cvs");
             String s = response.getString("total_spent");
