@@ -4,10 +4,6 @@ module.exports = (sequelize, type) => {
             type: type.UUID,
             primaryKey: true
         },
-        voucher:{
-            type: type.UUID,
-            allowNull: true
-        },
         total_value:{
             type: type.FLOAT,
             allowNull: false
