@@ -65,9 +65,8 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             else {
                                 JSONObject jsonObj = response.getJSONObject("user");
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                i.putExtra("user", new User(jsonObj));
-                                startActivity(i);
+                                User user = new User(jsonObj);
+                                getTransactions(user);
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -78,6 +77,37 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
 
+                        //TODO: unexpected error
+                        Log.d("error", error.toString());
+
+                    }
+                }
+        ) {
+        };
+        queue.add(jsonobj);
+    }
+
+
+    public void getTransactions(User user)
+    {
+        HashMap info= new HashMap();
+        info.put("UserId", user.getId());
+
+        String url = "http:/"+getString(R.string.ip_address)+":3000/user/transactionsAll"; //IP Address
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.GET, url, new JSONObject(info),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        Log.d("response", response.toString());
+                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                        i.putExtra("user", user);
+                        startActivity(i);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
                         //TODO: unexpected error
                         Log.d("error", error.toString());
 

@@ -13,6 +13,7 @@ import java.util.List;
 
 public class User implements Serializable {
 
+    private String id;
     private int card_number;
     private int card_cvs;
 
@@ -22,11 +23,11 @@ public class User implements Serializable {
 
     private List<Transaction> transactions;
 
-    private List<String> vouchers;
+    private List<Voucher> vouchers;
     private String username;
     private String name;
 
-    public User(String username, String name, int card_number, int card_cvs, Float total_spent, Float stored_discount, List<Transaction> transactions, List<String> vouchers) {
+   /* public User(String username, String name, int card_number, int card_cvs, Float total_spent, Float stored_discount, List<Transaction> transactions, List<Voucher> vouchers) {
         this.username = username;
         this.name = name;
         this.card_number = card_number;
@@ -35,7 +36,7 @@ public class User implements Serializable {
         this.stored_discount = stored_discount;
         this.transactions = transactions;
         this.vouchers = vouchers;
-    }
+    }*/
 
     public User(JSONObject response) {
         //parse here
@@ -43,6 +44,7 @@ public class User implements Serializable {
         List<String> fields = Arrays.asList(response.toString().split(","));
 
         try {
+            this.id = response.getString("id");
             this.username = response.getString("username");
             this.name= response.getString("name");
             this.card_number=response.getInt("card_number");
@@ -85,11 +87,16 @@ public class User implements Serializable {
         return transactions;
     }
 
-    public List<String> getVouchers() {
+    public List<Voucher> getVouchers() {
         return vouchers;
     }
 
 
+    public String getId() {
+        return id;
+    }
 
-
+    public void setId(String id) {
+        this.id = id;
+    }
 }
