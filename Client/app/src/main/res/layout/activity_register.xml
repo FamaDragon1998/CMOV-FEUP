@@ -33,15 +33,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
 
         android:hint="Username"
         android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@id/password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/username"
-        app:layout_constraintBottom_toTopOf="@id/password" />
+        app:layout_constraintTop_toBottomOf="@id/name" />
 
     <EditText
         android:id="@+id/password"
@@ -71,6 +71,7 @@
         android:hint="Credit Card Number"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/cardcvs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -83,10 +84,12 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
 
+        android:layout_marginBottom="20dp"
         android:hint="Credit Card CVS"
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
+        app:layout_constraintBottom_toTopOf="@+id/register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardnumber" />
@@ -97,25 +100,40 @@
         android:layout_height="wrap_content"
         android:layout_gravity="start"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="48dp"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="10dp"
         android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@id/login"
+        app:layout_constraintBottom_toTopOf="@id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardcvs"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.2"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@id/login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/register"/>
 
     <Button
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
+        android:layout_marginTop="10dp"
+        android:text="Back to Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/register" />
+        app:layout_constraintTop_toBottomOf="@id/divider2"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
 
     <ProgressBar
         android:id="@+id/loading"
