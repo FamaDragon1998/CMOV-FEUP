@@ -38,7 +38,7 @@ router.get('/:name', function(req, res, next) {
 
 //Return a transaction of a user
 router.get('/transactions/:id', function(req, res, next) {
-  Transaction.findOne({ where: {userId: req.body.userId, transaction_id: req.params.id} })
+  Transaction.findOne({ where: {UserId: req.body.UserId, id: req.params.id} })
     .then(transactions => res.json(transactions))
 });
 

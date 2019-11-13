@@ -51,6 +51,8 @@ sequelize
       Transaction.bulkCreate([
         {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
         {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
+        {id: 4, voucher: null, total_value: 1, flag: false, UserId:1},
+
       ])
     })
       .then(() => {
@@ -64,7 +66,6 @@ sequelize
         Voucher.bulkCreate([
           {id: 12123, used:true, UserId:1, TransactionId:1},
           {id: 12121212, used:false, UserId:1, TransactionId:1},
-
         ])
       })
         .then(() => {
@@ -82,6 +83,7 @@ module.exports = {
   User,
   Transaction,
   Voucher,
+  Product,
   TransactionProduct,
   sequelize
 }
