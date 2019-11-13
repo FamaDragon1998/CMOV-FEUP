@@ -9,7 +9,6 @@ const sequelize = require('../sequelize/sequelize.js').sequelize;
 //Finds all products in a transaction
 router.get('/transaction', function(req, res, next) {
     let query = "SELECT name, value FROM Products WHERE id in (Select ProductId from TransactionProducts WHERE TransactionId = :id)";
-    
     sequelize.query(query, { replacements: { id: req.body.TransactionId } })
     .then(([results, metadata]) => {
       res.json(results);

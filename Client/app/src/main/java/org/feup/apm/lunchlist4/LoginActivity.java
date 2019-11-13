@@ -13,13 +13,18 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LoginActivity extends AppCompatActivity {
     Button login,register;
@@ -54,33 +59,26 @@ public class LoginActivity extends AppCompatActivity {
 
         String url = "http:/"+getString(R.string.ip_address)+":3000/user/login"; //IP Address
         JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(info),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            Object obj = response.get("user");
-                            if (obj.toString().equals("null")){
-                                //TODO: avisar de login error
-                                Log.d("login", "WRONG LOGIN");
-                            }
-                            else {
-                                JSONObject jsonObj = response.getJSONObject("user");
-                                User user = new User(jsonObj);
-                                getTransactions(user);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                response -> {
+                    try {
+                        Object obj = response.get("user");
+                        if (obj.toString().equals("null")){
+                            //TODO: avisar de login error
+                            Log.d("login", "WRONG LOGIN");
                         }
+                        else {
+                            JSONObject jsonObj = response.getJSONObject("user");
+                            User user = new User(jsonObj);
+                            getTransactions(user);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
+                    //TODO: unexpected error
+                    Log.d("error", error.toString());
 
-                        //TODO: unexpected error
-                        Log.d("error", error.toString());
-
-                    }
                 }
         ) {
         };
@@ -88,30 +86,26 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void getTransactions(User user)
-    {
-        HashMap info= new HashMap();
+    public void getTransactions(User user) throws JSONException {
+        Map info= new HashMap();
         info.put("UserId", user.getId());
+        List list = new ArrayList();
+        list.add(new JSONObject(info));
+
 
         String url = "http:/"+getString(R.string.ip_address)+":3000/user/transactionsAll"; //IP Address
-        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.GET, url, new JSONObject(info),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
+        JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
+                response -> {
 
-                        Log.d("response", response.toString());
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        i.putExtra("user", user);
-                        startActivity(i);
-                    }
+                    Log.d("response", response.toString());
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.putExtra("user", user);
+                    startActivity(i);
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //TODO: unexpected error
-                        Log.d("error", error.toString());
+                error -> {
+                    //TODO: unexpected error
+                    Log.d("error", error.toString());
 
-                    }
                 }
         ) {
         };

@@ -25,8 +25,9 @@ router.get('/vouchers', function(req, res, next) {
 }); 
 
 //Returns all transactions of a user
-router.get('/transactionsAll', function(req, res, next) {
-  Transaction.findAll({ where: {UserId: req.body.UserId} })
+router.post('/transactionsAll', function(req, res, next) {
+  console.log(req.body[0]);
+  Transaction.findAll({ where: {UserId: req.body[0]} })
     .then(transactions => res.json(transactions))
 });
 
@@ -43,6 +44,8 @@ router.get('/transactions/:id', function(req, res, next) {
 });
 
 //Checkout basket
+
+//productId, value | productId, value , voucherId, valueOfDiscount
 router.post('/checkout', function(req, res, next) {
   res.send('respond with a resource');
 });
