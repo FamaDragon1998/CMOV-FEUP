@@ -97,14 +97,15 @@ public class LoginActivity extends AppCompatActivity {
         JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
                 response -> {
 
-                    Log.d("response", response.toString());
+                    Log.d("transactions response", response.toString());
+                    user.setTransactions(response);
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     i.putExtra("user", user);
                     startActivity(i);
                 },
                 error -> {
                     //TODO: unexpected error
-                    Log.d("error", error.toString());
+                    Log.d("transactions error", error.toString());
 
                 }
         ) {

@@ -3,6 +3,7 @@ package org.feup.apm.lunchlist4;
 import android.util.Log;
 import android.view.SurfaceControl;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -42,7 +43,7 @@ public class User implements Serializable {
         //parse here
        // Log.d("user", response.getString("username"));
         List<String> fields = Arrays.asList(response.toString().split(","));
-
+        transactions = new ArrayList();
         try {
             this.id = response.getString("id");
             this.username = response.getString("username");
@@ -98,5 +99,19 @@ public class User implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public void setTransactions(JSONArray response) {
+        for (int i = 0; i < response.length(); i++) {
+            try {
+                JSONObject jsonobject = response.getJSONObject(i);
+                String id = jsonobject.getString("id");
+                String value = jsonobject.getString("total_value");
+                Transaction t = new Transaction(Integer.parseInt(id), Float.parseFloat(value));
+                transactions.add(t);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
