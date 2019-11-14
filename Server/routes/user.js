@@ -26,8 +26,7 @@ router.get('/vouchers', function(req, res, next) {
 
 //Returns all transactions of a user
 router.post('/transactionsAll', function(req, res, next) {
-  console.log(req.body[0]);
-  Transaction.findAll({ where: {UserId: req.body[0]} })
+  Transaction.findAll({ where: {UserId: req.body[0].UserId} })
     .then(transactions => res.json(transactions))
 });
 

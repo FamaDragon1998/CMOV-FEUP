@@ -1,6 +1,8 @@
 package org.feup.apm.lunchlist4;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
 
     private int id;
     private String name;
