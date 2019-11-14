@@ -89,51 +89,53 @@
         android:imeActionLabel="@string/action_sign_in_short"
         android:imeOptions="actionDone"
         android:selectAllOnFocus="true"
-        app:layout_constraintBottom_toTopOf="@+id/register"
+        app:layout_constraintBottom_toTopOf="@+id/divider2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardnumber" />
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="start"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="10dp"
-        android:text="@string/register"
-        app:layout_constraintBottom_toTopOf="@id/divider2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardcvs"
-        app:layout_constraintVertical_bias="0.2"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
 
     <View
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@id/login"
+        app:layout_constraintBottom_toTopOf="@+id/buttons"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/register"/>
+        app:layout_constraintTop_toBottomOf="@+id/cardcvs" />
 
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
+    <TableRow
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Back to Login"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/divider2"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:foregroundGravity="clip_vertical"
+            android:text="Back to Login"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:foregroundGravity="clip_vertical"
+            android:text="@string/register"
+            android:textColor="#FFFFFF" />
+
+    </TableRow>
 
     <ProgressBar
         android:id="@+id/loading"

@@ -72,5 +72,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pricerow"/>
+        app:layout_constraintTop_toBottomOf="@id/pricerow"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

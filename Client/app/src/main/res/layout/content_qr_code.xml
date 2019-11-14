@@ -26,5 +26,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/qr" />
+        app:layout_constraintTop_toBottomOf="@id/qr"
+        android:backgroundTint="@color/colorPrimary"
+        android:textColor="#FFFFFF"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
