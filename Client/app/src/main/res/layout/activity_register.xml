@@ -67,6 +67,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:inputType="number"
 
         android:hint="Credit Card Number"
         android:imeOptions="actionDone"
@@ -83,6 +84,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="24dp"
+        android:inputType="number"
 
         android:layout_marginBottom="20dp"
         android:hint="Credit Card CVS"
