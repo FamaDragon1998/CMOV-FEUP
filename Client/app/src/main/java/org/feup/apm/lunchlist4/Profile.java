@@ -25,8 +25,8 @@ public class Profile extends AppCompatActivity {
         balance.setText(user.getTotal_spent().toString()+" €");
         TextView discount= (TextView) findViewById(R.id.discount);
         discount.setText(user.getStored_discount().toString()+" €");
-       // TextView vouchers= (TextView) findViewById(R.id.vouchers);
-       // name.setText(user.getTotal_spent().toString());
+        TextView vouchers= (TextView) findViewById(R.id.vouchers);
+        vouchers.setText(user.getVouchers().size() + "");
         Button back = findViewById(R.id.back);
         back.setOnClickListener((v)->finish());
 

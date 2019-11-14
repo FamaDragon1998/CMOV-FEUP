@@ -25,8 +25,8 @@ router.post('/login', function(req, res, next) {
 });
 
 //Returns Unused Vouchers of a User
-router.get('/vouchers', function(req, res, next) {
-  Voucher.findAll({ where: {UserId: req.body.UserId, used:false} })
+router.post('/vouchers', function(req, res, next) {
+  Voucher.findAll({ where: {UserId: req.body[0].UserId, used:false} })
   .then(vouchers => res.json(vouchers))
   .catch(function(err) {
     console.log(err);
