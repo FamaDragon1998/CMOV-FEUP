@@ -1,7 +1,7 @@
 *.iml
 .gradle
 /local.properties
-Client\.idea\caches\build_file_checksums.ser
+Client\.idea\caches
 Client\.idea\libraries
 Client\.idea\modules.xml
 Client\.idea\workspace.xml
@@ -18,7 +18,12 @@ Client/.gradle
 Client/app/build
 Terminal/app/build
 Client/.idea
+Client/.settings
+Client/app/.settings
+.project
 Client/app/.classpath
 Client/app/.project
 Terminal/app/.project
 Terminal/app/.classpath
+Terminal\.settings
+Terminal\app\.idea
