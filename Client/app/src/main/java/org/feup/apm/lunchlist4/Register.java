@@ -19,6 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 
 public class Register extends AppCompatActivity {
@@ -54,6 +55,9 @@ public class Register extends AppCompatActivity {
         card_cvs= findViewById(R.id.cardcvs);
 
         HashMap info= new HashMap();
+        UUID uuid = UUID.randomUUID();
+
+        info.put("id", uuid.toString());
         info.put("username", username.getText().toString() );
         info.put("name", name.getText().toString() );
         info.put("password", password.getText().toString());
@@ -62,35 +66,28 @@ public class Register extends AppCompatActivity {
 
         String url = "http:/"+getString(R.string.ip_address)+":3000/user/register"; //IP Address
         JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(info),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-                        try {
-                            Object obj = response.get("user");
-                            if (obj.toString().equals("null")){
-                                //TODO: avisar de login error
-                                Log.d("login", "WRONG LOGIN");
-                            }
-                            else {
-                                JSONObject jsonObj = response.getJSONObject("user");
-                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                                i.putExtra("user", new User(jsonObj));
-                                   startActivity(i);
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
+                response -> {
+                    try {
+                        Object obj = response.get("user");
+                        if (obj.toString().equals("null")){
+                            //TODO: avisar de register error
+                            Log.d("register", "WRONG REGISTER");
                         }
+                        else {
+                            Log.d("user", response.toString());
+                            JSONObject jsonObj = response.getJSONObject("user");
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            i.putExtra("user", new User(jsonObj));
+                            startActivity(i);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
                 },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
+                error -> {
+                    //TODO: unexpected error
+                    Log.d("error", error.toString());
 
-                        //TODO: unexpected error
-                        Log.d("error", error.toString());
-
-                    }
                 }
         ) {
         };

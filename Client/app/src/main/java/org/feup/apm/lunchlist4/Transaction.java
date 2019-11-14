@@ -8,12 +8,12 @@ import java.util.List;
 
 public class Transaction implements Serializable {
 
-    private int id;
+    private String id;
     private float total_value;
     private String date;
     private List<Product> products;
 
-    public Transaction(int id, float total_value, String date) {
+    public Transaction(String id, float total_value, String date) {
         this.id = id;
         this.total_value = total_value;
         this.products = new ArrayList();
@@ -36,11 +36,11 @@ public class Transaction implements Serializable {
         this.products.add(this.products.size(),product);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
 
         this.id = id;
     }
