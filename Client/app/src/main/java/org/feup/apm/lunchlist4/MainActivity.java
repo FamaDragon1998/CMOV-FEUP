@@ -3,17 +3,21 @@ package org.feup.apm.lunchlist4;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,6 +33,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -39,14 +44,15 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.List;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
   public final static String ID_EXTRA="org.feup.apm.lunchlist4.POS";
   private static final String FILE_NAME = "transactions.txt";
-  TransactionsHelper helper;
+
   static long currentId = -1;
-  Cursor model;
+
   TransactionAdapter adapter;
   private RequestQueue queue;
   User user;
@@ -54,10 +60,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
-
     user = (User) getIntent().getSerializableExtra("user");
-    //Log.d("user", user.getUsername());
-
 
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
@@ -65,20 +68,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       bar.setDisplayShowHomeEnabled(true);
     }
 
+    adapter = new TransactionAdapter(this, R.layout.row, user.getTransactions());
 
-    helper = new TransactionsHelper(this);
+    ListView transactionList = findViewById(R.id.listview);
+    transactionList.setAdapter(adapter);
 
-    model = helper.getAll();
-    startManagingCursor(model);
-    adapter = new TransactionAdapter(model);
-
-    ListView list = findViewById(R.id.listview);
-    list.setAdapter(adapter);
-    list.setEmptyView(findViewById(R.id.empty_list));
-    list.setOnItemClickListener(this);
+    //transactionList.setEmptyView(findViewById(R.id.empty_list));
+    //transactionList.setOnItemClickListener(this);
 
     queue = Volley.newRequestQueue(this);
-
 
   }
 
@@ -86,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
   @Override
   protected void onDestroy() {
     super.onDestroy();
-    helper.close();
   }
 
   @Override
@@ -126,25 +123,44 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
 
-  class TransactionAdapter extends CursorAdapter {
-    TransactionAdapter(Cursor c) {
-      super(MainActivity.this, c);
+  class TransactionAdapter extends ArrayAdapter<Transaction> {
+    private int layoutResource;
+    private Context mContext;
+    TransactionAdapter(@NonNull Context context, int resource, @NonNull List<Transaction> objects) {
+      super(context, resource, objects);
+      layoutResource = resource;
+      mContext = context;
+
     }
 
     @Override
-    public View newView(Context context, Cursor c, ViewGroup parent) {
-      View row=getLayoutInflater().inflate(R.layout.row, parent, false);
-      ((TextView)row.findViewById(R.id.title)).setText("insert title here");
-      ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
+    public View getView(int position, View convertView, ViewGroup parent) {
 
+      View v = convertView;
 
-      return(row);
+      if (v == null) {
+        LayoutInflater vi;
+        vi = LayoutInflater.from(mContext);
+        v = vi.inflate(layoutResource, null);
+      }
+
+      Transaction p = getItem(position);
+
+      if (p != null) {
+        TextView date = v.findViewById(R.id.title);
+        TextView price = v.findViewById(R.id.price);
+
+        if (date != null) {
+          date.setText(p.getDate());
+        }
+
+        if (price != null) {
+          price.setText(p.getTotal_value() + "");
+        }
+      }
+
+      return v;
     }
-
-    @Override
-    public void bindView(View view, Context context, Cursor cursor) {
-    }
-
 
   }
 

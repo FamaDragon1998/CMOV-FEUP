@@ -107,7 +107,8 @@ public class User implements Serializable {
                 JSONObject jsonobject = response.getJSONObject(i);
                 String id = jsonobject.getString("id");
                 String value = jsonobject.getString("total_value");
-                Transaction t = new Transaction(Integer.parseInt(id), Float.parseFloat(value));
+                String date = jsonobject.getString("createdAt");
+                Transaction t = new Transaction(Integer.parseInt(id), Float.parseFloat(value), date);
                 transactions.add(t);
             } catch (JSONException e) {
                 e.printStackTrace();

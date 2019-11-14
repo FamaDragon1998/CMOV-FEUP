@@ -10,14 +10,14 @@ public class Transaction implements Serializable {
 
     private int id;
     private float total_value;
-
+    private String date;
     private List<Product> products;
-   // private String date;
 
-    public Transaction(int id, float total_value) {
+    public Transaction(int id, float total_value, String date) {
         this.id = id;
         this.total_value = total_value;
         this.products = new ArrayList();
+        this.date = date;
     }
 
     public Transaction()
@@ -25,13 +25,6 @@ public class Transaction implements Serializable {
         this.products=new ArrayList();
     }
 
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
 
     public void addProducts(String product) {
         this.products.add(this.products.size(),new Product(product));
@@ -48,22 +41,35 @@ public class Transaction implements Serializable {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public float getTotal_value() {
+
         return total_value;
     }
 
     public void setTotal_value(float total_value) {
         this.total_value = total_value;
     }
-/*
+
     public String getDate() {
         return date;
     }
 
     public void setDate(String date) {
         this.date = date;
-    }*/
+    }
+
+    public List<Product> getProducts() {
+
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
+
 }
