@@ -10,7 +10,7 @@ const sequelize = require('../sequelize/sequelize.js').sequelize;
 router.post('/transaction', function(req, res, next) {
     let query = "SELECT name, value FROM Products WHERE id in (Select ProductId from TransactionProducts WHERE TransactionId = :id)";
     console.log(req.body);
-    sequelize.query(query, { replacements: { id: req.body.TransactionId } })
+    sequelize.query(query, { replacements: { id: req.body[0].TransactionId } })
     .then(([results, metadata]) => {
       res.json(results);
   })

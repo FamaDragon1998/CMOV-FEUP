@@ -7,31 +7,16 @@
     android:orientation="vertical"
     tools:context=".DetailsTransaction">
 
-    <TextView
-        android:id="@+id/usernamelabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:gravity="center_horizontal"
-        android:text="insert name here"
-        android:textColor="#E44646"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@id/products"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <ListView
         android:id="@+id/products"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="30dp"
         app:layout_constraintBottom_toTopOf="@id/pricerow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/usernamelabel">
+        app:layout_constraintTop_toTopOf="parent">
 
     </ListView>
 
@@ -39,6 +24,7 @@
         android:id="@+id/pricerow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toTopOf="@id/button"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -67,12 +53,12 @@
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
+        android:backgroundTint="@color/colorPrimary"
         android:onClick="backButton"
         android:text="Back"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/pricerow"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
+        app:layout_constraintTop_toBottomOf="@id/pricerow" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -128,29 +128,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
   private void openDetails(String id) {
-    Map info= new HashMap();
-    info.put("TransactionId", id);
-    List list = new ArrayList();
-    list.add(new JSONObject(info));
+      Intent i = new Intent(getApplicationContext(), DetailsTransaction.class);
+      Bundle b = new Bundle();
+      b.putString("id",id);
+      b.putSerializable("user",user);
+      i.putExtras(b);
+      startActivity(i);
 
-    String url = "http:/"+getString(R.string.ip_address)+":3000/user/transactionsAll"; //IP Address
-    JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
-            response -> {
-
-              Log.d("details response", response.toString());
-
-             // Intent i = new Intent(getApplicationContext(), MainActivity.class);
-             // i.putExtra("user", user);
-              //startActivity(i);
-            },
-            error -> {
-              //TODO: unexpected error
-              Log.d("transactions error", error.toString());
-
-            }
-    ) {
-    };
-    queue.add(jsonobj);
   }
 
   @Override

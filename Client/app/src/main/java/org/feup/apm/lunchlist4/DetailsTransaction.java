@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,11 +16,25 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class DetailsTransaction extends AppCompatActivity implements AdapterView.OnItemClickListener {
     TransactionsHelper helper;
     static long currentId = -1;
     Cursor model;
     ProductAdapter adapter;
+    private RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +46,33 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
         model = helper.getAll();
         startManagingCursor(model);
         adapter=new DetailsTransaction.ProductAdapter(model);
-        ListView list = findViewById(R.id.products);
-        list.setAdapter(adapter);
-        list.setEmptyView(findViewById(R.id.empty_list));
-        list.setOnItemClickListener(this);
+        ListView listp = findViewById(R.id.products);
+        listp.setAdapter(adapter);
+        listp.setEmptyView(findViewById(R.id.empty_list));
+        listp.setOnItemClickListener(this);
+
+        queue = Volley.newRequestQueue(this);
+
+        String id = getIntent().getExtras().getString("id");
+        Map info= new HashMap();
+        info.put("TransactionId", id);
+        List list = new ArrayList();
+        list.add(new JSONObject(info));
+
+        String url = "http:/"+getString(R.string.ip_address)+":3000/product/transaction"; //IP Address
+        JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
+                response -> {
+
+                    Log.d("details response", response.toString());
+                },
+                error -> {
+                    //TODO: unexpected error
+                    Log.d("transactions error", error.toString());
+
+                }
+        ) {
+        };
+        queue.add(jsonobj);
     }
 
     @Override
@@ -64,8 +102,11 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
 
     public void backButton(View view)
     {
-        startActivity(new Intent(this, MainActivity.class));
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+        User user =(User) getIntent().getExtras().getSerializable("user");
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("user", user);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
 
     }
 }

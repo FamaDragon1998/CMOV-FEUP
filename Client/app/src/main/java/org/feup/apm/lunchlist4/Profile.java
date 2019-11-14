@@ -22,9 +22,9 @@ public class Profile extends AppCompatActivity {
         TextView name= (TextView) findViewById(R.id.name);
         name.setText(user.getName());
         TextView balance= (TextView) findViewById(R.id.balance);
-        balance.setText(user.getTotal_spent().toString());
+        balance.setText(user.getTotal_spent().toString()+" €");
         TextView discount= (TextView) findViewById(R.id.discount);
-        discount.setText(user.getStored_discount().toString());
+        discount.setText(user.getStored_discount().toString()+" €");
        // TextView vouchers= (TextView) findViewById(R.id.vouchers);
        // name.setText(user.getTotal_spent().toString());
         Button back = findViewById(R.id.back);
