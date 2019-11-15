@@ -160,8 +160,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Finish"
+            android:text="Select a Voucher"
             android:textColor="#FFFFFF" />
+
+        <TextView
+            android:id="@+id/selectedVoucherText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
     </TableRow>
 
