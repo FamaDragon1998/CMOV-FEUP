@@ -88,6 +88,10 @@ public class User implements Serializable {
         return transactions;
     }
 
+    public Transaction getTransaction(int i) {
+        return transactions.get(i);
+    }
+
     public List<Voucher> getVouchers() {
         return vouchers;
     }

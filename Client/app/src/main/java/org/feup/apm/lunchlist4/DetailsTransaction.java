@@ -5,15 +5,17 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CursorAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.Request;
@@ -22,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -35,21 +38,32 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
     Cursor model;
     ProductAdapter adapter;
     private RequestQueue queue;
+    User user;
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
 
 
-        helper = new TransactionsHelper(this);
+       // helper = new TransactionsHelper(this);
 
-        model = helper.getAll();
+       // model = helper.getAll();
         startManagingCursor(model);
-        adapter=new DetailsTransaction.ProductAdapter(model);
+        user = (User) getIntent().getSerializableExtra("user");
+        id = (String) getIntent().getStringExtra("id");
+
         ListView listp = findViewById(R.id.products);
+        Log.d("id",user.getTransaction(Integer.parseInt(id)).toString());
+        Log.d("id",user.getTransaction(Integer.parseInt(id)).getProducts().toString());
+        adapter = new ProductAdapter(this, R.layout.row, user.getTransaction(Integer.parseInt(id)).getProducts());
         listp.setAdapter(adapter);
         listp.setEmptyView(findViewById(R.id.empty_list));
         listp.setOnItemClickListener(this);
+
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener((v)->backButton());
 
         queue = Volley.newRequestQueue(this);
 
@@ -80,33 +94,64 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
 
     }
 
-    class ProductAdapter extends CursorAdapter {
-        ProductAdapter(Cursor c) {
-            super(DetailsTransaction.this, c);
+    class ProductAdapter extends ArrayAdapter<Product> {
+        private int layoutResource;
+        private Context mContext;
+
+        ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+            super(context, resource, objects);
+            layoutResource = resource;
+            mContext = context;
+
         }
 
         @Override
-        public View newView(Context context, Cursor c, ViewGroup parent) {
-            View row=getLayoutInflater().inflate(R.layout.row_1line, parent, false);
-            ((TextView)row.findViewById(R.id.title)).setText("insert title here");
-          //  ((TextView)row.findViewById(R.id.description)).setText("X"+"items);
-            ((TextView)row.findViewById(R.id.price)).setText("5"+"€");
+        public View getView(int position, View convertView, ViewGroup parent) {
 
-            return(row);
-        }
+            View line = convertView;
 
-        @Override
-        public void bindView(View view, Context context, Cursor cursor) {
+            if (line == null) {
+                LayoutInflater vi;
+                vi = LayoutInflater.from(mContext);
+                line = vi.inflate(layoutResource, null);
+            }
+
+
+            Product p = getItem(position);
+
+            if (p != null) {
+                TextView date = line.findViewById(R.id.title);
+                TextView price = line.findViewById(R.id.price);
+                TextView id = line.findViewById(R.id.id);
+
+
+                if (date != null) {
+                    date.setText(p.getName());
+                }
+
+
+                if (price != null) {
+                    price.setText(p.getPrice() + "€");
+                }
+
+                if (id != null){
+                    id.setText(p.getId());
+                }
+            }
+
+            return line;
         }
     }
 
-    public void backButton(View view)
-    {
-        User user =(User) getIntent().getExtras().getSerializable("user");
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("user", user);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_out_left, R.anim.slide_in_right);
+
+
+    public void backButton() {
+
+                  //  Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                  //  i.putExtra("user", user);
+                 //   startActivity(i);
+                    finish();
+                  //  Log.d("transactions response", user.getName());
 
     }
 }

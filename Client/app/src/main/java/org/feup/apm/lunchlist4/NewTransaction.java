@@ -1,5 +1,6 @@
 package org.feup.apm.lunchlist4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ActivityNotFoundException;
@@ -12,6 +13,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -43,17 +45,18 @@ public class NewTransaction extends AppCompatActivity {
     static long currentId = -1;
     //Cursor model;
     //NewTransaction.ProductAdapter adapter;
-    final static int DIMENSION=500;
-    final static String CH_SET="ISO-8859-1";
+    final static int DIMENSION = 500;
+    final static String CH_SET = "ISO-8859-1";
     //String qrResult;
 
     private Transaction basket;
+    private float total;
 
-    CheckBox vouchercheck,discountcheck;
+    CheckBox vouchercheck, discountcheck;
     Button finishbutton;
 
 
-
+    private String ids[];
     User user;
 
     @Override
@@ -63,6 +66,7 @@ public class NewTransaction extends AppCompatActivity {
 
         setContentView(R.layout.activity_new_transaction);
         basket = new Transaction();
+        total = 0;
         ListView listview = findViewById(R.id.products);
 
 
@@ -70,93 +74,32 @@ public class NewTransaction extends AppCompatActivity {
 
         Button QRButton;
         QRButton = findViewById(R.id.scan);
-        QRButton.setOnClickListener((v)->scan(true,basket));
+        QRButton.setOnClickListener((v) -> scan(true, basket));
 
 
-        vouchercheck = (CheckBox)findViewById(R.id.voucher);
-        discountcheck = (CheckBox)findViewById(R.id.discount);
+        vouchercheck = (CheckBox) findViewById(R.id.voucher);
+        discountcheck = (CheckBox) findViewById(R.id.discount);
 
-        finishbutton =  (Button) findViewById(R.id.generateQRcode);
-        finishbutton.setOnClickListener((v)->generateQRcode(""));
+        finishbutton = (Button) findViewById(R.id.generateQRcode);
+        finishbutton.setOnClickListener((v) -> generateQRcode(""));
 
-        discountcheck.setOnClickListener(((v)->togglediscount()));
-        vouchercheck.setOnClickListener(((v)->togglevoucher()));
+        discountcheck.setOnClickListener(((v) -> togglediscount()));
+        vouchercheck.setOnClickListener(((v) -> togglevoucher()));
 
-    }
-
-    public void togglevoucher(){
-        //reduce voucher number
-    }
-
-    public void togglediscount(){
-        SeekBar sb= findViewById(R.id.seekBar);
-        sb.setClickable(true);
-        //reduce voucher
-    }
-
-    public void backButton(View view)
-    {
-        Intent i = new Intent(this, MainActivity.class);
-        i.putExtra("user", user);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+        TextView total = findViewById(R.id.total);
+        // total.setText(p);
 
     }
 
-
-    public void scan(boolean qrcode,Transaction basket) {
-        try {
-
-            Intent intent = new Intent(ACTION_SCAN);
-            intent.putExtra("SCAN_MODE", "QR_CODE_MODE" );
-            startActivityForResult(intent, 0);
-        }
-        catch (ActivityNotFoundException anfe) {
-          //  showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
-        }
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        byte[] baMess;
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0) {
-            if (resultCode == RESULT_OK) {
-                String contents = data.getStringExtra("SCAN_RESULT");
-                String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-                try {
-                    Product productscanned = new Product(contents);
-                   // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-                    basket.addProducts(productscanned);
-
-
-
-                    Log.d("basket",basket.getProducts().get(0).getName());
-                   // helper.insert(productscanned.getName(),productscanned.getPrice());
-
-                   // model = helper.getAll();
-                   // startManagingCursor(model);
-                   // adapter=new NewTransaction.ProductAdapter(model);
-
-                    ListView list = findViewById(R.id.products);
-                   // list.setAdapter(adapter);
-
-
-                }
-                catch (Exception ex) {
-                    Log.d("error","exception",ex);
-                }
-            }
-        }
-    }
 
     String byteArrayToHex(byte[] ba) {
         StringBuilder sb = new StringBuilder(ba.length * 2);
-        for(byte b: ba)
+        for (byte b : ba)
             sb.append(String.format("%02x", b));
         return sb.toString();
     }
 
-     public void generateQRcode(String sz) {
+    public void generateQRcode(String sz) {
         int size;
         String content = "";
 
@@ -169,32 +112,29 @@ public class NewTransaction extends AppCompatActivity {
         else if (size > 1536)
             size = 1536;
         byte[] bContent = new byte[size];
-        for (int b=0; b<size; b++) {
-            bContent[b] = (byte)(b%256);
+        for (int b = 0; b < size; b++) {
+            bContent[b] = (byte) (b % 256);
         }
-     //   try {
-            //content = new String(bContent, CH_SET);
-         CheckBox boxvoucher = (CheckBox)findViewById(R.id.voucher);
-         CheckBox boxdiscount = (CheckBox)findViewById(R.id.discount);
-            content=parsetransaction(basket.getProducts(),boxvoucher.isChecked(),1);
-         Log.d("aftercall",content);
-         Log.d("aftercall",basket.getProducts().get(0).getName());
-            String print = byteArrayToHex(bContent);
-            Log.d("bcontent",bContent.toString());
-            if (size > 400)
-                print = "(too big)";
+        //   try {
+        //content = new String(bContent, CH_SET);
+        CheckBox boxvoucher = (CheckBox) findViewById(R.id.voucher);
+        CheckBox boxdiscount = (CheckBox) findViewById(R.id.discount);
+        content = parsetransaction(basket.getProducts(), boxvoucher.isChecked(), 1);
+        String print = byteArrayToHex(bContent);
+        if (size > 400)
+            print = "(too big)";
 
-          //  messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
-      //  }
-      //  catch (UnsupportedEncodingException e) {
-           // errorTv.setText(e.getMessage());
-      //  }
+        //  messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
+        //  }
+        //  catch (UnsupportedEncodingException e) {
+        // errorTv.setText(e.getMessage());
+        //  }
 
         final String QRcodeContents = content;
         // convert in a separate thread to avoid possible ANR
         Thread t = new Thread(() -> {
             final Bitmap bitmap = encodeAsBitmap(QRcodeContents);
-           // runOnUiThread(()->qrCodeIv.setImageBitmap(bitmap));
+            // runOnUiThread(()->qrCodeIv.setImageBitmap(bitmap));
             startActivity(new Intent(this, MainActivity.class));
             overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
 
@@ -220,17 +160,16 @@ public class NewTransaction extends AppCompatActivity {
         hints.put(EncodeHintType.CHARACTER_SET, CH_SET);
         try {
             result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, DIMENSION, DIMENSION, hints);
-        }
-        catch (Exception exc) {
-           // runOnUiThread(()->errorTv.setText(exc.getMessage()));
+        } catch (Exception exc) {
+            // runOnUiThread(()->errorTv.setText(exc.getMessage()));
             return null;
         }
         int w = result.getWidth();
         int h = result.getHeight();
         int colorPrimary = Color.parseColor("#FF123454");
         int colorWhite = Color.parseColor("#FFFFFFFF");
-       // int colorPrimary = getResources().getColor(R.color.colorPrimary, null);
-       // int colorWhite = getResources().getColor(R.color.colorPrimaryDark, null);
+        // int colorPrimary = getResources().getColor(R.color.colorPrimary, null);
+        // int colorWhite = getResources().getColor(R.color.colorPrimaryDark, null);
         int[] pixels = new int[w * h];
         for (int line = 0; line < h; line++) {
             int offset = line * w;
@@ -244,35 +183,139 @@ public class NewTransaction extends AppCompatActivity {
     }
 
 
-    public String parsetransaction(List<Product> products,Boolean discount, Integer voucher){
-        String contents="";
-        for (int i=0;i<products.size();i++)
-        {
-            contents += products.get(i).getId() +";"+products.get(i).getPrice().toString();
-            if (i< products.size()-1)
-                contents+="|";
+    public String parsetransaction(List<Product> products, Boolean discount, Integer voucher) {
+        String contents = "";
+        for (int i = 0; i < products.size(); i++) {
+            contents += products.get(i).getId() + ";" + products.get(i).getPrice().toString();
+            if (i < products.size() - 1)
+                contents += "|";
         }
-        contents+=","+voucher+","+discount;
-       return contents;
+        contents += "," + voucher + "," + discount;
+        return contents;
     }
 
-    public String BitMapToString(Bitmap bitmap){
-        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
-        byte [] b=baos.toByteArray();
-        String temp= Base64.encodeToString(b, Base64.DEFAULT);
+    public String BitMapToString(Bitmap bitmap) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+        byte[] b = baos.toByteArray();
+        String temp = Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
     }
 
-    public Bitmap StringToBitMap(String encodedString){
+    public Bitmap StringToBitMap(String encodedString) {
         try {
-            byte [] encodeByte=Base64.decode(encodedString,Base64.DEFAULT);
-            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
+            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
             return bitmap;
-        } catch(Exception e) {
+        } catch (Exception e) {
             e.getMessage();
             return null;
         }
     }
 
+    public void togglevoucher() {
+        //reduce voucher number
+    }
+
+    public void togglediscount() {
+        SeekBar sb = findViewById(R.id.seekBar);
+        sb.setClickable(true);
+        //reduce voucher
+    }
+
+    public void backButton(View view) {
+        Intent i = new Intent(this, MainActivity.class);
+        i.putExtra("user", user);
+        startActivity(i);
+        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+
+    }
+
+
+    public void scan(boolean qrcode, Transaction basket) {
+        try {
+
+            Intent intent = new Intent(ACTION_SCAN);
+            intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
+            startActivityForResult(intent, 0);
+        } catch (ActivityNotFoundException anfe) {
+            //  showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+        }
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        byte[] baMess;
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            if (resultCode == RESULT_OK) {
+                String contents = data.getStringExtra("SCAN_RESULT");
+                String format = data.getStringExtra("SCAN_RESULT_FORMAT");
+                try {
+                    Product productscanned = new Product(contents);
+                    // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
+                    basket.addProducts(productscanned);
+
+
+                    Log.d("basket", basket.getProducts().get(0).getName());
+                    // helper.insert(productscanned.getName(),productscanned.getPrice());
+
+                    // model = helper.getAll();
+                    // startManagingCursor(model);
+                    // adapter=new NewTransaction.ProductAdapter(model);
+
+                    ListView list = findViewById(R.id.products);
+                    // list.setAdapter(adapter);
+
+
+                } catch (Exception ex) {
+                    Log.d("error", "exception", ex);
+                }
+            }
+        }
+    }
+
+    class ProductAdapter extends ArrayAdapter<Product> {
+        private int layoutResource;
+        private Context mContext;
+
+        ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+            super(context, resource, objects);
+            layoutResource = resource;
+            mContext = context;
+
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View line = convertView;
+
+            if (line == null) {
+                LayoutInflater vi;
+                vi = LayoutInflater.from(mContext);
+                line = vi.inflate(layoutResource, null);
+            }
+
+
+            Product p = getItem(position);
+
+            if (p != null) {
+                TextView date = line.findViewById(R.id.title);
+                TextView price = line.findViewById(R.id.price);
+                TextView id = line.findViewById(R.id.id);
+
+                if (date != null) {
+                    date.setText(p.getName());
+                }
+
+                if (price != null) {
+                    price.setText(p.getPrice() + "€");
+                    total += p.getPrice();
+                }
+
+            }
+
+            return line;
+        }
+    }
 }

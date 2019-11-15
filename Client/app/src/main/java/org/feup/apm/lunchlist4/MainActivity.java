@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     user = (User) getIntent().getSerializableExtra("user");
+    Log.d("usermain",user.getName());
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
       bar.setIcon(R.drawable.medium_logo2);
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     }
 
-    adapter = new TransactionAdapter(this, R.layout.row, user.getTransactions());
+    adapter = new TransactionAdapter(this, R.layout.rowdate, user.getTransactions());
 
     ListView transactionList = findViewById(R.id.listview);
     transactionList.setAdapter(adapter);
@@ -128,6 +129,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
   private void openDetails(String id) {
+
       Intent i = new Intent(getApplicationContext(), DetailsTransaction.class);
       Bundle b = new Bundle();
       b.putString("id",id);
@@ -169,15 +171,21 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
       if (p != null) {
         TextView date = line.findViewById(R.id.title);
+        TextView hora = line.findViewById(R.id.date);
         TextView price = line.findViewById(R.id.price);
         TextView id = line.findViewById(R.id.id);
+        String[] data = (String[])parseDate(p.getDate());
 
         if (date != null) {
-          date.setText(p.getDate());
+          date.setText(data[0]);
+        }
+
+        if (hora != null) {
+          hora.setText(data[1]);
         }
 
         if (price != null) {
-          price.setText(p.getTotal_value() + "");
+          price.setText(p.getTotal_value() + "€");
         }
 
         if (id != null){
@@ -189,7 +197,52 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return line;
     }
 
+    public String[] parseDate(String date)
+    {
+      String[] dateaux;
+      dateaux=date.split("Z");
+      dateaux=dateaux[0].split("T");
 
+      String[] data,hora;
+      String dataf,horaf;
+      data=dateaux[0].split("-");
+      Log.d("data",data[0]);
+      String mes;
+      switch (data[1]){
+        case "1": mes="January";
+          break;
+        case "2":mes="February";
+          break;
+        case "3":mes="March";
+          break;
+        case "4":mes="April";
+          break;
+        case "5":mes="May";
+          break;
+        case "6":mes="June";
+          break;
+        case "7":mes="July";
+          break;
+        case "8":mes="August";
+          break;
+        case "9":mes="September";
+          break;
+        case "10":mes="October";
+          break;
+        case "11":mes="November";
+          break;
+        case "12": mes="December";
+          break;
+        default: mes="Unknown";
+      }
+      dataf=data[2]+" " +mes+ " " + data[0];
+
+      Log.d("dateaux",dateaux[1]);
+      horaf=dateaux[1].substring(0,8);
+
+      String[] returndate = new String[]{dataf, horaf};
+      return returndate;
+    }
 
   }
 
