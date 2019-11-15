@@ -1,8 +1,5 @@
 package org.feup.apm.lunchlist4;
 
-import android.util.Log;
-import android.view.SurfaceControl;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -29,9 +26,6 @@ public class User implements Serializable {
     private String name;
 
     public User(JSONObject response) {
-        //parse here
-       // Log.d("user", response.getString("username"));
-        List<String> fields = Arrays.asList(response.toString().split(","));
         transactions = new ArrayList();
         vouchers = new ArrayList();
         try {

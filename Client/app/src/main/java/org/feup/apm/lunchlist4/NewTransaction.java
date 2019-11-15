@@ -33,7 +33,6 @@ import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    ProductsHelper helper;
     static long currentId = -1;
     //Cursor model;
     //NewTransaction.ProductAdapter adapter;

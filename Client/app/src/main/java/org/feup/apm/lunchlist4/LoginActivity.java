@@ -11,8 +11,6 @@ import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
@@ -31,24 +29,21 @@ public class LoginActivity extends AppCompatActivity {
     EditText username,pass;
     private RequestQueue queue;
 
-    private Context context;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        context = getApplicationContext();
 
         queue = Volley.newRequestQueue(this);
 
         login = findViewById(R.id.login);
-        login.setOnClickListener((v)->verifylogin());
+        login.setOnClickListener((v)->verifyLogin());
 
         register = findViewById(R.id.register);
-        register.setOnClickListener((v)->redirectregister());
+        register.setOnClickListener((v)->redirectRegister());
     }
 
-    public void verifylogin()
+    public void verifyLogin()
     {
         username= findViewById(R.id.username);
         pass= findViewById(R.id.password);
@@ -91,7 +86,6 @@ public class LoginActivity extends AppCompatActivity {
         info.put("UserId", user.getId());
         List list = new ArrayList();
         list.add(new JSONObject(info));
-
 
         String url = "http:/"+getString(R.string.ip_address)+":3000/user/transactionsAll"; //IP Address
         JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
@@ -141,7 +135,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void redirectregister()
+    public void redirectRegister()
     {
         startActivityForResult(new Intent(this, Register.class),123);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);

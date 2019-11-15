@@ -3,7 +3,6 @@ package org.feup.apm.lunchlist4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -17,16 +16,21 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         user = (User) getIntent().getSerializableExtra("user");
 
-        TextView username= (TextView) findViewById(R.id.username);
+        TextView username=  findViewById(R.id.username);
         username.setText(user.getUsername());
-        TextView name= (TextView) findViewById(R.id.name);
+
+        TextView name= findViewById(R.id.name);
         name.setText(user.getName());
-        TextView balance= (TextView) findViewById(R.id.balance);
+
+        TextView balance= findViewById(R.id.balance);
         balance.setText(user.getTotal_spent().toString()+" €");
-        TextView discount= (TextView) findViewById(R.id.discount);
+
+        TextView discount= findViewById(R.id.discount);
         discount.setText(user.getStored_discount().toString()+" €");
-        TextView vouchers= (TextView) findViewById(R.id.vouchers);
+
+        TextView vouchers=  findViewById(R.id.vouchers);
         vouchers.setText(user.getVouchers().size() + "");
+
         Button back = findViewById(R.id.back);
         back.setOnClickListener((v)->finish());
 

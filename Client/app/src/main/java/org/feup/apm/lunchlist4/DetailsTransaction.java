@@ -33,7 +33,6 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
 
     ProductAdapter adapter;
     private RequestQueue queue;
-    User user;
     Float transactionTotal = 0f;
     ArrayList<Product> products;
 
@@ -43,7 +42,6 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
 
-        //user = (User) getIntent().getSerializableExtra("user");
         String id = getIntent().getStringExtra("TransactionId");
 
         ListView listp = findViewById(R.id.products);

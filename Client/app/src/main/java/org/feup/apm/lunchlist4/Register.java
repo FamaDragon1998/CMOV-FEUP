@@ -10,8 +10,6 @@ import android.widget.EditText;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -33,20 +31,13 @@ public class Register extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
 
         register = findViewById(R.id.register);
-        register.setOnClickListener((v)->verifyregister());
+        register.setOnClickListener((v)->verifyRegister());
 
         login = findViewById(R.id.login);
-        login.setOnClickListener((v)->backlogin());
+        login.setOnClickListener((v)->backLogin());
     }
 
-    public void backlogin()
-    {
-        startActivity(new Intent(this, LoginActivity.class));
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
-
-    }
-
-    public void verifyregister()
+    public void verifyRegister()
     {
         username= findViewById(R.id.username);
         name= findViewById(R.id.name);
@@ -94,10 +85,12 @@ public class Register extends AppCompatActivity {
         queue.add(jsonobj);
     }
 
-    public void redirectregister()
+    public void backLogin()
     {
-        startActivityForResult(new Intent(this, LoginActivity.class),123);
-        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+        startActivity(new Intent(this, LoginActivity.class));
+        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+
     }
+
 
 }
