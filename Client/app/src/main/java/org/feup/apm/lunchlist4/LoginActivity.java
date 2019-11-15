@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                 },
                 error -> {
                     //TODO: unexpected error
-                    Log.d("error", error.toString());
+                    Log.d("login error", error.toString());
 
                 }
         ) {

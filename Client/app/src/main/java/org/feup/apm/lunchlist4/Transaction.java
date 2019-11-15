@@ -31,9 +31,8 @@ public class Transaction implements Serializable {
     }
 
     public void addProducts(Product product) {
-        if (this.products.size()<10)
-            Log.d("size",this.products.size()+"");
         this.products.add(this.products.size(),product);
+        this.total_value+=product.getPrice();
     }
 
     public String getId() {

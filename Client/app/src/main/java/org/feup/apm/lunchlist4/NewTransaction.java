@@ -43,101 +43,51 @@ public class NewTransaction extends AppCompatActivity {
     //String qrResult;
 
     private Transaction basket;
-    private float total;
+    private Float total;
 
-    CheckBox vouchercheck, discountcheck;
     Button finishbutton;
 
     private String ids[];
     User user;
 
+    Util.ProductAdapter adapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         user = (User) getIntent().getSerializableExtra("user");
+        basket = new Transaction();
+        total = 0f;
+
+        ListView productsListView = findViewById(R.id.products);
+        adapter = new Util.ProductAdapter(this, R.layout.row, basket.getProducts());
+        productsListView.setAdapter(adapter);
 
         setContentView(R.layout.activity_new_transaction);
-        basket = new Transaction();
-        total = 0;
-        ListView listview = findViewById(R.id.products);
 
-
-        user = (User) getIntent().getSerializableExtra("user");
-
-        Button QRButton;
-        QRButton = findViewById(R.id.scan);
-        QRButton.setOnClickListener((v) -> scan(true, basket));
-
-
+        Button addProductButton;
+        addProductButton = findViewById(R.id.scan);
+        addProductButton.setOnClickListener((v) -> scan(true, basket));
 
         finishbutton = findViewById(R.id.generateQRcode);
         finishbutton.setOnClickListener((v) -> generateQRcode(""));
 
-        //discountcheck.setOnClickListener(((v) -> togglediscount()));
-        //vouchercheck.setOnClickListener(((v) -> togglevoucher()));
-
         TextView total = findViewById(R.id.total);
-        // total.setText(p);
+        total.setText(basket.getTotal_value() + "");
 
-        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
-        builderSingle.setIcon(R.drawable.logo_icon);
-        builderSingle.setTitle("Select One Name:-");
-
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
-        arrayAdapter.add("Hardik");
-        arrayAdapter.add("Archit");
-        arrayAdapter.add("Jignesh");
-        arrayAdapter.add("Umang");
-        arrayAdapter.add("Gatti");
-
-        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String strName = arrayAdapter.getItem(which);
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(getApplicationContext());
-                builderInner.setMessage(strName);
-                builderInner.setTitle("Your Selected Item is");
-                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog,int which) {
-                        dialog.dismiss();
-                    }
-                });
-                builderInner.show();
-            }
-        });
-        builderSingle.show();
+        voucherAdapter();
 
     }
 
-    public <String> String[] concatenate(String a, String[] b) {
-        int aLen = 1;
-        int bLen = b.length;
 
-        @SuppressWarnings("unchecked")
-        String[] c = (String[]) Array.newInstance(a.getClass().getComponentType(), aLen + bLen);
-        System.arraycopy(a, 0, c, 0, aLen);
-        System.arraycopy(b, 0, c, aLen, bLen);
-
-        return c;
-    }
-
-
-    String byteArrayToHex(byte[] ba) {
-        StringBuilder sb = new StringBuilder(ba.length * 2);
-        for (byte b : ba)
-            sb.append(String.format("%02x", b));
-        return sb.toString();
-    }
 
     public void generateQRcode(String sz) {
+        if (basket.getProducts().isEmpty()) {
+            //TODO: DIzer que basket tá vazio
+            return;
+        }
+
         int size;
         String content = "";
 
@@ -156,8 +106,8 @@ public class NewTransaction extends AppCompatActivity {
         //   try {
         //content = new String(bContent, CH_SET);
         CheckBox boxdiscount = (CheckBox) findViewById(R.id.discount);
-        content = parsetransaction(basket.getProducts(), true, 1);
-        String print = byteArrayToHex(bContent);
+        content = parseTransaction(basket.getProducts(), 10f, "12");
+        String print = Util.byteArrayToHex(bContent);
         if (size > 400)
             print = "(too big)";
 
@@ -215,7 +165,7 @@ public class NewTransaction extends AppCompatActivity {
     }
 
 
-    public String parsetransaction(List<Product> products, Boolean discount, Integer voucher) {
+    public String parseTransaction(List<Product> products, Float discount, String voucher) {
         String contents = "";
         for (int i = 0; i < products.size(); i++) {
             contents += products.get(i).getId() + ";" + products.get(i).getPrice().toString();
@@ -224,35 +174,6 @@ public class NewTransaction extends AppCompatActivity {
         }
         contents += "," + voucher + "," + discount;
         return contents;
-    }
-
-    public String BitMapToString(Bitmap bitmap) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
-        byte[] b = baos.toByteArray();
-        String temp = Base64.encodeToString(b, Base64.DEFAULT);
-        return temp;
-    }
-
-    public Bitmap StringToBitMap(String encodedString) {
-        try {
-            byte[] encodeByte = Base64.decode(encodedString, Base64.DEFAULT);
-            Bitmap bitmap = BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        } catch (Exception e) {
-            e.getMessage();
-            return null;
-        }
-    }
-
-    public void togglevoucher() {
-        //reduce voucher number
-    }
-
-    public void togglediscount() {
-        SeekBar sb = findViewById(R.id.seekBar);
-        sb.setClickable(true);
-        //reduce voucher
     }
 
     public void backButton(View view) {
@@ -265,13 +186,16 @@ public class NewTransaction extends AppCompatActivity {
 
 
     public void scan(boolean qrcode, Transaction basket) {
+        if (this.basket.getProducts().size() >=10) {
+            //TODO: Dizer que so dá 10 produtos
+            return;
+        }
         try {
-
             Intent intent = new Intent(ACTION_SCAN);
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
             startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
-            //  showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
+            //TODO: Pedir para instalar Barcode Scanner
         }
     }
 
@@ -283,20 +207,13 @@ public class NewTransaction extends AppCompatActivity {
                 String contents = data.getStringExtra("SCAN_RESULT");
                 String format = data.getStringExtra("SCAN_RESULT_FORMAT");
                 try {
-                    Product productscanned = new Product(contents);
+                    Product productScanned = new Product(contents);
                     // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-                    basket.addProducts(productscanned);
+                    basket.addProducts(productScanned);
+                    adapter.add(productScanned);
+                    adapter.notifyDataSetChanged();
 
-
-                    Log.d("basket", basket.getProducts().get(0).getName());
-                    // helper.insert(productscanned.getName(),productscanned.getPrice());
-
-                    // model = helper.getAll();
-                    // startManagingCursor(model);
-                    // adapter=new NewTransaction.ProductAdapter(model);
-
-                    ListView list = findViewById(R.id.products);
-                    // list.setAdapter(adapter);
+                    Log.d("basket", productScanned.getName());
 
 
                 } catch (Exception ex) {
@@ -306,48 +223,32 @@ public class NewTransaction extends AppCompatActivity {
         }
     }
 
-    class ProductAdapter extends ArrayAdapter<Product> {
-        private int layoutResource;
-        private Context mContext;
+    private void voucherAdapter(){
 
-        ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
-            super(context, resource, objects);
-            layoutResource = resource;
-            mContext = context;
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        builderSingle.setIcon(R.drawable.logo_icon);
+        builderSingle.setTitle("Select One Voucher:-");
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
 
-        }
+        for (int i = 0; i < user.getVouchers().size(); i++)
+            arrayAdapter.add(user.getVouchers().get(i));
 
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        builderSingle.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
 
-            View line = convertView;
-
-            if (line == null) {
-                LayoutInflater vi;
-                vi = LayoutInflater.from(mContext);
-                line = vi.inflate(layoutResource, null);
-            }
-
-
-            Product p = getItem(position);
-
-            if (p != null) {
-                TextView date = line.findViewById(R.id.title);
-                TextView price = line.findViewById(R.id.sumproducts);
-                TextView id = line.findViewById(R.id.id);
-
-                if (date != null) {
-                    date.setText(p.getName());
+        builderSingle.setAdapter(arrayAdapter, (dialog, which) -> {
+            String strName = arrayAdapter.getItem(which);
+            AlertDialog.Builder builderInner = new AlertDialog.Builder(getApplicationContext());
+            builderInner.setMessage(strName);
+            builderInner.setTitle("Your Voucher is");
+            builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog,int which) {
+                    dialog.dismiss();
                 }
-
-                if (price != null) {
-                    price.setText(p.getPrice() + "€");
-                    total += p.getPrice();
-                }
-
-            }
-
-            return line;
-        }
+            });
+            Button selectedVoucherButton = findViewById(R.id.selectVoucherButton);
+            selectedVoucherButton.setOnClickListener((v) -> builderInner.show());
+        });
     }
+
 }
