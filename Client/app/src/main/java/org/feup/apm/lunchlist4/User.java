@@ -24,26 +24,16 @@ public class User implements Serializable {
 
     private List<Transaction> transactions;
 
-    private List<Voucher> vouchers;
+    private List<String> vouchers;
     private String username;
     private String name;
-
-   /* public User(String username, String name, int card_number, int card_cvs, Float total_spent, Float stored_discount, List<Transaction> transactions, List<Voucher> vouchers) {
-        this.username = username;
-        this.name = name;
-        this.card_number = card_number;
-        this.card_cvs = card_cvs;
-        this.total_spent = total_spent;
-        this.stored_discount = stored_discount;
-        this.transactions = transactions;
-        this.vouchers = vouchers;
-    }*/
 
     public User(JSONObject response) {
         //parse here
        // Log.d("user", response.getString("username"));
         List<String> fields = Arrays.asList(response.toString().split(","));
         transactions = new ArrayList();
+        vouchers = new ArrayList();
         try {
             this.id = response.getString("id");
             this.username = response.getString("username");
@@ -92,7 +82,7 @@ public class User implements Serializable {
         return transactions.get(i);
     }
 
-    public List<Voucher> getVouchers() {
+    public List<String> getVouchers() {
         return vouchers;
     }
 
@@ -114,6 +104,18 @@ public class User implements Serializable {
                 String date = jsonobject.getString("createdAt");
                 Transaction t = new Transaction(id, Float.parseFloat(value), date);
                 transactions.add(t);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void setVouchers(JSONArray response) {
+        for (int i = 0; i < response.length(); i++) {
+            try {
+                JSONObject jsonobject = response.getJSONObject(i);
+                String id = jsonobject.getString("id");
+                vouchers.add(id);
             } catch (JSONException e) {
                 e.printStackTrace();
             }

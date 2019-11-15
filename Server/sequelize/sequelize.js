@@ -65,7 +65,7 @@ sequelize
       .then(() => {
         Voucher.bulkCreate([
           {id: 12123, used:true, UserId:1, TransactionId:1},
-          {id: 12121212, used:false, UserId:1, TransactionId:1},
+          {id: 12121212, used:false, UserId:1, TransactionId:null},
         ])
       })
         .then(() => {

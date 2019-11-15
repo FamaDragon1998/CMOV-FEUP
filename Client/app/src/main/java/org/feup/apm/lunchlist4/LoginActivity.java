@@ -99,6 +99,11 @@ public class LoginActivity extends AppCompatActivity {
 
                     Log.d("transactions response", response.toString());
                     user.setTransactions(response);
+                    try {
+                        getVouchers(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                     Intent i = new Intent(getApplicationContext(), MainActivity.class);
                     i.putExtra("user", user);
                     startActivity(i);
@@ -112,6 +117,32 @@ public class LoginActivity extends AppCompatActivity {
         };
         queue.add(jsonobj);
     }
+
+    public void getVouchers(User user) throws JSONException {
+        Map info= new HashMap();
+        info.put("UserId", user.getId());
+        List list = new ArrayList();
+        list.add(new JSONObject(info));
+
+        String url = "http:/"+getString(R.string.ip_address)+":3000/user/vouchers"; //IP Address
+        JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
+                response -> {
+                    Log.d("vouchers response", response.toString());
+                    user.setVouchers(response);
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.putExtra("user", user);
+                    startActivity(i);
+                },
+                error -> {
+                    //TODO: unexpected error
+                    Log.d("transactions error", error.toString());
+
+                }
+        ) {
+        };
+        queue.add(jsonobj);
+    }
+
 
     public void redirectregister()
     {
