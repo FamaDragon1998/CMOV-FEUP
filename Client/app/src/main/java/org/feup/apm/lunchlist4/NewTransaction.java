@@ -3,8 +3,10 @@ package org.feup.apm.lunchlist4;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ListView;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.zxing.BarcodeFormat;
@@ -28,14 +31,13 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
-    static long currentId = -1;
-    //Cursor model;
-    //NewTransaction.ProductAdapter adapter;
     final static int DIMENSION = 500;
     final static String CH_SET = "ISO-8859-1";
     //String qrResult;
@@ -45,7 +47,6 @@ public class NewTransaction extends AppCompatActivity {
 
     CheckBox vouchercheck, discountcheck;
     Button finishbutton;
-
 
     private String ids[];
     User user;
@@ -68,18 +69,64 @@ public class NewTransaction extends AppCompatActivity {
         QRButton.setOnClickListener((v) -> scan(true, basket));
 
 
-        vouchercheck = (CheckBox) findViewById(R.id.voucher);
-        discountcheck = (CheckBox) findViewById(R.id.discount);
 
-        finishbutton = (Button) findViewById(R.id.generateQRcode);
+        finishbutton = findViewById(R.id.generateQRcode);
         finishbutton.setOnClickListener((v) -> generateQRcode(""));
 
-        discountcheck.setOnClickListener(((v) -> togglediscount()));
-        vouchercheck.setOnClickListener(((v) -> togglevoucher()));
+        //discountcheck.setOnClickListener(((v) -> togglediscount()));
+        //vouchercheck.setOnClickListener(((v) -> togglevoucher()));
 
         TextView total = findViewById(R.id.total);
         // total.setText(p);
 
+        AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+        builderSingle.setIcon(R.drawable.logo_icon);
+        builderSingle.setTitle("Select One Name:-");
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
+        arrayAdapter.add("Hardik");
+        arrayAdapter.add("Archit");
+        arrayAdapter.add("Jignesh");
+        arrayAdapter.add("Umang");
+        arrayAdapter.add("Gatti");
+
+        builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        builderSingle.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                String strName = arrayAdapter.getItem(which);
+                AlertDialog.Builder builderInner = new AlertDialog.Builder(getApplicationContext());
+                builderInner.setMessage(strName);
+                builderInner.setTitle("Your Selected Item is");
+                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog,int which) {
+                        dialog.dismiss();
+                    }
+                });
+                builderInner.show();
+            }
+        });
+        builderSingle.show();
+
+    }
+
+    public <String> String[] concatenate(String a, String[] b) {
+        int aLen = 1;
+        int bLen = b.length;
+
+        @SuppressWarnings("unchecked")
+        String[] c = (String[]) Array.newInstance(a.getClass().getComponentType(), aLen + bLen);
+        System.arraycopy(a, 0, c, 0, aLen);
+        System.arraycopy(b, 0, c, aLen, bLen);
+
+        return c;
     }
 
 
@@ -108,18 +155,12 @@ public class NewTransaction extends AppCompatActivity {
         }
         //   try {
         //content = new String(bContent, CH_SET);
-        CheckBox boxvoucher = (CheckBox) findViewById(R.id.voucher);
         CheckBox boxdiscount = (CheckBox) findViewById(R.id.discount);
-        content = parsetransaction(basket.getProducts(), boxvoucher.isChecked(), 1);
+        content = parsetransaction(basket.getProducts(), true, 1);
         String print = byteArrayToHex(bContent);
         if (size > 400)
             print = "(too big)";
 
-        //  messageTv.setText(getApplicationContext().getString(R.string.tv_message_template, size, print));
-        //  }
-        //  catch (UnsupportedEncodingException e) {
-        // errorTv.setText(e.getMessage());
-        //  }
 
         final String QRcodeContents = content;
         // convert in a separate thread to avoid possible ANR

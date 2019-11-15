@@ -1,8 +1,59 @@
 package org.feup.apm.lunchlist4;
 
+import android.content.Context;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+
+import java.util.List;
 
 public class Util {
+
+    class ProductAdapter extends ArrayAdapter<Product> {
+        private int layoutResource;
+        private Context mContext;
+
+        ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
+            super(context, resource, objects);
+            layoutResource = resource;
+            mContext = context;
+
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            View line = convertView;
+
+            if (line == null) {
+                LayoutInflater vi;
+                vi = LayoutInflater.from(mContext);
+                line = vi.inflate(layoutResource, null);
+            }
+
+            Product p = getItem(position);
+
+            if (p != null) {
+                TextView title = line.findViewById(R.id.title);
+                TextView price = line.findViewById(R.id.total);
+
+                if (title != null) {
+                    title.setText(p.getName());
+                }
+
+                if (price != null) {
+                    price.setText(p.getPrice()+ "€");
+                }
+            }
+
+            return line;
+        }
+    }
 
     public static String[] parseDate(String date)
     {

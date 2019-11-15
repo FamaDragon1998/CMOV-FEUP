@@ -9,7 +9,7 @@
     <string name="tv_notes">Notes:</string>
     <string name="bt_save">Save</string>
     <string name="check_cart">Check Cart</string>
-    <string name="mn_it_add">Add new Transaction</string>
+    <string name="mn_it_add">Basket</string>
     <string name="lv_empty_msg">Activate the menu item to add a restaurant!</string>
     <string name="ed_name_hint">Name</string>
     <string name="ed_address_hint">Address</string>
@@ -27,5 +27,5 @@
     <string name="title_activity_qr_code">QrCodeActivity</string>
     <string name="tv_message_template">Value(%d b): \"%s\"</string>
     <string name="check_profile">Check Profile Page</string>
-    <string name="ip_address">10.227.154.160</string>
+    <string name="ip_address">10.227.153.81</string>
 </resources>

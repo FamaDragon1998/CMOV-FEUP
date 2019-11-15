@@ -13,19 +13,22 @@
         android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:backgroundTint="@color/colorPrimary"
         android:text="Add Product"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/products"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:backgroundTint="@color/colorPrimary"
-        android:textColor="#FFFFFF"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ListView
         android:id="@+id/products"
         android:layout_width="0dp"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintBottom_toTopOf="@id/totalrow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -36,7 +39,9 @@
     <TableRow
         android:id="@+id/totalrow"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintBottom_toTopOf="@id/discountrow"
         app:layout_constraintHorizontal_bias="0.0"
@@ -63,8 +68,10 @@
 
     <TableRow
         android:id="@+id/discountrow"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toTopOf="@id/voucherow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -80,7 +87,7 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="match_parent">
 
             <TextView
                 android:id="@+id/currentdiscount"
@@ -104,7 +111,7 @@
             <SeekBar
                 android:id="@+id/seekBar"
                 style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="200dp"
+                android:layout_width="190dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:clickable="false"
@@ -123,30 +130,40 @@
 
     </TableRow>
 
-   <TableRow
-       android:id="@+id/voucherow"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       app:layout_constraintBottom_toTopOf="@id/buttonrow"
-       app:layout_constraintLeft_toLeftOf="parent"
-       app:layout_constraintRight_toRightOf="parent"
-       app:layout_constraintTop_toBottomOf="@id/discountrow">
+    <TableRow
+        android:id="@+id/voucherow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/buttonrow"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/discountrow">
 
-       <CheckBox
-           android:id="@+id/voucher"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="Use Voucher?"
-           android:textSize="12sp" />
+       <!-- <CheckBox
+            android:id="@+id/voucher"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Use Voucher?"
+            android:textSize="12sp" />
 
-       <Spinner
-           android:id="@+id/spinner1"
-           android:layout_width="wrap_content"
-           android:layout_height="match_parent"
-           android:background="@android:drawable/btn_dropdown"
-           android:spinnerMode="dropdown" />
+        <Spinner
+            android:id="@+id/voucherspinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" /> -->
 
-   </TableRow>
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Finish"
+            android:textColor="#FFFFFF" />
+
+    </TableRow>
 
        <TableRow
            android:id="@+id/buttonrow"
@@ -158,23 +175,24 @@
            app:layout_constraintTop_toBottomOf="@id/voucherow">
 
            <Button
-               android:id="@+id/generateQRcode"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_weight="1"
-               android:text="Finish"
-               android:backgroundTint="@color/colorPrimary"
-               android:textColor="#FFFFFF"/>
-
-           <Button
                android:id="@+id/back"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:layout_weight="1"
+               android:backgroundTint="@color/colorPrimary"
                android:onClick="backButton"
                android:text="Back"
+               android:textColor="#FFFFFF" />
+
+           <Button
+               android:id="@+id/generateQRcode"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:layout_weight="1"
                android:backgroundTint="@color/colorPrimary"
-               android:textColor="#FFFFFF"/>
+               android:text="Finish"
+               android:textColor="#FFFFFF" />
+
        </TableRow>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
