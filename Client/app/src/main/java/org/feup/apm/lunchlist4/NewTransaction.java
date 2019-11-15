@@ -60,9 +60,11 @@ public class NewTransaction extends AppCompatActivity {
         basket = new Transaction();
         total = 0f;
 
-        ListView productsListView = findViewById(R.id.products);
+        ListView productsListView = findViewById(R.id.productsNew);
         adapter = new Util.ProductAdapter(this, R.layout.row, basket.getProducts());
         productsListView.setAdapter(adapter);
+
+
 
         setContentView(R.layout.activity_new_transaction);
 

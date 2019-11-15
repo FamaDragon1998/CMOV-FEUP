@@ -27,5 +27,5 @@
     <string name="title_activity_qr_code">QrCodeActivity</string>
     <string name="tv_message_template">Value(%d b): \"%s\"</string>
     <string name="check_profile">Check Profile Page</string>
-    <string name="ip_address">10.227.153.81</string>
+    <string name="ip_address">192.168.43.168</string>
 </resources>

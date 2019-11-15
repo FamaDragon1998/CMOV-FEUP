@@ -16,14 +16,14 @@
         android:backgroundTint="@color/colorPrimary"
         android:text="Add Product"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/products"
+        app:layout_constraintBottom_toTopOf="@id/productsNew"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <ListView
-        android:id="@+id/products"
+        android:id="@+id/productsNew"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="5dp"
@@ -47,7 +47,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/products">
+        app:layout_constraintTop_toBottomOf="@id/productsNew">
 
         <TextView
             android:id="@+id/tvresult"

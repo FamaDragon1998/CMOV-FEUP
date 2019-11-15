@@ -39,7 +39,7 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
 
         String id = getIntent().getStringExtra("TransactionId");
 
-        ListView listp = findViewById(R.id.products);
+        ListView listp = findViewById(R.id.productsDetails);
         products = new ArrayList();
         queue = Volley.newRequestQueue(this);
 
