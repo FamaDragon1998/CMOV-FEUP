@@ -1,8 +1,6 @@
 package org.feup.apm.lunchlist4;
 
 import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CursorAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -33,41 +30,26 @@ import java.util.List;
 import java.util.Map;
 
 public class DetailsTransaction extends AppCompatActivity implements AdapterView.OnItemClickListener {
-    TransactionsHelper helper;
-    static long currentId = -1;
-    Cursor model;
+
     ProductAdapter adapter;
     private RequestQueue queue;
     User user;
-    String id;
+    Float transactionTotal = 0f;
+    ArrayList<Product> products;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transaction_details);
 
-
-       // helper = new TransactionsHelper(this);
-
-       // model = helper.getAll();
-        startManagingCursor(model);
-        user = (User) getIntent().getSerializableExtra("user");
-        id = (String) getIntent().getStringExtra("id");
+        //user = (User) getIntent().getSerializableExtra("user");
+        String id = getIntent().getStringExtra("TransactionId");
 
         ListView listp = findViewById(R.id.products);
-        Log.d("id",user.getTransaction(Integer.parseInt(id)).toString());
-        Log.d("id",user.getTransaction(Integer.parseInt(id)).getProducts().toString());
-        adapter = new ProductAdapter(this, R.layout.row, user.getTransaction(Integer.parseInt(id)).getProducts());
-        listp.setAdapter(adapter);
-        listp.setEmptyView(findViewById(R.id.empty_list));
-        listp.setOnItemClickListener(this);
-
-        Button back = findViewById(R.id.back);
-        back.setOnClickListener((v)->backButton());
-
+        products = new ArrayList();
         queue = Volley.newRequestQueue(this);
 
-        String id = getIntent().getExtras().getString("id");
         Map info= new HashMap();
         info.put("TransactionId", id);
         List list = new ArrayList();
@@ -76,8 +58,23 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
         String url = "http:/"+getString(R.string.ip_address)+":3000/product/transaction"; //IP Address
         JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
                 response -> {
-
                     Log.d("details response", response.toString());
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+                            JSONObject jsonobject = response.getJSONObject(i);
+                            String name = jsonobject.getString("name");
+                            Float price = Float.parseFloat(jsonobject.getString("value"));
+
+                            products.add(new Product(name, price));
+                            transactionTotal += price;
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                    TextView total= findViewById(R.id.sumproducts);
+                    total.setText(transactionTotal.toString()+" €");
+                    adapter = new ProductAdapter(this, R.layout.row, products);
+                    listp.setAdapter(adapter);
                 },
                 error -> {
                     //TODO: unexpected error
@@ -87,6 +84,9 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
         ) {
         };
         queue.add(jsonobj);
+
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener((v)->finish());
     }
 
     @Override
@@ -116,26 +116,18 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
                 line = vi.inflate(layoutResource, null);
             }
 
-
             Product p = getItem(position);
 
             if (p != null) {
-                TextView date = line.findViewById(R.id.title);
-                TextView price = line.findViewById(R.id.price);
-                TextView id = line.findViewById(R.id.id);
+                TextView title = line.findViewById(R.id.title);
+                TextView price = line.findViewById(R.id.total);
 
-
-                if (date != null) {
-                    date.setText(p.getName());
+                if (title != null) {
+                    title.setText(p.getName());
                 }
-
 
                 if (price != null) {
-                    price.setText(p.getPrice() + "€");
-                }
-
-                if (id != null){
-                    id.setText(p.getId());
+                    price.setText(p.getPrice()+ "€");
                 }
             }
 
@@ -144,14 +136,4 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
     }
 
 
-
-    public void backButton() {
-
-                  //  Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                  //  i.putExtra("user", user);
-                 //   startActivity(i);
-                    finish();
-                  //  Log.d("transactions response", user.getName());
-
-    }
 }

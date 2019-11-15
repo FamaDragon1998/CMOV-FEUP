@@ -41,5 +41,10 @@ public class Product implements Serializable {
         price = Float.parseFloat(ss[2]);
     }
 
+    public Product(String name, Float price){
+        this.name = name;
+        this.price = price;
+    }
+
 
 }

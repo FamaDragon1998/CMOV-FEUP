@@ -2,13 +2,11 @@ package org.feup.apm.lunchlist4;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.Cursor;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -18,38 +16,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CursorAdapter;
-import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.w3c.dom.Text;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -129,12 +102,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
 
   private void openDetails(String id) {
-
       Intent i = new Intent(getApplicationContext(), DetailsTransaction.class);
-      Bundle b = new Bundle();
-      b.putString("id",id);
-      b.putSerializable("user",user);
-      i.putExtras(b);
+      //Bundle b = new Bundle();
+      //b.putString("id",id);
+      //b.putSerializable("user",user);
+      i.putExtra("TransactionId", id);
       startActivity(i);
 
   }
@@ -172,9 +144,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       if (p != null) {
         TextView date = line.findViewById(R.id.title);
         TextView hora = line.findViewById(R.id.date);
-        TextView price = line.findViewById(R.id.price);
+        TextView price = line.findViewById(R.id.totaltransaction);
         TextView id = line.findViewById(R.id.id);
-        String[] data = (String[])parseDate(p.getDate());
+        String[] data = parseDate(p.getDate());
 
         if (date != null) {
           date.setText(data[0]);

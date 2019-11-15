@@ -104,9 +104,6 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    i.putExtra("user", user);
-                    startActivity(i);
                 },
                 error -> {
                     //TODO: unexpected error
@@ -135,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 },
                 error -> {
                     //TODO: unexpected error
-                    Log.d("transactions error", error.toString());
+                    Log.d("vouchers error", error.toString());
 
                 }
         ) {

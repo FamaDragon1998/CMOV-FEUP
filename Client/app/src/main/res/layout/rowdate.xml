@@ -43,7 +43,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/price"
+            android:id="@+id/totaltransaction"
             android:layout_width="200dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
