@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Base64;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
@@ -33,17 +34,20 @@ public class QrCodeActivity extends AppCompatActivity {
         setContentView(R.layout.content_qr_code);
         user = (User) getIntent().getSerializableExtra("user");
 
+        Button back = findViewById(R.id.back);
+        back.setOnClickListener((v)->finish());
+
         qrCodeIv = findViewById(R.id.qr);
 
-        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        byte[] byteArray = getIntent().getByteArrayExtra("content");
         Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
-       // final String QRcodeContents = BitMapToString(bmp);
+     //   final String QRcodeContents = BitMapToString(bmp);
 
 
         // convert in a separate thread to avoid possible ANR
         Thread t = new Thread(() -> {
-            //final Bitmap bitmap = encodeAsBitmap(QRcodeContents);
+            final Bitmap bitmap = encodeAsBitmap(QRcodeContents);
             runOnUiThread(()->qrCodeIv.setImageBitmap(bmp));
         });
         t.start();
@@ -51,14 +55,6 @@ public class QrCodeActivity extends AppCompatActivity {
 
     }
 
-    public void backButton(View view)
-    {
-        Intent i = new Intent(this, NewTransaction.class);
-        i.putExtra("user", user);
-        startActivity(i);
-        overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
-
-    }
 
     Bitmap encodeAsBitmap(String str) {
         BitMatrix result;

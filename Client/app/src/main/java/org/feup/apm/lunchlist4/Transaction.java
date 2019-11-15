@@ -13,6 +13,8 @@ public class Transaction implements Serializable {
     private String date;
     private List<Product> products;
 
+    private String voucher;
+
     public Transaction(String id, float total_value, String date) {
         this.id = id;
         this.total_value = total_value;
@@ -22,7 +24,9 @@ public class Transaction implements Serializable {
 
     public Transaction()
     {
+        this.total_value = 0;
         this.products=new ArrayList();
+        this.voucher = "";
     }
 
 
@@ -71,4 +75,11 @@ public class Transaction implements Serializable {
     }
 
 
+    public String getVoucher() {
+        return voucher;
+    }
+
+    public void setVoucher(String voucher) {
+        this.voucher = voucher;
+    }
 }

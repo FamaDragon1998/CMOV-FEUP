@@ -21,12 +21,18 @@ public class Util {
     static class ProductAdapter extends ArrayAdapter<Product> {
         private int layoutResource;
         private Context mContext;
-
+        private List<Product> productList;
         ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
             super(context, resource, objects);
             layoutResource = resource;
             mContext = context;
+            productList = objects;
 
+        }
+
+        public void updateContent(List<Product> newList) {
+            this.productList = newList;
+            notifyDataSetChanged();
         }
 
         @Override
