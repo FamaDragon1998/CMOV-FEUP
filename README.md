@@ -4,8 +4,6 @@
 ## Stuff to do:
 
 ### Client
-* Profile page
-* Transaction Page
 * Reads QRCode and saves in basket
 * Generates QRCode in basket
 * Nice Design
