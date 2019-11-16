@@ -39,20 +39,16 @@ public class QrCodeActivity extends AppCompatActivity {
 
         qrCodeIv = findViewById(R.id.qr);
 
-        byte[] byteArray = getIntent().getByteArrayExtra("content");
-        Bitmap bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+       String content = getIntent().getStringExtra("content");
 
-     //   final String QRcodeContents = BitMapToString(bmp);
 
 
         // convert in a separate thread to avoid possible ANR
         Thread t = new Thread(() -> {
-            final Bitmap bitmap = encodeAsBitmap(QRcodeContents);
-            runOnUiThread(()->qrCodeIv.setImageBitmap(bmp));
+            final Bitmap bitmap = encodeAsBitmap(content);
+            runOnUiThread(()->qrCodeIv.setImageBitmap(bitmap));
         });
         t.start();
-
-
     }
 
 

@@ -77,56 +77,21 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/totalrow">
 
-        <CheckBox
-            android:id="@+id/discount"
+        <Button
+            android:id="@+id/discountbutton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="20dp"
-            android:text="Use Discount?"
-            android:textSize="12sp" />
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Select a Discount"
+            android:textColor="#FFFFFF" />
 
-        <TableRow
+        <TextView
+            android:id="@+id/selectedDiscountText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="No Discount Selected" />
 
-            <TextView
-                android:id="@+id/currentdiscount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|center_vertical"
-                android:layout_marginRight="10dp"
-                android:text="0 €"
-                android:textColor="#F44336"
-                android:textSize="18sp" />
-
-            <TextView
-                android:id="@+id/mindiscount"
-                android:layout_width="10dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:gravity="center_vertical"
-                android:text="0"
-                android:textColor="@color/colorPrimary" />
-
-            <SeekBar
-                android:id="@+id/seekBar"
-                style="@style/Widget.AppCompat.SeekBar.Discrete"
-                android:layout_width="190dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:clickable="false"
-                android:max="50"
-                android:progress="10" />
-
-            <TextView
-                android:id="@+id/maxdiscount"
-                android:layout_width="20dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical|end"
-                android:gravity="center_vertical"
-                android:text="0"
-                tools:text="50" />
-        </TableRow>
 
     </TableRow>
 
@@ -141,20 +106,6 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/discountrow">
 
-       <!-- <CheckBox
-            android:id="@+id/voucher"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Use Voucher?"
-            android:textSize="12sp" />
-
-        <Spinner
-            android:id="@+id/voucherspinner"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" /> -->
-
         <Button
             android:id="@+id/selectVoucherButton"
             android:layout_width="wrap_content"
@@ -165,8 +116,10 @@
 
         <TextView
             android:id="@+id/selectedVoucherText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="No Vouchher selected" />
 
     </TableRow>
 

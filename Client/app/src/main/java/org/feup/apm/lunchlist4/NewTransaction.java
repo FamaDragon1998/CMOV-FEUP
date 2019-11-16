@@ -14,13 +14,18 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
+
+import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Hashtable;
@@ -65,6 +70,7 @@ public class NewTransaction extends AppCompatActivity {
         totalView.setText(basket.getTotal_value() + " €");
 
         voucherAdapter();
+        discountAdapter();
 
     }
 
@@ -90,31 +96,15 @@ public class NewTransaction extends AppCompatActivity {
         for (int b = 0; b < size; b++) {
             bContent[b] = (byte) (b % 256);
         }
-        //   try {
-        //content = new String(bContent, CH_SET);
-        CheckBox boxdiscount = (CheckBox) findViewById(R.id.discount);
+
         content = parseTransaction(basket.getProducts(), 10f, basket.getVoucher());
-        String print = Util.byteArrayToHex(bContent);
-        if (size > 400)
-            print = "(too big)";
+
+        Intent intent = new Intent(this, QrCodeActivity.class);
+        intent.putExtra("content", content); //Put your id to your next Intent
+        startActivity(intent);
+        finish();
 
 
-        final String QRcodeContents = content;
-        // convert in a separate thread to avoid possible ANR
-        String finalContent = content;
-        Thread t = new Thread(() -> {
-            final Bitmap bitmap = encodeAsBitmap(QRcodeContents);
-            // runOnUiThread(()->qrCodeIv.setImageBitmap(bitmap));
-
-            byte[] byteArray = finalContent.getBytes();
-
-            Intent intent = new Intent(this, QrCodeActivity.class);
-
-            intent.putExtra("content", byteArray); //Put your id to your next Intent
-            startActivity(intent);
-            finish();
-        });
-        t.start();
     }
 
     Bitmap encodeAsBitmap(String str) {
@@ -154,6 +144,8 @@ public class NewTransaction extends AppCompatActivity {
             if (i < products.size() - 1)
                 contents += "|";
         }
+        if (voucher.equals(""))
+            voucher="0";
         contents += "," + voucher + "," + discount;
         return contents;
     }
@@ -223,6 +215,85 @@ public class NewTransaction extends AppCompatActivity {
         });
         Button voucherButton = findViewById(R.id.selectVoucherButton);
         voucherButton.setOnClickListener((v) ->  builder.show());
+
     }
 
+    private void discountAdapter()
+    {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+        alert.setTitle("How much do you want to discount?");
+   //     alert.setMessage("Edit Text");
+
+        LinearLayout linear=new LinearLayout(this);
+
+        linear.setOrientation(LinearLayout.VERTICAL);
+       // TextView text=new TextView(this);
+        //text.setText("Hello Android");
+        //text.setPadding(10, 10, 10, 10);
+
+        SeekBar seek=new SeekBar(this);
+        seek.setMax((int)Math.floor((double) user.getStored_discount()));
+        seek.setProgress(0);
+
+        TextView currentDiscount=new TextView(this);
+        currentDiscount.setText("");
+
+        seek.setOnSeekBarChangeListener(
+                new SeekBar.OnSeekBarChangeListener() { //listener for your seekbar
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // TODO Auto-generated method stub
+            }
+
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+
+                currentDiscount.setTextSize(progress);//Here is the textview with the progress number.
+
+            }
+        });
+
+        linear.addView(seek);
+
+
+
+
+        linear.addView(currentDiscount);
+
+        alert.setView(linear);
+
+
+
+        alert.setPositiveButton("Ok",new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog,int id)
+            {
+                TextView discountlabel=findViewById(R.id.selectedDiscountText);
+                discountlabel.setText(seek.getProgress());
+            }
+        });
+
+        alert.setNegativeButton("Cancel",new DialogInterface.OnClickListener()
+        {
+            public void onClick(DialogInterface dialog,int id)
+            {
+                //Toast.makeText(getApplicationContext(), "Cancel Pressed",Toast.LENGTH_LONG).show();
+                //finish();
+            }
+        });
+
+
+
+
+        Button discountButton = findViewById(R.id.discountbutton);
+        discountButton.setOnClickListener((v) ->  alert.show());
+    }
 }
