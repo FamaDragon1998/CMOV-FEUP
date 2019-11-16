@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
-    private int id;
+    private String id;
     private String name;
     private float price;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -36,7 +36,7 @@ public class Product implements Serializable {
     //id;name;price
     public Product(String content){
         String[] ss = content.split(";");
-        id = Integer.parseInt(ss[0]);
+        id = ss[0];
         name = ss[1];
         price = Float.parseFloat(ss[2]);
     }

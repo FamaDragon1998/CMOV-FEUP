@@ -4,37 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
-import org.w3c.dom.Text;
-
-import java.io.ByteArrayOutputStream;
 import java.nio.ByteBuffer;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.Signature;
 import java.util.Hashtable;
-import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
@@ -90,30 +80,19 @@ public class NewTransaction extends AppCompatActivity {
             return;
         }
 
-        int size;
-        String content = "";
-
-        if (sz.isEmpty())
-            size = 256;
+        Float discountUsed;
+        if (currentDiscount.getText().equals("No Discount Selected"))
+            discountUsed = 0f;
         else
-            size = Integer.valueOf(sz);
-        if (size < 1)
-            size = 1;
-        else if (size > 1536)
-            size = 1536;
-        byte[] bContent = new byte[size];
-        for (int b = 0; b < size; b++) {
-            bContent[b] = (byte) (b % 256);
-        }
+            discountUsed = Float.parseFloat(String.valueOf(currentDiscount.getText()));
 
-        content = parseTransaction(basket.getProducts(), 10f, basket.getVoucher());
-        byte[] b = content.getBytes();
-/*
-        ByteBuffer bb = ByteBuffer.allocate((basket.getProducts().size()+1)+Util.KEY_SIZE/8);
-        bb.put((byte)basket.getProducts().size());
-        for (int k=0; k<basket.getProducts().size(); k++)
-            bb.put(basket.getProducts().get(k).byteValue());
-        byte[] message = bb.array();*/
+        String voucher;
+        if (basket.getVoucher().equals("No Voucher Selected"))
+            voucher ="";
+        else
+            voucher = basket.getVoucher();
+
+        byte[] message = parseTransaction(discountUsed, voucher);
 
         try {
             KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
@@ -122,8 +101,8 @@ public class NewTransaction extends AppCompatActivity {
             PrivateKey pri = ((KeyStore.PrivateKeyEntry)entry).getPrivateKey();
             Signature sg = Signature.getInstance(Util.SIGN_ALGO);
             sg.initSign(pri);
-            sg.update(b, 0, basket.getProducts().size()+1);
-            int sl = sg.sign(b, basket.getProducts().size()+1, Util.KEY_SIZE/8);
+            sg.update(message, 0, basket.getProducts().size()+1);
+            int sl = sg.sign(message, basket.getProducts().size()+1, Util.KEY_SIZE/8);
             Log.d("somethin", "Sign size = " + sl + " bytes.");
         }
         catch (Exception ex) {
@@ -131,54 +110,23 @@ public class NewTransaction extends AppCompatActivity {
         }
 
         Intent intent = new Intent(this, QrCodeActivity.class);
-        intent.putExtra("content", content); //Put your id to your next Intent
+        intent.putExtra("content", message); //Put your id to your next Intent
         startActivity(intent);
         finish();
-
-
     }
 
-    Bitmap encodeAsBitmap(String str) {
-        BitMatrix result;
-
-        Hashtable<EncodeHintType, String> hints = new Hashtable<>();
-        hints.put(EncodeHintType.CHARACTER_SET, CH_SET);
-        try {
-            result = new MultiFormatWriter().encode(str, BarcodeFormat.QR_CODE, DIMENSION, DIMENSION, hints);
-        } catch (Exception exc) {
-            // runOnUiThread(()->errorTv.setText(exc.getMessage()));
-            return null;
+    public byte[] parseTransaction(Float discount, String voucher) {
+        ByteBuffer bb = ByteBuffer.allocate((basket.getProducts().size()+1)+Util.KEY_SIZE/8);
+        bb.put((byte)basket.getProducts().size());
+        for (int k=0; k<basket.getProducts().size(); k++) {
+            bb.put((basket.getProducts().get(k).getId() + ";" + basket.getProducts().get(k).getPrice().toString()).getBytes());
+            if (k<basket.getProducts().size()-1)
+                bb.put("|".getBytes());
         }
-        int w = result.getWidth();
-        int h = result.getHeight();
-        int colorPrimary = Color.parseColor("#FF123454");
-        int colorWhite = Color.parseColor("#FFFFFFFF");
-        // int colorPrimary = getResources().getColor(R.color.colorPrimary, null);
-        // int colorWhite = getResources().getColor(R.color.colorPrimaryDark, null);
-        int[] pixels = new int[w * h];
-        for (int line = 0; line < h; line++) {
-            int offset = line * w;
-            for (int col = 0; col < w; col++) {
-                pixels[offset + col] = result.get(col, line) ? colorPrimary : colorWhite;
-            }
-        }
-        Bitmap bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-        bitmap.setPixels(pixels, 0, w, 0, 0, w, h);
-        return bitmap;
-    }
+        String aux = "," + voucher + "," + discount;
+        bb.put(aux.getBytes());
 
-
-    public String parseTransaction(List<Product> products, Float discount, String voucher) {
-        String contents = "";
-        for (int i = 0; i < products.size(); i++) {
-            contents += products.get(i).getId() + ";" + products.get(i).getPrice().toString();
-            if (i < products.size() - 1)
-                contents += "|";
-        }
-        if (voucher.equals(""))
-            voucher="0";
-        contents += "," + voucher + "," + discount;
-        return contents;
+        return bb.array();
     }
 
     public void backButton(View view) {
@@ -236,7 +184,7 @@ public class NewTransaction extends AppCompatActivity {
             TextView voucherView = findViewById(R.id.selectedVoucherText);
             String voucher = vouchers[which].toString();
             if (basket.getVoucher().equals(voucher)){
-                basket.setVoucher("");
+                basket.setVoucher("No Voucher Selected");
                 //TODO: avisar que foi removido
             }
             else
