@@ -45,6 +45,8 @@ public class NewTransaction extends AppCompatActivity {
 
     private String ids[];
     User user;
+    TextView currentDiscount;
+
 
     Util.ProductAdapter adapter;
 
@@ -53,6 +55,7 @@ public class NewTransaction extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_transaction);
+
         user = (User) getIntent().getSerializableExtra("user");
         basket = new Transaction();
 
@@ -68,6 +71,7 @@ public class NewTransaction extends AppCompatActivity {
 
         totalView = findViewById(R.id.total);
         totalView.setText(basket.getTotal_value() + " €");
+        currentDiscount=findViewById(R.id.selectedDiscountText);
 
         voucherAdapter();
         discountAdapter();
@@ -220,80 +224,27 @@ public class NewTransaction extends AppCompatActivity {
 
     private void discountAdapter()
     {
-        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
-
-        alert.setTitle("How much do you want to discount?");
-   //     alert.setMessage("Edit Text");
-
-        LinearLayout linear=new LinearLayout(this);
-
-        linear.setOrientation(LinearLayout.VERTICAL);
-       // TextView text=new TextView(this);
-        //text.setText("Hello Android");
-        //text.setPadding(10, 10, 10, 10);
-
-        SeekBar seek=new SeekBar(this);
+        SeekBar seek = findViewById(R.id.discountSeekBar);
         seek.setMax((int)Math.floor((double) user.getStored_discount()));
         seek.setProgress(0);
 
-        TextView currentDiscount=new TextView(this);
-        currentDiscount.setText("");
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //listener for your seekbar
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                // TODO Auto-generated method stub
+                if (progress == 0)
+                    currentDiscount.setText("No Discount Selected");
+                else
+                    currentDiscount.setText(progress + "");//Here is the textview with the progress number.
 
-        seek.setOnSeekBarChangeListener(
-                new SeekBar.OnSeekBarChangeListener() { //listener for your seekbar
-
+            }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
             }
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
-            }
-
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // TODO Auto-generated method stub
-
-                currentDiscount.setTextSize(progress);//Here is the textview with the progress number.
-
             }
         });
-
-        linear.addView(seek);
-
-
-
-
-        linear.addView(currentDiscount);
-
-        alert.setView(linear);
-
-
-
-        alert.setPositiveButton("Ok",new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog,int id)
-            {
-                TextView discountlabel=findViewById(R.id.selectedDiscountText);
-                discountlabel.setText(seek.getProgress());
-            }
-        });
-
-        alert.setNegativeButton("Cancel",new DialogInterface.OnClickListener()
-        {
-            public void onClick(DialogInterface dialog,int id)
-            {
-                //Toast.makeText(getApplicationContext(), "Cancel Pressed",Toast.LENGTH_LONG).show();
-                //finish();
-            }
-        });
-
-
-
-
-        Button discountButton = findViewById(R.id.discountbutton);
-        discountButton.setOnClickListener((v) ->  alert.show());
     }
 }
