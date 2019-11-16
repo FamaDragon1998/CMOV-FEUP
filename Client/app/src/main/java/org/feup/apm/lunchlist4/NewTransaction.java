@@ -59,7 +59,7 @@ public class NewTransaction extends AppCompatActivity {
         productsListView.setAdapter(adapter);
 
         Button addProductButton = findViewById(R.id.scan);
-        addProductButton.setOnClickListener((v) -> scan(true, basket));
+        addProductButton.setOnClickListener((v) -> scan());
 
         finishButton = findViewById(R.id.generateQRcode);
         finishButton.setOnClickListener((v) -> generateQRcode(""));
@@ -138,7 +138,7 @@ public class NewTransaction extends AppCompatActivity {
     }
 
 
-    public void scan(boolean qrcode, Transaction basket) {
+    public void scan() {
         if (this.basket.getProducts().size() >=10) {
             //TODO: Dizer que so dá 10 produtos
             return;

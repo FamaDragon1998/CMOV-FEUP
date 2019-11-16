@@ -1,10 +1,7 @@
 package org.feup.apm.scanqr;
 
-import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Log;
@@ -13,34 +10,38 @@ import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
+import java.security.PublicKey;
 import java.util.HashMap;
+import java.util.UUID;
+
+import javax.crypto.Cipher;
 
 
 public class MainActivity extends AppCompatActivity {
   static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
   TextView message;
+  PublicKey pub;
 
   private RequestQueue queue;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
-    Button QRButton;
     queue = Volley.newRequestQueue(this);
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     message = findViewById(R.id.message);
-    QRButton = findViewById(R.id.scan1);
-    QRButton.setOnClickListener((v) -> scan(true));
+
+
+    Button addProductButton = findViewById(R.id.scan1);
+    addProductButton.setOnClickListener((v) -> scan());
   }
 
   @Override
@@ -54,63 +55,33 @@ public class MainActivity extends AppCompatActivity {
     message.setText(bundle.getCharSequence("Message"));
   }
 
-  public void scan(boolean qrcode) {
-    HashMap info = new HashMap();
-    ArrayList<String> products = new ArrayList<>();
-    products.add("1212;3.0");
-    products.add("2323;20.0");
-
-    info.put("userID", "1"); //userID
-    info.put("discount", "true"); //discount use
-    info.put("voucher", "232323"); //or null
-    info.put("products",products); //products
-
-    checkoutBasket(info);
-    try {
-      Intent intent = new Intent(ACTION_SCAN);
-      intent.putExtra("SCAN_MODE", qrcode ? "QR_CODE_MODE" : "PRODUCT_MODE");
-      startActivityForResult(intent, 0);
-    } catch (ActivityNotFoundException anfe) {
-      showDialog(this, "No Scanner Found", "Download a scanner code activity?", "Yes", "No").show();
-    }
+  public void scan() {
+    Intent intent = new Intent(ACTION_SCAN);
+    intent.putExtra("SCAN_MODE", "QR_CODE_MODE" );
+    startActivityForResult(intent, 0);
   }
 
-  private static AlertDialog showDialog(final AppCompatActivity act, CharSequence title, CharSequence message, CharSequence buttonYes, CharSequence buttonNo) {
-    AlertDialog.Builder downloadDialog = new AlertDialog.Builder(act);
-    downloadDialog.setTitle(title);
-    downloadDialog.setMessage(message);
-    downloadDialog.setPositiveButton(buttonYes, (dialogInterface, i) -> {
-      Uri uri = Uri.parse("market://search?q=pname:" + "com.google.zxing.client.android");
-      Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-      act.startActivity(intent);
-    });
-    downloadDialog.setNegativeButton(buttonNo, null);
-    return downloadDialog.show();
-  }
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
-    byte[] baMess;
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 0) {
       if (resultCode == RESULT_OK) {
         String contents = data.getStringExtra("SCAN_RESULT");
         String format = data.getStringExtra("SCAN_RESULT_FORMAT");
-        try {
-          baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
-          HashMap info = new HashMap();
-          info.put("userID", "1"); //userID
-          info.put("discount", "true"); //discount use
-          info.put("voucher", "232323"); //or null
-          info.put(1212, 2); //products
-          info.put(23232, 4);
 
-          checkoutBasket(info);
+        Log.d("format", format);
+        if (contents != null)
+          decodeAndShow(contents.getBytes(StandardCharsets.ISO_8859_1));
+        //parse contents
 
-        } catch (Exception ex) {
-          message.setText(ex.getMessage());
-          return;
-        }
-        message.setText("Format: " + format + "\nMessage: " + contents + "\n\nHex: " + byteArrayToHex(baMess));
+        HashMap info = new HashMap();
+        info.put("userID", "1"); //userID
+        info.put("discount", "true"); //discount use
+        info.put("voucher", "232323"); //or null
+        info.put(1212, 2); //products
+        info.put(23232, 4);
+
+//        checkoutBasket(info);
       }
     }
   }
@@ -119,34 +90,58 @@ public class MainActivity extends AppCompatActivity {
     Log.d("posting", "posting data");
     String url = "http:/" + getString(R.string.ip_address) + ":3000/user/checkout";
     JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
-            new Response.Listener<JSONObject>() {
-              @Override
-              public void onResponse(JSONObject response) {
-                try {
-                  if (response.getString("response").equals("ACK"))
-                    Log.d("success", response.toString());
-                  else
-                    Log.d("not successful", response.toString());
+            response -> {
+              try {
+                if (response.getString("response").equals("ACK"))
+                  Log.d("success", response.toString());
+                else
+                  Log.d("not successful", response.toString());
 
-                } catch (JSONException e) {
-                  e.printStackTrace();
-                }
+              } catch (JSONException e) {
+                e.printStackTrace();
               }
             },
-            new Response.ErrorListener() {
-              @Override
-              public void onErrorResponse(VolleyError error) {
-                Log.d("error", error.toString());
-
-              }
-            }
+            error -> Log.d("error", error.toString())
     ) {
     };
     queue.add(jsonobj);
 
   }
 
-  String byteArrayToHex(byte[] ba) {
+
+  void decodeAndShow(byte[] encTag) {
+    byte[] clearTag;
+
+    try {
+      Cipher cipher = Cipher.getInstance(Util.ENC_ALGO);
+      cipher.init(Cipher.DECRYPT_MODE, pub);
+      clearTag = cipher.doFinal(encTag);
+    }
+    catch (Exception e) {
+      Log.e("Decode:", e.getMessage());
+      return;
+    }
+    ByteBuffer tag = ByteBuffer.wrap(clearTag);
+    int tId = tag.getInt();
+    long most = tag.getLong();
+    long less = tag.getLong();
+    UUID id = new UUID(most, less);
+    int euros = tag.getInt();
+    int cents = tag.getInt();
+    byte l = tag.get();
+    byte[] bName = new byte[l];
+    tag.get(bName);
+    String name = new String(bName, StandardCharsets.ISO_8859_1);
+
+    String text = "Read Tag (" + clearTag.length + "):\n" + byteArrayToHex(clearTag) + "\n\n" +
+            ((tId== Util.tagId)?"correct":"wrong") + "\n" +
+            "ID: " + id.toString() + "\n" +
+            "Name: " + name + "\n" +
+            "Price: €" + euros + "." + cents;
+    Log.d("Tag Decode", text);
+  }
+
+  String byteArrayToHex(byte[] ba) {                              // converter
     StringBuilder sb = new StringBuilder(ba.length * 2);
     for (byte b : ba)
       sb.append(String.format("%02x", b));
