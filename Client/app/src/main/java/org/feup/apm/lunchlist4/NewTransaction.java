@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.provider.SyncStateContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -28,6 +29,10 @@ import com.google.zxing.common.BitMatrix;
 import org.w3c.dom.Text;
 
 import java.io.ByteArrayOutputStream;
+import java.nio.ByteBuffer;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.Signature;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -98,6 +103,28 @@ public class NewTransaction extends AppCompatActivity {
         }
 
         content = parseTransaction(basket.getProducts(), 10f, basket.getVoucher());
+        byte[] b = content.getBytes();
+/*
+        ByteBuffer bb = ByteBuffer.allocate((basket.getProducts().size()+1)+Util.KEY_SIZE/8);
+        bb.put((byte)basket.getProducts().size());
+        for (int k=0; k<basket.getProducts().size(); k++)
+            bb.put(basket.getProducts().get(k).byteValue());
+        byte[] message = bb.array();*/
+
+        try {
+            KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+            ks.load(null);
+            KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
+            PrivateKey pri = ((KeyStore.PrivateKeyEntry)entry).getPrivateKey();
+            Signature sg = Signature.getInstance(Util.SIGN_ALGO);
+            sg.initSign(pri);
+            sg.update(b, 0, basket.getProducts().size()+1);
+            int sl = sg.sign(b, basket.getProducts().size()+1, Util.KEY_SIZE/8);
+            Log.d("somethin", "Sign size = " + sl + " bytes.");
+        }
+        catch (Exception ex) {
+            Log.d("somethin", ex.getMessage());
+        }
 
         Intent intent = new Intent(this, QrCodeActivity.class);
         intent.putExtra("content", content); //Put your id to your next Intent

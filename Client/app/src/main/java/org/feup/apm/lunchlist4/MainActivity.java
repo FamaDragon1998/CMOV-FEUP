@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.security.KeyPairGeneratorSpec;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,7 +23,19 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.math.BigInteger;
+import java.security.KeyPairGenerator;
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.PublicKey;
+import java.security.interfaces.RSAPrivateKey;
+import java.security.interfaces.RSAPublicKey;
+import java.security.spec.AlgorithmParameterSpec;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.security.auth.x500.X500Principal;
 
 
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
@@ -58,9 +71,16 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     });
 
     queue = Volley.newRequestQueue(this);
+    generateAndStoreKeys();
 
   }
 
+
+
+  class PubKey {
+    byte[] modulus;
+    byte[] exponent;
+  }
 
   @Override
   protected void onDestroy() {
@@ -157,6 +177,67 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return line;
     }
 
+  }
+
+  private void generateAndStoreKeys(){
+    try {
+      KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+      ks.load(null);
+      KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
+      if (entry == null) {
+        Calendar start = new GregorianCalendar();
+        Calendar end = new GregorianCalendar();
+        end.add(Calendar.YEAR, 20);
+        KeyPairGenerator kgen = KeyPairGenerator.getInstance(Util.KEY_ALGO, Util.ANDROID_KEYSTORE);
+        AlgorithmParameterSpec spec = new KeyPairGeneratorSpec.Builder(this)
+                .setKeySize(Util.KEY_SIZE)
+                .setAlias(Util.keyname)
+                .setSubject(new X500Principal("CN=" + Util.keyname))   // Usually the full name of the owner (person or organization)
+                .setSerialNumber(BigInteger.valueOf(12121212))
+                .setStartDate(start.getTime())
+                .setEndDate(end.getTime())
+                .build();
+        kgen.initialize(spec);
+        kgen.generateKeyPair();
+      }
+    }
+    catch (Exception ex) {
+      Log.d("coise", ex.getMessage());
+    }
+  }
+
+  PubKey getPubKey() {
+    PubKey pkey = new PubKey();
+    try {
+      KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+      ks.load(null);
+      KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
+      PublicKey pub = ((KeyStore.PrivateKeyEntry)entry).getCertificate().getPublicKey();
+      pkey.modulus = ((RSAPublicKey)pub).getModulus().toByteArray();
+      pkey.exponent = ((RSAPublicKey)pub).getPublicExponent().toByteArray();
+    }
+    catch (Exception ex) {
+      Log.d("coiso", ex.getMessage());
+    }
+    return pkey;
+  }
+
+  byte[] getPrivExp() {
+    byte[] exp = null;
+
+    try {
+      KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+      ks.load(null);
+      KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
+      PrivateKey priv = ((KeyStore.PrivateKeyEntry)entry).getPrivateKey();
+      exp = ((RSAPrivateKey)priv).getPrivateExponent().toByteArray();
+    }
+    catch (Exception ex) {
+      Log.d("coisa", ex.getMessage());
+    }
+    if (exp == null)
+      exp = new byte[0];
+    return exp;
   }
 
 }

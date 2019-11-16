@@ -14,19 +14,25 @@ import com.google.zxing.common.BitMatrix;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import java.io.ByteArrayOutputStream;
+import java.security.KeyStore;
+import java.security.PublicKey;
+import java.security.Signature;
 import java.util.Hashtable;
 
 public class QrCodeActivity extends AppCompatActivity {
     ImageView qrCodeIv;
     final static int DIMENSION=500;
     final static String CH_SET="ISO-8859-1";
+    private final String ISO_SET = "ISO-8859-1";
 
     User user;
+    String qr_content = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +47,9 @@ public class QrCodeActivity extends AppCompatActivity {
 
        String content = getIntent().getStringExtra("content");
 
+       // qr_content = new String(content, ISO_SET);
 
-
+        
         // convert in a separate thread to avoid possible ANR
         Thread t = new Thread(() -> {
             final Bitmap bitmap = encodeAsBitmap(content);
@@ -88,5 +95,23 @@ public class QrCodeActivity extends AppCompatActivity {
         byte [] b=baos.toByteArray();
         String temp= Base64.encodeToString(b, Base64.DEFAULT);
         return temp;
+    }
+
+    boolean validate(byte[] message, byte[] signature) {
+        boolean verified = false;
+        try {
+            KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+            ks.load(null);
+            KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
+            PublicKey pub = ((KeyStore.PrivateKeyEntry)entry).getCertificate().getPublicKey();
+            Signature sg = Signature.getInstance(Util.SIGN_ALGO);
+            sg.initVerify(pub);
+            sg.update(message);
+            verified = sg.verify(signature);
+        }
+        catch (Exception ex) {
+            Log.d("coisu", ex.getMessage());
+        }
+        return verified;
     }
 }
