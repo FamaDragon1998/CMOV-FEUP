@@ -73,8 +73,6 @@ router.get('/transactions/:id', function(req, res, next) {
      }
   ]
 }*/
-// Criar transação (Transaction)
-// Associar produtos à transacao (TransactionProduct)
 // atualizar valores de User(total_spent, vouchers e discount)
 router.post('/checkout', function(req, res, next) {
   let transaction = {
@@ -82,7 +80,10 @@ router.post('/checkout', function(req, res, next) {
     discount: req.body.discount,
     UserId: req.body.UserId
   };
-  if (req.body.voucher == 0)
+
+  console.log(req.body.voucher);
+
+  if (req.body.voucher == "0")
     transaction.voucher = null;
   else
     transaction.voucher = req.body.voucher;
@@ -97,12 +98,57 @@ router.post('/checkout', function(req, res, next) {
   .then(createdTransaction => {
     console.log(createdTransaction);
     req.body.products.forEach(product => {
-      let trans_prod = {id:create_UUID(),ProductId: product.id, TransactionId: createdTransaction.id}
+      let trans_prod = {
+        id:create_UUID(),ProductId: 
+        product.id, TransactionId: 
+        createdTransaction.id
+      }
       TransactionProduct.create(trans_prod);
     });
+    let additive_discount = createdTransaction.total_value - createdTransaction.discount;
+    if (req.body.voucher != "0"){
+      Voucher.update({ 
+          used: true
+      }, {
+        where: {id: req.body.voucher},
+        returning: true, // needed for affectedRows to be populated
+      });
+      additive_discount*=0.15;
+    }
+    let initialUserTotalSpent;
+    User.findOne({ where: {id: req.body.UserId} })
+    .then(user => {
+        initialUserTotalSpent = user.total_spent;
+      })
+    .catch(function(err) {
+      console.log(err);
+    });
+    const [numberOfAffectedRows, updatedUser] = User.update({ 
+      total_spent: sequelize.literal('total_spent + createdTransaction.total_value - createdTransaction.discount'),
+      stored_discount : sequelize.literal('stored_discount + additive_discount')
+    }, {
+      where: {id: req.body.UserId},
+      returning: true, // needed for affectedRows to be populated
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
+
+    console.log(updatedUser);
+    let diff = parseInt( (updatedUser[0].total_spent - initialUserTotalSpent) / 100);
+    if ( diff > 0)
+      for( let i = 0; i < diff; i++){
+        let voucher = {
+          id: create_UUID(),
+          used: false,
+          UserId: req.body.UserId,
+          TransactionId: null
+        }
+        Voucher.create(voucher);
+      }
+    
+  res.send({"ACK": createdTransaction.total_value});
   })
-  
-  res.send('respond with a resource');
 });
 
 
