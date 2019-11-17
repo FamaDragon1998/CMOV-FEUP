@@ -1,5 +1,9 @@
 module.exports = (sequelize, type) => {
     return sequelize.define('TransactionProduct', {
+      id: {
+            type: type.UUID,
+            primaryKey: true
+        },
         ProductId: {
             type: type.UUID,
             allowNull: false,

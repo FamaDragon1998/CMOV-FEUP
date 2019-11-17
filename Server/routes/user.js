@@ -77,7 +77,6 @@ router.get('/transactions/:id', function(req, res, next) {
 // Associar produtos à transacao (TransactionProduct)
 // atualizar valores de User(total_spent, vouchers e discount)
 router.post('/checkout', function(req, res, next) {
-  console.log(req.body);
   let transaction = {
     id: create_UUID(),
     discount: req.body.discount,
@@ -87,20 +86,18 @@ router.post('/checkout', function(req, res, next) {
     transaction.voucher = null;
   else
     transaction.voucher = req.body.voucher;
-  console.log("transaction 1", transaction);
 
   let total_spent = 0;
   req.body.products.forEach(product => {
     total_spent += parseFloat(product.price);
   });
-  transaction.total_spent = total_spent;
-  console.log("transaction 2", transaction);
+  transaction.total_value = total_spent;
 
   Transaction.create(transaction)
   .then(createdTransaction => {
     console.log(createdTransaction);
     req.body.products.forEach(product => {
-      let trans_prod = {ProductId: product.id, TransactionId: createdTransaction.id}
+      let trans_prod = {id:create_UUID(),ProductId: product.id, TransactionId: createdTransaction.id}
       TransactionProduct.create(trans_prod);
     });
   })

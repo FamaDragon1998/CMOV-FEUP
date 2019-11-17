@@ -60,6 +60,7 @@ sequelize
           {id: 1, name: "Explosives", value: 10},
           {id: 2, name: "Yo", value: 1},
           {id: 3, name: "Yo2", value: 3},
+          {id: 4, name: "BOOMEROIDES", value: 40},
         ])
       })
       .then(() => {
