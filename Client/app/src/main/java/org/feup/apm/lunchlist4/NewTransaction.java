@@ -42,6 +42,7 @@ public class NewTransaction extends AppCompatActivity {
     User user;
     TextView currentDiscount;
 
+    AlertDialog alertDialog;
 
     Util.ProductAdapter adapter;
 
@@ -76,7 +77,7 @@ public class NewTransaction extends AppCompatActivity {
 
     public void generateQRcode(String sz) {
         if (basket.getProducts().isEmpty()) {
-            //TODO: DIzer que basket tá vazio
+            setAndShowAlertDialog("Basket size", "There are no products in the basket!");
             return;
         }
 
@@ -140,7 +141,7 @@ public class NewTransaction extends AppCompatActivity {
 
     public void scan() {
         if (this.basket.getProducts().size() >=10) {
-            //TODO: Dizer que so dá 10 produtos
+            setAndShowAlertDialog("Basket size", "There can only be a maximum of 10 products");
             return;
         }
         try {
@@ -148,7 +149,7 @@ public class NewTransaction extends AppCompatActivity {
             intent.putExtra("SCAN_MODE", "QR_CODE_MODE");
             startActivityForResult(intent, 0);
         } catch (ActivityNotFoundException anfe) {
-            //TODO: Pedir para instalar Barcode Scanner
+            setAndShowAlertDialog("Scan error", "Please install Barcode Scanner to continue");
         }
     }
 
@@ -185,7 +186,6 @@ public class NewTransaction extends AppCompatActivity {
             String voucher = vouchers[which].toString();
             if (basket.getVoucher().equals(voucher)){
                 basket.setVoucher("No Voucher Selected");
-                //TODO: avisar que foi removido
             }
             else
                 basket.setVoucher(voucher);
@@ -206,7 +206,6 @@ public class NewTransaction extends AppCompatActivity {
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //listener for your seekbar
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                // TODO Auto-generated method stub
                 if (progress == 0)
                     currentDiscount.setText("No Discount Selected");
                 else
@@ -221,5 +220,13 @@ public class NewTransaction extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) {
             }
         });
+    }
+
+    private void setAndShowAlertDialog(String title, String message){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage(message);
+        dialog.setTitle(title);
+        alertDialog=dialog.create();
+        alertDialog.show();
     }
 }

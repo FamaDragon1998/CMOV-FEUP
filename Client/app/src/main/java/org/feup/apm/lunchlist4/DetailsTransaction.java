@@ -1,5 +1,6 @@
 package org.feup.apm.lunchlist4;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,6 +31,7 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
     private RequestQueue queue;
     Float transactionTotal = 0f;
     ArrayList<Product> products;
+    AlertDialog alertDialog;
 
 
     @Override
@@ -70,7 +72,7 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
                     listp.setAdapter(adapter);
                 },
                 error -> {
-                    //TODO: unexpected error
+                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
                     Log.d("transactions error", error.toString());
 
                 }
@@ -87,5 +89,12 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
 
     }
 
+    private void setAndShowAlertDialog(String title, String message){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage(message);
+        dialog.setTitle(title);
+        alertDialog=dialog.create();
+        alertDialog.show();
+    }
 
 }

@@ -3,8 +3,6 @@ package org.feup.apm.lunchlist4;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,8 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button login,register;
     EditText username,pass;
     private RequestQueue queue;
-    AlertDialog loginAlertDialog;
-    AlertDialog serverAlertDialog;
+    AlertDialog alertDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
 
         register = findViewById(R.id.register);
         register.setOnClickListener((v)->redirectRegister());
-        loginErrorAlertDialog();
-        serverErrorAlertDialog();
     }
 
     public void verifyLogin()
@@ -64,7 +59,7 @@ public class LoginActivity extends AppCompatActivity {
                     try {
                         Object obj = response.get("user");
                         if (obj.toString().equals("null")){
-                            loginAlertDialog.show();
+                            setAndShowAlertDialog("Login Error", "Wrong username/password combination");
                             Log.d("login", "WRONG LOGIN");
                         }
                         else {
@@ -77,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    serverAlertDialog.show();
+                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
                     Log.d("login error", error.toString());
 
                 }
@@ -106,7 +101,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    serverAlertDialog.show();
+                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
                     Log.d("transactions error", error.toString());
 
                 }
@@ -131,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(i);
                 },
                 error -> {
-                    serverAlertDialog.show();
+                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
                     Log.d("vouchers error", error.toString());
 
                 }
@@ -147,18 +142,13 @@ public class LoginActivity extends AppCompatActivity {
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }
 
-    private void loginErrorAlertDialog(){
+    private void setAndShowAlertDialog(String title, String message){
         AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-        dialog.setMessage("Wrong username/password combination");
-        dialog.setTitle("Login error");
-        loginAlertDialog=dialog.create();
+        dialog.setMessage(message);
+        dialog.setTitle(title);
+        alertDialog=dialog.create();
+        alertDialog.show();
     }
 
-    private void serverErrorAlertDialog(){
-        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
-        dialog.setMessage("Something went wrong with the server");
-        dialog.setTitle("Server error");
-        serverAlertDialog=dialog.create();
-    }
 
 }
