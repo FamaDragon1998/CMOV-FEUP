@@ -110,12 +110,31 @@ public class MainActivity extends AppCompatActivity {
     String[] splits = content.split(",");
     String products = splits[0]; String voucher = splits[1]; String discount = splits[2]; String user = splits[3];
 
+
+
     splits = products.split("|");
-    for (int i = 0; i < splits.length; i++){
+    int count = products.length() - products.replace("|", "").length();
+    Log.d("count", String.valueOf(count));
+    for (int i = 0; i < (count+1); i++){
       String[] product = splits[i].split(";");
-      //info.
-     // Log.d("product", product[0]);
+      String id = product[0];
+      Log.d("id", id);
+      String price = product[1];
+      Log.d("price", price);
+
     }
+
+
+    if (splits.length != 0)
+      for (int i = 0; i < splits.length; i++){
+        String[] product = splits[i].split(";");
+        //info.
+       // Log.d("product", product[0]);
+      }
+    else{
+
+    }
+
     info.put("UserId", user); //userID
     info.put("discount", discount); //discount use
     if (voucher == null || voucher.equals(""))
