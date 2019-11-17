@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+const sequelize = require('../sequelize/sequelize.js').sequelize;
 
 const User = require('../sequelize/sequelize.js').User;
 const Transaction = require('../sequelize/sequelize.js').Transaction;
@@ -83,10 +84,8 @@ router.post('/checkout', function(req, res, next) {
 
   console.log(req.body.voucher);
 
-  if (req.body.voucher == "0")
-    transaction.voucher = null;
-  else
-    transaction.voucher = req.body.voucher;
+
+  transaction.voucher = req.body.voucher;
 
   let total_spent = 0;
   req.body.products.forEach(product => {
@@ -96,7 +95,6 @@ router.post('/checkout', function(req, res, next) {
 
   Transaction.create(transaction)
   .then(createdTransaction => {
-    console.log(createdTransaction);
     req.body.products.forEach(product => {
       let trans_prod = {
         id:create_UUID(),ProductId: 
@@ -106,7 +104,7 @@ router.post('/checkout', function(req, res, next) {
       TransactionProduct.create(trans_prod);
     });
     let additive_discount = createdTransaction.total_value - createdTransaction.discount;
-    if (req.body.voucher != "0"){
+    if (req.body.voucher != null){
       Voucher.update({ 
           used: true
       }, {
@@ -123,19 +121,19 @@ router.post('/checkout', function(req, res, next) {
     .catch(function(err) {
       console.log(err);
     });
-    const [numberOfAffectedRows, updatedUser] = User.update({ 
-      total_spent: sequelize.literal('total_spent + createdTransaction.total_value - createdTransaction.discount'),
-      stored_discount : sequelize.literal('stored_discount + additive_discount')
-    }, {
-      where: {id: req.body.UserId},
-      returning: true, // needed for affectedRows to be populated
-    })
-    .catch(function(err) {
-      console.log(err);
-    });
+      //NAN'S finalusertotalspent e diff
+    let query = "UPDATE Users SET total_spent = total_spent + :total, stored_discount = stored_discount + :discount WHERE id = :id";
+  sequelize.query(query, { replacements: { total: createdTransaction.total_value - createdTransaction.discount, discount: additive_discount, id: req.body.UserId }  })
+    .then(([results, metadata]) => {
+      
 
-    console.log(updatedUser);
-    let diff = parseInt( (updatedUser[0].total_spent - initialUserTotalSpent) / 100);
+      let finalUserTotalSpent=initialUserTotalSpent + createdTransaction.total_value - createdTransaction.discount;
+      console.log(finalUserTotalSpent);
+    let diff = parseInt( (finalUserTotalSpent - initialUserTotalSpent) / 100);
+    console.log(diff);
+
+
+    
     if ( diff > 0)
       for( let i = 0; i < diff; i++){
         let voucher = {
@@ -146,8 +144,9 @@ router.post('/checkout', function(req, res, next) {
         }
         Voucher.create(voucher);
       }
-    
+   
   res.send({"ACK": createdTransaction.total_value});
+  }) 
   })
 });
 

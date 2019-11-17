@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     info.put("UserId", user); //userID
     info.put("discount", discount); //discount use
     if (voucher == null || voucher.equals(""))
-      voucher = "0";
+      voucher = null;
     info.put("voucher", voucher); //or null
     info.put("products", productsArray );
 
