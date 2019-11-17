@@ -22,6 +22,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.KeyStore;
 import java.security.PublicKey;
 import java.security.cert.Certificate;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
         //parse contents
        HashMap info = parseContentToServer(contents);
 
-        checkoutBasket(info);
+       checkoutBasket(info);
       }
     }
   }
@@ -110,40 +111,32 @@ public class MainActivity extends AppCompatActivity {
     String[] splits = content.split(",");
     String products = splits[0]; String voucher = splits[1]; String discount = splits[2]; String user = splits[3];
 
-
-
-    splits = products.split("|");
+    String[] aux = products.split("\\|");
     int count = products.length() - products.replace("|", "").length();
-    Log.d("count", String.valueOf(count));
+    ArrayList<HashMap<String, String>> productsArray = new ArrayList<>();
+    HashMap<String, String> productsMap;
+
     for (int i = 0; i < (count+1); i++){
-      String[] product = splits[i].split(";");
+      productsMap = new HashMap<>();
+      String[] product = aux[i].split(";");
       String id = product[0];
       Log.d("id", id);
+      productsMap.put("id", id);
       String price = product[1];
       Log.d("price", price);
-
+      productsMap.put("price", price);
+      productsArray.add(productsMap);
     }
 
-
-    if (splits.length != 0)
-      for (int i = 0; i < splits.length; i++){
-        String[] product = splits[i].split(";");
-        //info.
-       // Log.d("product", product[0]);
-      }
-    else{
-
-    }
 
     info.put("UserId", user); //userID
     info.put("discount", discount); //discount use
     if (voucher == null || voucher.equals(""))
       voucher = "0";
     info.put("voucher", voucher); //or null
+    info.put("products", productsArray );
 
     Log.d("terminal", info.toString());
-    //info.put(1212, 2); //products
-    //info.put(23232, 4);
 
     return info;
   }
