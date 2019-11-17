@@ -4,6 +4,7 @@ var router = express.Router();
 const User = require('../sequelize/sequelize.js').User;
 const Transaction = require('../sequelize/sequelize.js').Transaction;
 const Voucher = require('../sequelize/sequelize.js').Voucher;
+const TransactionProduct = require('../sequelize/sequelize.js').TransactionProduct;
 
 
 //Register 
@@ -61,11 +62,62 @@ router.get('/transactions/:id', function(req, res, next) {
 });
 
 //Checkout basket
-
-//productId, value | productId, value , voucherId, valueOfDiscount
+ /*{ 
+  UserId=2,
+  voucher=0,
+  discount=0.0,
+  products=[ 
+     { 
+        price=40.0,
+        id=4
+     }
+  ]
+}*/
+// Criar transação (Transaction)
+// Associar produtos à transacao (TransactionProduct)
+// atualizar valores de User(total_spent, vouchers e discount)
 router.post('/checkout', function(req, res, next) {
+  console.log(req.body);
+  let transaction = {
+    id: create_UUID(),
+    discount: req.body.discount,
+    UserId: req.body.UserId
+  };
+  if (req.body.voucher == 0)
+    transaction.voucher = null;
+  else
+    transaction.voucher = req.body.voucher;
+  console.log("transaction 1", transaction);
+
+  let total_spent = 0;
+  req.body.products.forEach(product => {
+    total_spent += parseFloat(product.price);
+  });
+  transaction.total_spent = total_spent;
+  console.log("transaction 2", transaction);
+
+  Transaction.create(transaction)
+  .then(createdTransaction => {
+    console.log(createdTransaction);
+    req.body.products.forEach(product => {
+      let trans_prod = {ProductId: product.id, TransactionId: createdTransaction.id}
+      TransactionProduct.create(trans_prod);
+    });
+  })
+  
   res.send('respond with a resource');
 });
+
+
+function create_UUID(){
+  var dt = new Date().getTime();
+  var uuid = 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
+      var r = (dt + Math.random()*16)%16 | 0;
+      dt = Math.floor(dt/16);
+      return (c=='x' ? r :(r&0x3|0x8)).toString(16);
+  });
+  return uuid;
+}
 
 
 module.exports = router;

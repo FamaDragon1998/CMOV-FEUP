@@ -49,9 +49,9 @@ sequelize
     })
     .then(() => {
       Transaction.bulkCreate([
-        {id: 1, voucher: 745747, total_value: 120, flag: true, UserId:2},
-        {id: 2, voucher: 111111, total_value: 1, flag: false, UserId:1},
-        {id: 4, voucher: null, total_value: 1, flag: false, UserId:1},
+        {id: 1, voucher: 745747, total_value: 120, discount: 10, UserId:2},
+        {id: 2, voucher: 111111, total_value: 1, discount: 0,UserId:1},
+        {id: 4, voucher: null, total_value: 1, discount: 0, UserId:1},
 
       ])
     })

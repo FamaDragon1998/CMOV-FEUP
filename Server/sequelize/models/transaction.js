@@ -8,11 +8,9 @@ module.exports = (sequelize, type) => {
             type: type.FLOAT,
             allowNull: false
         },
-        flag: {
-            type: type.BOOLEAN,
-            allowNull: false,
-            defaultValue: false
+        discount:{
+            type: type.FLOAT,
+            allowNull: false
         }
-
     })
 }
