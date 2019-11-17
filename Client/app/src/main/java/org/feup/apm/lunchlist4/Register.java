@@ -2,6 +2,7 @@ package org.feup.apm.lunchlist4;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,6 +25,8 @@ public class Register extends AppCompatActivity {
     EditText username,name,password,card_number,card_cvs;
     Button register,login;
     private RequestQueue queue;
+    AlertDialog alertDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,8 +64,7 @@ public class Register extends AppCompatActivity {
                     try {
                         Object obj = response.get("user");
                         if (obj.toString().equals("null")){
-                            //TODO: avisar de register error
-                            Log.d("register", "WRONG REGISTER");
+                            setAndShowAlertDialog("Register Error", "Please try again");
                         }
                         else {
                             Log.d("user", response.toString());
@@ -76,7 +78,7 @@ public class Register extends AppCompatActivity {
                     }
                 },
                 error -> {
-                    //TODO: unexpected error
+                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
                     Log.d("error", error.toString());
 
                 }
@@ -89,7 +91,14 @@ public class Register extends AppCompatActivity {
     {
         startActivity(new Intent(this, LoginActivity.class));
         overridePendingTransition(R.anim.slide_out_right, R.anim.slide_in_left);
+    }
 
+    private void setAndShowAlertDialog(String title, String message){
+        AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+        dialog.setMessage(message);
+        dialog.setTitle(title);
+        alertDialog=dialog.create();
+        alertDialog.show();
     }
 
 
