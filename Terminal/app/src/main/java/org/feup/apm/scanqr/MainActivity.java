@@ -1,6 +1,7 @@
 package org.feup.apm.scanqr;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,7 +19,9 @@ import org.json.JSONObject;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
+import java.security.KeyStore;
 import java.security.PublicKey;
+import java.security.cert.Certificate;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
   static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
   TextView message;
   PublicKey pub;
+  boolean hasKey = false;
 
   private RequestQueue queue;
 
@@ -36,12 +40,13 @@ public class MainActivity extends AppCompatActivity {
   public void onCreate(Bundle savedInstanceState) {
     queue = Volley.newRequestQueue(this);
     super.onCreate(savedInstanceState);
+    Log.d("cert","nibba");
     setContentView(R.layout.activity_main);
     message = findViewById(R.id.message);
 
-
     Button addProductButton = findViewById(R.id.scan1);
     addProductButton.setOnClickListener((v) -> scan());
+    //readKey();
   }
 
   @Override
@@ -61,29 +66,67 @@ public class MainActivity extends AppCompatActivity {
     startActivityForResult(intent, 0);
   }
 
+  void readKey() {
+    try {
+      KeyStore keyStore = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
+      Log.d("keystore", keyStore.toString());
+      keyStore.load(null);
+      Log.d("keystore load", keyStore.toString());
+
+      Certificate cert = keyStore.getCertificate(Util.keyAlias);
+      if (cert != null) {
+        Log.d("pubkey",cert.getPublicKey().toString());
+        pub = cert.getPublicKey();
+        Log.d("pubkey",pub.toString());
+      }
+      else
+        Log.d("cert","null");
+    }
+    catch(Exception e) {
+      Log.d("error",e.getMessage());
+    }
+  }
+
 
   public void onActivityResult(int requestCode, int resultCode, Intent data) {
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 0) {
       if (resultCode == RESULT_OK) {
         String contents = data.getStringExtra("SCAN_RESULT");
-        String format = data.getStringExtra("SCAN_RESULT_FORMAT");
 
-        Log.d("format", format);
-        if (contents != null)
-          decodeAndShow(contents.getBytes(StandardCharsets.ISO_8859_1));
+        //if (contents != null)
+          //decodeAndShow(contents.getBytes(StandardCharsets.ISO_8859_1));
         //parse contents
+       HashMap info = parseContentToServer(contents);
 
-        HashMap info = new HashMap();
-        info.put("userID", "1"); //userID
-        info.put("discount", "true"); //discount use
-        info.put("voucher", "232323"); //or null
-        info.put(1212, 2); //products
-        info.put(23232, 4);
-
-//        checkoutBasket(info);
+        checkoutBasket(info);
       }
     }
+  }
+
+  private HashMap parseContentToServer(String content) {
+    HashMap info = new HashMap();
+
+    String[] splits = content.split(",");
+    String products = splits[0]; String voucher = splits[1]; String discount = splits[2]; String user = splits[3];
+
+    splits = products.split("|");
+    for (int i = 0; i < splits.length; i++){
+      String[] product = splits[i].split(";");
+      //info.
+     // Log.d("product", product[0]);
+    }
+    info.put("UserId", user); //userID
+    info.put("discount", discount); //discount use
+    if (voucher == null || voucher.equals(""))
+      voucher = "0";
+    info.put("voucher", voucher); //or null
+
+    Log.d("terminal", info.toString());
+    //info.put(1212, 2); //products
+    //info.put(23232, 4);
+
+    return info;
   }
 
   public void checkoutBasket(HashMap data) {
@@ -111,11 +154,26 @@ public class MainActivity extends AppCompatActivity {
 
   void decodeAndShow(byte[] encTag) {
     byte[] clearTag;
-
+    Log.d("Decoding", "Decoding");
     try {
-      Cipher cipher = Cipher.getInstance(Util.ENC_ALGO);
+      Cipher cipher;
+      //cipher = Cipher.getInstance(Util.ENC_ALGO);
+      try {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) { // below android m
+          cipher= Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidOpenSSL"); // error in android 6: InvalidKeyException: Need RSA private or public key
+        }
+        else { // android m and above
+          cipher= Cipher.getInstance("RSA/ECB/PKCS1Padding", "AndroidKeyStoreBCWorkaround"); // error in android 5: NoSuchProviderException: Provider not available: AndroidKeyStoreBCWorkaround
+        }
+      } catch(Exception exception) {
+        throw new RuntimeException("getCipher: Failed to get an instance of Cipher", exception);
+      }
+      Log.d("cypher",cipher.toString());
+      Log.d("key",pub.toString());
       cipher.init(Cipher.DECRYPT_MODE, pub);
+      Log.d("a","3");
       clearTag = cipher.doFinal(encTag);
+      Log.d("a","4");
     }
     catch (Exception e) {
       Log.e("Decode:", e.getMessage());

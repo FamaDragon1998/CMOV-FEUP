@@ -50,7 +50,7 @@ public class QrCodeActivity extends AppCompatActivity {
         try {
             qr_content = new String(content, ISO_SET);
 
-            ByteBuffer bb = ByteBuffer.wrap(content);
+           /* ByteBuffer bb = ByteBuffer.wrap(content);
             byte[] mess = new byte[mess_size];
             byte[] sign = new byte[sign_size];
             bb.get(mess, 0, mess_size);
@@ -58,7 +58,7 @@ public class QrCodeActivity extends AppCompatActivity {
             boolean verified = validate(mess, sign);
             Log.d("verified", verified + "");
             String text = "Message: \"" + byteArrayToHex(mess) + "\"\nVerified: " + verified + "\nTotal bytes: " + content.length;
-            Log.d("qr text", text);
+            Log.d("qr text", text);*/
         } catch (UnsupportedEncodingException e) {
             Log.d("gg", e.getMessage());
         }

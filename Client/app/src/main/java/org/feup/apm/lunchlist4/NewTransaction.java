@@ -85,16 +85,16 @@ public class NewTransaction extends AppCompatActivity {
             discountUsed = 0f;
         else
             discountUsed = Float.parseFloat(String.valueOf(currentDiscount.getText()));
-
         String voucher;
-        if (basket.getVoucher().equals("No Voucher Selected"))
-            voucher ="";
+        if (basket.getVoucher().equals("No Voucher Selected") || basket.getVoucher() ==null)
+            voucher ="0";
         else
             voucher = basket.getVoucher();
 
+
         byte[] message = parseTransaction(discountUsed, voucher);
 
-        try {
+       /* try {
             KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
             ks.load(null);
             KeyStore.Entry entry = ks.getEntry(Util.keyname, null);
@@ -107,7 +107,7 @@ public class NewTransaction extends AppCompatActivity {
         }
         catch (Exception ex) {
             Log.d("somethin", ex.getMessage());
-        }
+        }*/
 
         Intent intent = new Intent(this, QrCodeActivity.class);
         intent.putExtra("content", message); //Put your id to your next Intent
@@ -115,7 +115,7 @@ public class NewTransaction extends AppCompatActivity {
         finish();
     }
 
-    public byte[] parseTransaction(Float discount, String voucher) {
+    /* public byte[] parseTransaction(Float discount, String voucher) {
         ByteBuffer bb = ByteBuffer.allocate((basket.getProducts().size()+1)+Util.KEY_SIZE/8);
         bb.put((byte)basket.getProducts().size());
         for (int k=0; k<basket.getProducts().size(); k++) {
@@ -123,10 +123,22 @@ public class NewTransaction extends AppCompatActivity {
             if (k<basket.getProducts().size()-1)
                 bb.put("|".getBytes());
         }
-        String aux = "," + voucher + "," + discount;
+        String aux = "," + voucher + "," + discount + "," + user.getId();
         bb.put(aux.getBytes());
 
         return bb.array();
+    }*/
+    public byte[] parseTransaction(Float discount, String voucher) {
+        String contents = "";
+        for (int i = 0; i < basket.getProducts().size(); i++) {
+            contents += basket.getProducts().get(i).getId() + ";" + basket.getProducts().get(i).getPrice().toString();
+            if (i < basket.getProducts().size() - 1)
+                contents += "|";
+        }
+        if (voucher.equals(""))
+            voucher = "0";
+        contents += "," + voucher + "," + discount+","+user.getId();
+        return contents.getBytes();
     }
 
     public void backButton(View view) {

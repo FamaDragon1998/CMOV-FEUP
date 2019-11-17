@@ -13,13 +13,9 @@ public class User implements Serializable {
     private String id;
     private int card_number;
     private int card_cvs;
-
     private Float total_spent;
-
     private Float stored_discount;
-
     private List<Transaction> transactions;
-
     private List<String> vouchers;
     private String username;
     private String name;
