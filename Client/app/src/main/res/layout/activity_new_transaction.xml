@@ -8,18 +8,36 @@
     android:orientation="vertical"
     tools:context=".NewTransaction">
 
-    <Button
-        android:id="@+id/scan"
-        android:layout_width="120dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="Add Product"
-        android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/productsNew"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <TableRow
+        android:id="@+id/addremove"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/productsNew">
+
+        <Button
+            android:id="@+id/scan"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Add Product"
+            android:textColor="#FFFFFF" />
+
+        <Button
+            android:id="@+id/removeproduct"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="Select a Voucher"
+            android:textColor="#FFFFFF" />
+    </TableRow>
 
 
     <ListView
@@ -32,7 +50,7 @@
         app:layout_constraintBottom_toTopOf="@id/totalrow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scan">
+        app:layout_constraintTop_toBottomOf="@id/addremove">
 
     </ListView>
 
@@ -49,19 +67,58 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/productsNew">
 
-        <TextView
-            android:id="@+id/tvresult"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Total: " />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/total"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="5€"
-            android:textColor="@color/colorPrimary"
-            android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/tvresult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total: "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/total"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/total"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/tvresult"
+                app:layout_constraintRight_toLeftOf="@id/resultwithdiscount"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/resultwithdiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total with discount: "
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/total"
+                app:layout_constraintRight_toLeftOf="@id/totalwithdiscount"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/totalwithdiscount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/colorPrimary"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/resultwithdiscount"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
 
     </TableRow>
 

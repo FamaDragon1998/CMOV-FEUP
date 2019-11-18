@@ -1,16 +1,22 @@
 package org.feup.apm.lunchlist4;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,6 +31,7 @@ import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.Signature;
 import java.util.Hashtable;
+import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";
@@ -34,11 +41,10 @@ public class NewTransaction extends AppCompatActivity {
 
     private Transaction basket;
 
-    private TextView totalView;
+    private TextView totalView,totalwithdiscountview;
 
     Button finishButton;
 
-    private String ids[];
     User user;
     TextView currentDiscount;
 
@@ -62,15 +68,47 @@ public class NewTransaction extends AppCompatActivity {
         Button addProductButton = findViewById(R.id.scan);
         addProductButton.setOnClickListener((v) -> scan());
 
+        Button removeButton = findViewById(R.id.removeproduct);
+        removeButton.setOnClickListener((v) -> removeproduct());
+
         finishButton = findViewById(R.id.generateQRcode);
         finishButton.setOnClickListener((v) -> generateQRcode(""));
 
         totalView = findViewById(R.id.total);
         totalView.setText(basket.getTotal_value() + " €");
+
+        totalView = findViewById(R.id.total);
+        totalView.setText(basket.getTotal_value() + " €");
         currentDiscount=findViewById(R.id.selectedDiscountText);
+
+        totalwithdiscountview = findViewById(R.id.totalwithdiscount);
+
+        totalwithdiscountview.setText(basket.getTotal_value() + " €");
 
         voucherAdapter();
         discountAdapter();
+        removeproductAdapter();
+
+    }
+
+    private void removeproductAdapter(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Which product to Remove");
+        CharSequence[] products = basket.getProducts().toArray(new CharSequence[basket.getProducts().size()]);
+        builder.setItems(products, (dialog, which) -> {
+            TextView productView = findViewById(R.id.selectedVoucherText);
+            String voucher = products[which].toString();
+            if (basket.getVoucher().equals(voucher)){
+                basket.setVoucher("No Voucher Selected");
+            }
+            else
+                basket.setVoucher(voucher);
+            productView.setText(basket.getVoucher());
+
+        });
+        Button voucherButton = findViewById(R.id.selectVoucherButton);
+        voucherButton.setOnClickListener((v) ->  builder.show());
 
     }
 
@@ -222,7 +260,7 @@ public class NewTransaction extends AppCompatActivity {
                     currentDiscount.setText("No Discount Selected");
                 else
                     currentDiscount.setText(progress + "");//Here is the textview with the progress number.
-
+                totalwithdiscountview.setText(basket.getTotal_value()- progress+" €");
             }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
@@ -241,4 +279,8 @@ public class NewTransaction extends AppCompatActivity {
         alertDialog=dialog.create();
         alertDialog.show();
     }
+
+
+
+
 }

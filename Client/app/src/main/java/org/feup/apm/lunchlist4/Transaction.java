@@ -82,4 +82,14 @@ public class Transaction implements Serializable {
     public void setVoucher(String voucher) {
         this.voucher = voucher;
     }
+
+    public void removeProduct(String id) {
+        for (int i=0; i<this.products.size();i++)
+        {
+            if (this.products.get(i).getId().equals(id))
+            {
+                this.products.remove(i);
+            }
+        }
+    }
 }
