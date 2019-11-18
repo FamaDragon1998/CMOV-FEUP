@@ -43,39 +43,42 @@ sequelize
   .sync({force:true})
     .then(() => {
       User.bulkCreate([
-        {id: 1, username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:0},
-        {id: 2, username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 10, stored_discount:40},
+        {id: "b0e76929-9762-45b7-be1f-2f37d2edf33c", username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 0, stored_discount:0},
+        {id: "32bf576f-1d83-4141-9009-8d4c6435d10e", username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 250, stored_discount:40},
       ])
     })
     .then(() => {
       Transaction.bulkCreate([
-        {id: 1, voucher: 745747, total_value: 120, discount: 10, UserId:2},
-        {id: 2, voucher: 111111, total_value: 1, discount: 0,UserId:1},
-        {id: 4, voucher: null, total_value: 1, discount: 0, UserId:1},
-
+        {id: "82d7e51b-9b63-4570-bf32-da837ec09981", voucher: "b1a3k3v1-cte1-4ab3-b1ce-67cf4d3935ac", total_value: 220, discount: 10, UserId:"32bf576f-1d83-4141-9009-8d4c6435d10e"},
       ])
     })
       .then(() => {
         Product.bulkCreate([
-          {id: 1, name: "Explosives", value: 10},
-          {id: 2, name: "Yo", value: 1},
-          {id: 3, name: "Yo2", value: 3},
-          {id: 4, name: "BOOMEROIDES", value: 40},
+          {id: "d93402fb-8af4-40e0-8c0d-7a05485405f3", name: "Anvil", value: 40},
+          {id: "c19817fe-2b3b-4c48-877e-7ea98f081e74", name: "Aspirin", value: 3},
+          {id: "a807813a-70a6-45d1-b27f-42a406ff2321", name: "Birdseeds", value: 2},
+          {id: "6b6e76f5-85cf-4b65-9697-979524ae0c19", name: "Glue", value: 5},
+          {id: "32b03bd2-14ab-47e5-afe4-88fbef2926fa", name: "Kitekit", value: 20},
+          {id: "2f18bb3d-a096-477f-9b54-0ac5d3a32ee1", name: "Matches", value: 1},
+          {id: "1fdbb746-cff2-428e-a720-162b3759c6ec", name: "Motorbike", value: 300},
+          {id: "5c3d170b-ecc3-4fa2-83a9-651d6110f571", name: "Rollerskates", value: 90},
+          {id: "c639744a-b4e4-430d-bcde-9ca85b023273", name: "Toaster", value: 8},
+          {id: "ae45ceab-8d16-4336-93f5-1a9082a8de00", name: "Vitamins", value: 4},
+          {id: "4ef95bff-74d8-4dc8-ada9-c693fa76b7a9", name: "Invisible Paint", value: 12},
+
         ])
       })
       .then(() => {
         Voucher.bulkCreate([
-          {id: 12123, used:true, UserId:1, TransactionId:1},
-          {id: 12121212, used:false, UserId:1, TransactionId:null},
-          {id: 12, used:false, UserId:2, TransactionId:null},
+          {id: "b1a3k3v1-cte1-4ab3-b1ce-67cf4d3935ac", used:true, UserId:"32bf576f-1d83-4141-9009-8d4c6435d10e", TransactionId:"82d7e51b-9b63-4570-bf32-da837ec09981"},
+          {id: "b1a3k3v1-cfd0-4ab3-b1ce-67cf4d3935ac", used:false, UserId:"32bf576f-1d83-4141-9009-8d4c6435d10e", TransactionId:null},
 
         ])
       })
         .then(() => {
           TransactionProduct.bulkCreate([
-            {ProductId: 1, TransactionId:1},
-            {ProductId: 2, TransactionId:1},
-            {ProductId: 3, TransactionId:2},
+            {ProductId: "d93402fb-8af4-40e0-8c0d-7a05485405f3", TransactionId:"82d7e51b-9b63-4570-bf32-da837ec09981", count: 1},
+            {ProductId: "5c3d170b-ecc3-4fa2-83a9-651d6110f571", TransactionId:"82d7e51b-9b63-4570-bf32-da837ec09981", count: 2},
           ])
           })
     .catch(error => {

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +31,6 @@ public class Util {
             layoutResource = resource;
             mContext = context;
             productList = objects;
-
         }
 
         public void updateContent(List<Product> newList) {
@@ -76,10 +74,9 @@ public class Util {
         dateaux=date.split("Z");
         dateaux=dateaux[0].split("T");
 
-        String[] data,hora;
+        String[] data;
         String dataf,horaf;
         data=dateaux[0].split("-");
-        Log.d("data",data[0]);
         String mes;
         switch (data[1]){
             case "1": mes="January";
@@ -110,7 +107,6 @@ public class Util {
         }
         dataf=data[2]+" " +mes+ " " + data[0];
 
-        Log.d("dateaux",dateaux[1]);
         horaf=dateaux[1].substring(0,8);
 
         String[] returndate = new String[]{dataf, horaf};

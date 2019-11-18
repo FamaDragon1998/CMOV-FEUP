@@ -7,9 +7,10 @@ const sequelize = require('../sequelize/sequelize.js').sequelize;
 
 //Finds all products in a transaction
 router.post('/transaction', function(req, res, next) {
-  let query = "SELECT name, value FROM Products WHERE id in (Select ProductId from TransactionProducts WHERE TransactionId = :id)";
+  let query = "SELECT p.name, p.value, tp.count FROM Products p INNER JOIN TransactionProducts tp on tp.ProductId = p.id WHERE tp.TransactionId = :id";
   sequelize.query(query, { replacements: { id: req.body[0].TransactionId } })
     .then(([results, metadata]) => {
+      console.log(results);
       res.json(results);  
   })
   .catch(function(err) {
