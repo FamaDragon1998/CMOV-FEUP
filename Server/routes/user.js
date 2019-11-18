@@ -62,92 +62,93 @@ router.get('/transactions/:id', function(req, res, next) {
     });
 });
 
-//Checkout basket
- /*{ 
-  UserId=2,
-  voucher=0,
-  discount=0.0,
-  products=[ 
-     { 
-        price=40.0,
-        id=4
-     }
-  ]
-}*/
-// atualizar valores de User(total_spent, vouchers e discount)
 router.post('/checkout', function(req, res, next) {
+  // Create Transaction
   let transaction = {
-    id: create_UUID(),
-    discount: req.body.discount,
-    UserId: req.body.UserId
+      id: create_UUID(),
+      discount: req.body.discount,
+      UserId: req.body.UserId
   };
-
-  console.log(req.body.voucher);
-
 
   transaction.voucher = req.body.voucher;
 
   let total_spent = 0;
   req.body.products.forEach(product => {
-    total_spent += parseFloat(product.price);
+      total_spent += parseFloat(product.price);
   });
   transaction.total_value = total_spent;
 
   Transaction.create(transaction)
-  .then(createdTransaction => {
-    req.body.products.forEach(product => {
-      let trans_prod = {
-        id:create_UUID(),ProductId: 
-        product.id, TransactionId: 
-        createdTransaction.id
-      }
-      TransactionProduct.create(trans_prod);
-    });
-    let additive_discount = createdTransaction.total_value - createdTransaction.discount;
-    if (req.body.voucher != null){
-      Voucher.update({ 
-          used: true
-      }, {
-        where: {id: req.body.voucher},
-        returning: true, // needed for affectedRows to be populated
-      });
-      additive_discount*=0.15;
-    }
-    let initialUserTotalSpent;
-    User.findOne({ where: {id: req.body.UserId} })
-    .then(user => {
-        initialUserTotalSpent = user.total_spent;
+      .then(createdTransaction => {
+          req.body.products.forEach(product => {
+            console.log("here");
+              let trans_prod = {
+                  id: create_UUID(),
+                  ProductId: product.id,
+                  TransactionId: createdTransaction.id
+              };
+              console.log(trans_prod);
+              TransactionProduct.create(trans_prod);
+          });
+          // Update voucher if used
+          let additive_discount = createdTransaction.total_value - createdTransaction.discount;
+          if (req.body.voucher != null) {
+              Voucher.update({
+                  used: true
+              }, {
+                  where: {
+                      id: req.body.voucher
+                  },
+                  returning: true, // needed for affectedRows to be populated
+              });
+              additive_discount *= 0.15;
+          }
+
+          let initialUserTotalSpent;
+          User.findOne({
+                  where: {
+                      id: req.body.UserId
+                  }
+              })
+              .then(user => {
+                  initialUserTotalSpent = user.total_spent;
+
+                  let query = "UPDATE Users SET total_spent = total_spent + :total, stored_discount = stored_discount + :discount WHERE id = :id";
+                  sequelize.query(query, {
+                          replacements: {
+                              total: createdTransaction.total_value - createdTransaction.discount,
+                              discount: additive_discount,
+                              id: user.id
+                          }
+                      })
+                      .then(([results, metadata]) => {
+                        
+                          let finalUserTotalSpent = initialUserTotalSpent + createdTransaction.total_value - createdTransaction.discount;
+                          let diff = parseInt((finalUserTotalSpent - initialUserTotalSpent) / 100);
+                          console.log("difference: ", diff);
+
+                          if (diff > 0){
+                              for (let i = 0; i < diff; i++) {
+                                  let voucher = {
+                                      id: create_UUID(),
+                                      used: false,
+                                      UserId: req.body.UserId,
+                                      TransactionId: null
+                                  }
+                                  Voucher.create(voucher);
+                              }
+                          }
+                          res.send({
+                              "ACK": createdTransaction.total_value
+                          });
+                      })
+              })
       })
-    .catch(function(err) {
-      console.log(err);
-    });
-      //NAN'S finalusertotalspent e diff
-    let query = "UPDATE Users SET total_spent = total_spent + :total, stored_discount = stored_discount + :discount WHERE id = :id";
-  sequelize.query(query, { replacements: { total: createdTransaction.total_value - createdTransaction.discount, discount: additive_discount, id: req.body.UserId }  })
-    .then(([results, metadata]) => {
-      
-
-      let finalUserTotalSpent=initialUserTotalSpent + createdTransaction.total_value - createdTransaction.discount;
-      console.log(finalUserTotalSpent);
-    let diff = parseInt( (finalUserTotalSpent - initialUserTotalSpent) / 100);
-    console.log(diff);
+      .catch(function(err) {
+          console.log(err);
+      });
 
 
-    
-    if ( diff > 0)
-      for( let i = 0; i < diff; i++){
-        let voucher = {
-          id: create_UUID(),
-          used: false,
-          UserId: req.body.UserId,
-          TransactionId: null
-        }
-        Voucher.create(voucher);
-      }
-   
-  res.send({"ACK": createdTransaction.total_value});
-  }) 
-  })
 });
 
 

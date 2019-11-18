@@ -19,6 +19,9 @@ module.exports = (sequelize, type) => {
               model: 'Transactions',
               key: 'id'
             }
+          },
+          count:{
+            type: type.INTEGER
           }
     })
 }

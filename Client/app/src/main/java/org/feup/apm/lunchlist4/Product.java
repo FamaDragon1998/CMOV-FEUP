@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Product implements Serializable {
 
+    private Integer count;
     private String id;
     private String name;
     private float price;
@@ -41,10 +42,18 @@ public class Product implements Serializable {
         price = Float.parseFloat(ss[2]);
     }
 
-    public Product(String name, Float price){
+    public Product(String name, Float price, Integer count){
         this.name = name;
         this.price = price;
+        this.count = count;
     }
 
 
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
+    }
 }
