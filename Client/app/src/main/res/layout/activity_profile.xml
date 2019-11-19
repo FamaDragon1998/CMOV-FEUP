@@ -11,6 +11,8 @@
         android:id="@+id/profiledetails"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintBottom_toTopOf="@id/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,16 +22,13 @@
             android:id="@+id/usernamerow"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="40dp">
+            android:layout_marginBottom="20dp">
 
             <TextView
                 android:id="@+id/usernamelabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:gravity="right"
+                android:layout_gravity="center_vertical"
                 android:text="Username:"
                 android:textColor="#F44336"
                 android:textSize="30sp" />
@@ -39,10 +38,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="1"
                 android:text="lorem"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </TableRow>
 
@@ -56,12 +53,10 @@
                 android:id="@+id/namelabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="Name: "
                 android:textColor="#F44336"
-                android:textSize="24sp"
-                android:layout_weight="1"
-                android:gravity="right"/>
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/name"
@@ -69,8 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:text="iplsum"
-                android:layout_weight="1"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
@@ -83,21 +77,19 @@
                 android:id="@+id/discountlabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="Stored Discount: "
                 android:textColor="#F44336"
-                android:textSize="24sp"
-                android:layout_weight="1"
-                android:gravity="right"/>
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
-                android:text="TextView"
                 android:layout_weight="1"
-                android:textSize="20sp"/>
+                android:text="TextView"
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
@@ -110,12 +102,10 @@
                 android:id="@+id/voucherslabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="Nº vouchers: "
                 android:textColor="#F44336"
-                android:textSize="24sp"
-                android:layout_weight="1"
-                android:gravity="right"/>
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/vouchers"
@@ -123,8 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:text="TextView"
-                android:layout_weight="1"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
         </TableRow>
 
         <TableRow
@@ -137,12 +126,10 @@
                 android:id="@+id/spentlabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right|center_vertical"
+                android:layout_gravity="center_vertical"
                 android:text="Total Spent: "
                 android:textColor="#F44336"
-                android:textSize="24sp"
-                android:layout_weight="1"
-                android:gravity="right"/>
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/spent"
@@ -150,8 +137,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left|center_vertical"
                 android:text="iplsum"
-                android:layout_weight="1"
-                android:textSize="20sp"/>
+                android:textSize="20sp" />
 
         </TableRow>
 
@@ -162,8 +148,6 @@
         android:id="@+id/back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="293dp"
-        android:layout_marginRight="30dp"
         android:backgroundTint="@color/colorPrimary"
         android:text="Back"
         android:textColor="#FFFFFF"

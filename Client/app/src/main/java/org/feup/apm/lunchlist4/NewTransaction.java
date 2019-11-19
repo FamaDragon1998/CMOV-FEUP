@@ -113,6 +113,11 @@ public class NewTransaction extends AppCompatActivity {
 
     private void removeProductAdapter(){
 
+        if (basket.getProducts().isEmpty()){
+            setAndShowAlertDialog("Basket Size", "There are no products in the basket!");
+            return;
+
+        }
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Which product to Remove");
         ArrayList<String> products = new ArrayList();

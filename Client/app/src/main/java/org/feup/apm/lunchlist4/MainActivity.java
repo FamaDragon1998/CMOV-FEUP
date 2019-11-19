@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     ActionBar bar = getSupportActionBar();
     if (bar != null) {
-      bar.setIcon(R.drawable.medium_logo2);
+      //bar.setIcon(R.drawable.medium_logo2);
       bar.setDisplayShowHomeEnabled(true);
     }
 
