@@ -1,5 +1,6 @@
 package org.feup.apm.lunchlist4;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -10,11 +11,19 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
@@ -22,7 +31,11 @@ import java.nio.ByteBuffer;
 import java.security.KeyStore;
 import java.security.PublicKey;
 import java.security.Signature;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
 
 public class QrCodeActivity extends AppCompatActivity {
     ImageView qrCodeIv;
@@ -31,14 +44,26 @@ public class QrCodeActivity extends AppCompatActivity {
     private final String ISO_SET = "ISO-8859-1";
 
     String qr_content = null;
+    private RequestQueue queue;
+    User user;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_qr_code);
 
+        user = (User) getIntent().getSerializableExtra("user");
+
         Button back = findViewById(R.id.back);
-        back.setOnClickListener((v)->finish());
+        back.setOnClickListener((v)-> {
+            try {
+                getTransactions(user);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
+        queue = Volley.newRequestQueue(this);
 
         qrCodeIv = findViewById(R.id.qr);
 
@@ -125,5 +150,56 @@ public class QrCodeActivity extends AppCompatActivity {
             Log.d("coisu", ex.getMessage());
         }
         return verified;
+    }
+
+    public void getTransactions(User user) throws JSONException {
+        Map info= new HashMap();
+        info.put("UserId", user.getId());
+        List list = new ArrayList();
+        list.add(new JSONObject(info));
+
+        String url = "http:/"+getString(R.string.ip_address)+":3000/user/transactionsAll"; //IP Address
+        JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
+                response -> {
+
+                    Log.d("transactions response", response.toString());
+                    user.setTransactions(response);
+                    try {
+                        getVouchers(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    Log.d("transactions error", error.toString());
+
+                }
+        ) {
+        };
+        queue.add(jsonobj);
+    }
+
+    public void getVouchers(User user) throws JSONException {
+        Map info= new HashMap();
+        info.put("UserId", user.getId());
+        List list = new ArrayList();
+        list.add(new JSONObject(info));
+
+        String url = "http:/"+getString(R.string.ip_address)+":3000/user/vouchers"; //IP Address
+        JsonArrayRequest jsonobj = new JsonArrayRequest(Request.Method.POST, url, new JSONArray(list),
+                response -> {
+                    Log.d("vouchers response", response.toString());
+                    user.setVouchers(response);
+                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                    i.putExtra("user", user);
+                    startActivity(i);
+                },
+                error -> {
+                    Log.d("vouchers error", error.toString());
+
+                }
+        ) {
+        };
+        queue.add(jsonobj);
     }
 }

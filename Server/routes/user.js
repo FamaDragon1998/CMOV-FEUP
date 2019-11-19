@@ -133,7 +133,6 @@ router.post('/checkout', function(req, res, next) {
                         
                           let finalUserTotalSpent = initialUserTotalSpent + createdTransaction.total_value - createdTransaction.discount;
                           let diff = parseInt((finalUserTotalSpent - initialUserTotalSpent) / 100);
-                          console.log("difference: ", diff);
 
                           if (diff > 0){
                               for (let i = 0; i < diff; i++) {
@@ -147,7 +146,7 @@ router.post('/checkout', function(req, res, next) {
                               }
                           }
                           res.send({
-                              "ACK": createdTransaction.total_value
+                              "ACK": finalUserTotalSpent - initialUserTotalSpent
                           });
                       })
               })

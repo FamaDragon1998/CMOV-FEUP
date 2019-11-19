@@ -202,11 +202,12 @@ public class NewTransaction extends AppCompatActivity {
             Log.d("somethin", ex.getMessage());
         }*/
 
+        basket = new Transaction();
+        user.setBasket(basket);
+
         Intent intent = new Intent(this, QrCodeActivity.class);
         intent.putExtra("content", parsedcontent.getBytes()); //Put your id to your next Intent
-        user.flushTransaction();
-        adapter.updateContent(user.getBasket().getProducts()); //NAO FUNCIONIA E AINDA BEM I GUESS?
-        updateTotalBasket();
+        intent.putExtra("user", user);
         startActivity(intent);
         finish();
     }

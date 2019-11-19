@@ -147,10 +147,9 @@ public class MainActivity extends AppCompatActivity {
     JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(data),
             response -> {
               try {
-                if (response.getString("response").equals("ACK"))
-                  Log.d("success", response.toString());
-                else
-                  Log.d("not successful", response.toString());
+                String answer = response.getString("ACK");
+
+                Log.d("answer:", answer);
 
               } catch (JSONException e) {
                 e.printStackTrace();

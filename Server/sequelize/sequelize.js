@@ -43,8 +43,8 @@ sequelize
   .sync({force:true})
     .then(() => {
       User.bulkCreate([
-        {id: "b0e76929-9762-45b7-be1f-2f37d2edf33c", username: "John", name: "cena@email.com", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 0, stored_discount:0},
-        {id: "32bf576f-1d83-4141-9009-8d4c6435d10e", username: "Kimbolas", name: "cenas", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 250, stored_discount:40},
+        {id: "b0e76929-9762-45b7-be1f-2f37d2edf33c", username: "John", name: "John Cena", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 0, stored_discount:0},
+        {id: "32bf576f-1d83-4141-9009-8d4c6435d10e", username: "Kimbolas", name: "Ricardo Lopes", password:"coiso", card_number:123123, card_cvs: 101, total_spent: 250, stored_discount:40},
       ])
     })
     .then(() => {
