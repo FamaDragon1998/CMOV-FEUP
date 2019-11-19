@@ -8,4 +8,7 @@
     <item
         android:id="@+id/profile"
         android:title="@string/check_profile"/>
+    <item
+        android:id="@+id/logout"
+        android:title="LogOut"/>
 </menu>

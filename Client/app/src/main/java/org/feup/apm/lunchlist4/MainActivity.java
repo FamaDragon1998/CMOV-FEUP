@@ -117,6 +117,13 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right);
       return (true);
     }
+    else if (item.getItemId() == R.id.logout) {
+      Intent i = new Intent(this, LoginActivity.class);
+      startActivity(i);
+      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+      return (true);
+    }
+
     return(super.onOptionsItemSelected(item));
   }
 

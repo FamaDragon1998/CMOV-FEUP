@@ -22,7 +22,7 @@ public class Profile extends AppCompatActivity {
         TextView name= findViewById(R.id.name);
         name.setText(user.getName());
 
-        TextView balance= findViewById(R.id.balance);
+        TextView balance= findViewById(R.id.spent);
         balance.setText(user.getTotal_spent().toString()+" €");
 
         TextView discount= findViewById(R.id.discount);
