@@ -60,9 +60,13 @@ public class DetailsTransaction extends AppCompatActivity implements AdapterView
                             String name = jsonobject.getString("name");
                             Float price = Float.parseFloat(jsonobject.getString("value"));
                             Integer count = Integer.parseInt(jsonobject.getString("count"));
+                            for (int j=0;j<count;j++)
+                            {
+                                products.add(new Product(name, price,1));
+                                transactionTotal += price;
+                            }
 
-                            products.add(new Product(name, price, count));
-                            transactionTotal += price;
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

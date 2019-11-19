@@ -51,13 +51,6 @@
             android:textColorHint="@color/colorPrimary"
             android:textSize="25sp" />
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="2dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            app:srcCompat="@android:drawable/ic_delete" />
-
     </LinearLayout>
 
 </LinearLayout>

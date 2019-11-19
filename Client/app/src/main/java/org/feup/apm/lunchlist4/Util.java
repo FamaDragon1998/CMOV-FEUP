@@ -4,12 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -28,6 +27,7 @@ public class Util {
         private int layoutResource;
         private Context mContext;
         private List<Product> productList;
+
         ProductAdapter(@NonNull Context context, int resource, @NonNull List<Product> objects) {
             super(context, resource, objects);
             layoutResource = resource;
@@ -54,33 +54,22 @@ public class Util {
             Product p = getItem(position);
 
             if (p != null) {
-                TextView id = line.findViewById(R.id.id);
                 TextView title = line.findViewById(R.id.title);
                 TextView price = line.findViewById(R.id.total);
-                ImageView img=line.findViewById(R.id.imageView3);
 
                 if (title != null) {
                     title.setText(p.getName());
                 }
 
                 if (price != null) {
-                    price.setText(p.getPrice()+ "€");
+                    price.setText(p.getPrice() + "€");
                 }
-                img.setTag(id.getText());
-                img.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        basket.delete(id);
-                    }
-                });
-                Log.d("tag",img.getTag().toString());
+
             }
 
             return line;
         }
     }
-
-
 
     public static String[] parseDate(String date)
     {
@@ -88,9 +77,10 @@ public class Util {
         dateaux=date.split("Z");
         dateaux=dateaux[0].split("T");
 
-        String[] data;
+        String[] data,hora;
         String dataf,horaf;
         data=dateaux[0].split("-");
+        Log.d("data",data[0]);
         String mes;
         switch (data[1]){
             case "1": mes="January";
@@ -121,6 +111,7 @@ public class Util {
         }
         dataf=data[2]+" " +mes+ " " + data[0];
 
+        Log.d("dateaux",dateaux[1]);
         horaf=dateaux[1].substring(0,8);
 
         String[] returndate = new String[]{dataf, horaf};

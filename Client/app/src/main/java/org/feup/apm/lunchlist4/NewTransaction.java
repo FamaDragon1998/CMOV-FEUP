@@ -26,10 +26,12 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
+import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.security.KeyStore;
 import java.security.PrivateKey;
 import java.security.Signature;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -52,27 +54,42 @@ public class NewTransaction extends AppCompatActivity {
 
     Util.ProductAdapter adapter;
 
+    SeekBar seek;
 
+    ListView productsListView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_transaction);
 
         user = (User) getIntent().getSerializableExtra("user");
-        basket = new Transaction();
 
-        ListView productsListView = findViewById(R.id.productsNew);
+        if (user.getBasket()!=null){
+            if (!user.getBasket().getProducts().isEmpty())
+                basket=user.getBasket();
+            else {
+                basket = new Transaction();
+                user.setBasket(basket);
+            }
+        }
+        else
+        {
+            basket = new Transaction();
+            user.setBasket(basket);
+        }
+
+
+        productsListView = findViewById(R.id.productsNew);
         adapter = new Util.ProductAdapter(this, R.layout.row, basket.getProducts());
         productsListView.setAdapter(adapter);
 
         Button addProductButton = findViewById(R.id.scan);
         addProductButton.setOnClickListener((v) -> scan());
 
-        Button removeButton = findViewById(R.id.removeproduct);
-        removeButton.setOnClickListener((v) -> removeproduct());
+
 
         finishButton = findViewById(R.id.generateQRcode);
-        finishButton.setOnClickListener((v) -> generateQRcode(""));
+        finishButton.setOnClickListener((v) -> generateQRcode());
 
         totalView = findViewById(R.id.total);
         totalView.setText(basket.getTotal_value() + " €");
@@ -85,9 +102,13 @@ public class NewTransaction extends AppCompatActivity {
 
         totalwithdiscountview.setText(basket.getTotal_value() + " €");
 
+        seek=findViewById(R.id.discountSeekBar);
+
         voucherAdapter();
         discountAdapter();
-        removeproductAdapter();
+        //removeproductAdapter();
+        Button removeButton = findViewById(R.id.removeproduct);
+        removeButton.setOnClickListener((v) ->removeproductAdapter());
 
     }
 
@@ -95,25 +116,36 @@ public class NewTransaction extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Which product to Remove");
-        CharSequence[] products = basket.getProducts().toArray(new CharSequence[basket.getProducts().size()]);
-        builder.setItems(products, (dialog, which) -> {
-            TextView productView = findViewById(R.id.selectedVoucherText);
-            String voucher = products[which].toString();
-            if (basket.getVoucher().equals(voucher)){
-                basket.setVoucher("No Voucher Selected");
-            }
-            else
-                basket.setVoucher(voucher);
-            productView.setText(basket.getVoucher());
+        ArrayList<String> products = new ArrayList();
+
+        for (int i = 0; i < basket.getProducts().size();i++){
+            products.add(basket.getProducts().get(i).getName());
+        }
+        CharSequence[] pnames = products.toArray(new CharSequence[products.size()]);
+
+        for (int i=0; i< products.size();i++)
+        {
+            pnames[i]=products.get(i);
+        }
+
+        //CharSequence[] products = basket.getProducts().toArray(new CharSequence[basket.getProducts().size()]);
+        builder.setItems(pnames, (dialog, which) -> {
+           // TextView productView = findViewById(R.id.selectedVoucherText);
+
+            basket.removeProduct(pnames[which].toString());
+            adapter.updateContent(basket.getProducts());
+            updateTotalBasket();
+            user.setBasket(basket);
 
         });
-        Button voucherButton = findViewById(R.id.selectVoucherButton);
-        voucherButton.setOnClickListener((v) ->  builder.show());
+
+        builder.show();
+
 
     }
 
 
-    public void generateQRcode(String sz) {
+    public void generateQRcode() {
         if (basket.getProducts().isEmpty()) {
             setAndShowAlertDialog("Basket size", "There are no products in the basket!");
             return;
@@ -131,7 +163,33 @@ public class NewTransaction extends AppCompatActivity {
             voucher = basket.getVoucher();
 
 
-        byte[] message = parseTransaction(discountUsed, voucher);
+        String parsedcontent = parseTransaction(discountUsed, voucher);
+
+        /*int size;
+        String content = "";
+
+        if (parsedcontent.isEmpty())
+            size = 256;
+        else
+            size = Integer.valueOf(parsedcontent);
+        if (size < 1)
+            size = 1;
+        else if (size > 1536)
+            size = 1536;
+        byte[] bContent = new byte[size];
+        for (int b=0; b<size; b++) {
+            bContent[b] = (byte)(b%256);
+        }
+        try {
+            content = new String(bContent, CH_SET);
+
+        }
+        catch (UnsupportedEncodingException e) {
+            // errorTv.setText(e.getMessage());
+        }
+
+        final String QRcodeContents = content;
+*/
 
        /* try {
             KeyStore ks = KeyStore.getInstance(Util.ANDROID_KEYSTORE);
@@ -149,7 +207,10 @@ public class NewTransaction extends AppCompatActivity {
         }*/
 
         Intent intent = new Intent(this, QrCodeActivity.class);
-        intent.putExtra("content", message); //Put your id to your next Intent
+        intent.putExtra("content", parsedcontent.getBytes()); //Put your id to your next Intent
+        user.flushTransaction();
+        adapter.updateContent(user.getBasket().getProducts()); //NAO FUNCIONIA E AINDA BEM I GUESS?
+        updateTotalBasket();
         startActivity(intent);
         finish();
     }
@@ -167,7 +228,7 @@ public class NewTransaction extends AppCompatActivity {
 
         return bb.array();
     }*/
-    public byte[] parseTransaction(Float discount, String voucher) {
+    public String parseTransaction(Float discount, String voucher) {
         String contents = "";
         for (int i = 0; i < basket.getProducts().size(); i++) {
             contents += basket.getProducts().get(i).getId() + ";" + basket.getProducts().get(i).getPrice().toString();
@@ -177,7 +238,7 @@ public class NewTransaction extends AppCompatActivity {
         if (voucher.equals(""))
             voucher = "0";
         contents += "," + voucher + "," + discount+","+user.getId();
-        return contents.getBytes();
+        return contents;
     }
 
     public void backButton(View view) {
@@ -215,7 +276,10 @@ public class NewTransaction extends AppCompatActivity {
                     // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
                     basket.addProducts(productScanned);
                     adapter.updateContent(basket.getProducts());
-                    totalView.setText(basket.getTotal_value() + " €");
+                    updateTotalBasket();
+                    productsListView.setAdapter(adapter);
+                    user.setBasket(basket);
+
 
 
                 } catch (Exception ex) {
@@ -244,13 +308,11 @@ public class NewTransaction extends AppCompatActivity {
         });
         Button voucherButton = findViewById(R.id.selectVoucherButton);
         voucherButton.setOnClickListener((v) ->  builder.show());
-
     }
 
     private void discountAdapter()
     {
-        SeekBar seek = findViewById(R.id.discountSeekBar);
-        seek.setMax((int)Math.floor((double) user.getStored_discount()));
+        seek.setMax(Math.min((int)Math.floor((double) user.getStored_discount()),(int)basket.getTotal_value()));
         seek.setProgress(0);
 
         seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() { //listener for your seekbar
@@ -280,6 +342,11 @@ public class NewTransaction extends AppCompatActivity {
         alertDialog.show();
     }
 
+    public void updateTotalBasket()
+    {
+        totalView.setText(basket.getTotal_value() + " €");
+        seek.setMax(Math.min((int)Math.floor((double) user.getStored_discount()),(int)basket.getTotal_value()));
+    }
 
 
 

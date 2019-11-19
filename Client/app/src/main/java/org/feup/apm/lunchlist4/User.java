@@ -19,6 +19,15 @@ public class User implements Serializable {
     private List<String> vouchers;
     private String username;
     private String name;
+    private Transaction basket;
+
+    public Transaction getBasket() {
+        return basket;
+    }
+
+    public void setBasket(Transaction basket) {
+        this.basket = basket;
+    }
 
     public User(JSONObject response) {
         transactions = new ArrayList();
@@ -109,5 +118,10 @@ public class User implements Serializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    public void flushTransaction()
+    {
+        this.basket= new Transaction();
     }
 }

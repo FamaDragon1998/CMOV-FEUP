@@ -11,11 +11,11 @@
     <TableRow
         android:id="@+id/addremove"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/productsNew"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/productsNew">
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
             android:id="@+id/scan"
@@ -35,7 +35,7 @@
             android:layout_marginRight="20dp"
             android:layout_weight="1"
             android:backgroundTint="@color/colorPrimary"
-            android:text="Select a Voucher"
+            android:text="Remove a Product"
             android:textColor="#FFFFFF" />
     </TableRow>
 
@@ -45,8 +45,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="5dp"
+        tools:layout_editor_absoluteY="741dp"
         app:layout_constraintBottom_toTopOf="@id/totalrow"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
