@@ -1,5 +1,6 @@
 package org.feup.apm.scanqr;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -149,8 +150,11 @@ public class MainActivity extends AppCompatActivity {
               try {
                 String answer = response.getString("ACK");
 
-                Log.d("answer:", answer);
-
+                AlertDialog.Builder dialog=new AlertDialog.Builder(this);
+                dialog.setTitle("Transaction Successful!");
+                dialog.setMessage("Total spent: " + answer + "€");
+                AlertDialog alertDialog=dialog.create();
+                alertDialog.show();
               } catch (JSONException e) {
                 e.printStackTrace();
               }
