@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name"></string>
+    <string name="app_name">ACME Supermarket</string>
     <string name="tv_name">Name:</string>
     <string name="tv_address">Address:</string>
     <string name="tv_type">Type:</string>
