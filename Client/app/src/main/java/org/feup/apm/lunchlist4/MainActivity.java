@@ -50,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     user = (User) getIntent().getSerializableExtra("user");
+    Log.d("transactions response", String.valueOf(user.getTransactions().size()));
+
 
     try {
       Util.saveUser(user, getApplicationContext());

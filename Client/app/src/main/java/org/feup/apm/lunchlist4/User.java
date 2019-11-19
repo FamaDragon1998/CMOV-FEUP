@@ -32,6 +32,7 @@ public class User implements Serializable {
     public User(JSONObject response) {
         transactions = new ArrayList();
         vouchers = new ArrayList();
+        basket = new Transaction();
         try {
             this.id = response.getString("id");
             this.username = response.getString("username");

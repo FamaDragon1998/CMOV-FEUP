@@ -47,7 +47,7 @@ router.post('/transactionsAll', function(req, res, next) {
 //Returns info of User
 router.get('/:name', function(req, res, next) {
     User.findOne({ where: {username: req.params.name} })
-    .then(users => res.json(users))
+    .then(user => res.json({user}))
     .catch(function(err) {
       console.log(err);
     });
@@ -111,7 +111,6 @@ router.post('/checkout', function(req, res, next) {
               });
               additive_discount *= 0.15;
           }
-
           let initialUserTotalSpent;
           User.findOne({
                   where: {
@@ -121,10 +120,11 @@ router.post('/checkout', function(req, res, next) {
               .then(user => {
                   initialUserTotalSpent = user.total_spent;
 
-                  let query = "UPDATE Users SET total_spent = total_spent + :total, stored_discount = stored_discount + :discount WHERE id = :id";
+                  let query = "UPDATE Users SET total_spent = total_spent + :total, stored_discount = stored_discount -:used + :discount WHERE id = :id";
                   sequelize.query(query, {
                           replacements: {
                               total: createdTransaction.total_value - createdTransaction.discount,
+                              used: createdTransaction.discount,
                               discount: additive_discount,
                               id: user.id
                           }
@@ -133,7 +133,6 @@ router.post('/checkout', function(req, res, next) {
                         
                           let finalUserTotalSpent = initialUserTotalSpent + createdTransaction.total_value - createdTransaction.discount;
                           let diff = parseInt((finalUserTotalSpent - initialUserTotalSpent) / 100);
-                          console.log("difference: ", diff);
 
                           if (diff > 0){
                               for (let i = 0; i < diff; i++) {
@@ -147,7 +146,7 @@ router.post('/checkout', function(req, res, next) {
                               }
                           }
                           res.send({
-                              "ACK": createdTransaction.total_value
+                              "ACK": finalUserTotalSpent - initialUserTotalSpent
                           });
                       })
               })
