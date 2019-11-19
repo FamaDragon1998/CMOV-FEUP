@@ -120,9 +120,20 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
       return (true);
     }
     else if (item.getItemId() == R.id.logout) {
+
       Intent i = new Intent(this, LoginActivity.class);
-      startActivity(i);
-      overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+      try {
+        User user = Util.loadUser(getApplicationContext());
+        if (user != null)
+          Util.deletefile(getApplicationContext());
+         startActivity(i);
+         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+      } catch (IOException e) {
+        e.printStackTrace();
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
+
       return (true);
     }
 

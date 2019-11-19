@@ -181,6 +181,11 @@ public class Util {
         return obtainedUser;
     }
 
+    public static Boolean deletefile(Context context) throws IOException, ClassNotFoundException {
+        Boolean deleted;
+        deleted=context.deleteFile("user_data");
+        return deleted;
+    }
 
 
 
