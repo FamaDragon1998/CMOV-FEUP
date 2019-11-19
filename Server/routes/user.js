@@ -78,18 +78,26 @@ router.post('/checkout', function(req, res, next) {
   });
   transaction.total_value = total_spent;
 
+  let usedProducts = new Map();
   Transaction.create(transaction)
       .then(createdTransaction => {
           req.body.products.forEach(product => {
-            console.log("here");
-              let trans_prod = {
-                  id: create_UUID(),
-                  ProductId: product.id,
-                  TransactionId: createdTransaction.id
-              };
-              console.log(trans_prod);
-              TransactionProduct.create(trans_prod);
+              let count;
+              if (!usedProducts.has(product.id))
+                count = 1;
+              else
+                count = usedProducts.get(product.id) + 1;
+              usedProducts.set(product.id, count);
           });
+          usedProducts.forEach(function(count, id) {
+            let trans_prod = {
+              id: create_UUID(),
+              ProductId: id,
+              TransactionId: createdTransaction.id,
+              count: count
+          };
+          TransactionProduct.create(trans_prod);
+        });
           // Update voucher if used
           let additive_discount = createdTransaction.total_value - createdTransaction.discount;
           if (req.body.voucher != null) {
