@@ -23,6 +23,7 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
+import java.io.IOException;
 import java.math.BigInteger;
 import java.security.KeyPairGenerator;
 import java.security.KeyStore;
@@ -49,6 +50,12 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     user = (User) getIntent().getSerializableExtra("user");
+
+    try {
+      Util.saveUser(user, getApplicationContext());
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
 
     ActionBar bar = getSupportActionBar();
     if (bar != null) {

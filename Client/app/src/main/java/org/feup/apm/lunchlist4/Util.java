@@ -1,8 +1,11 @@
 package org.feup.apm.lunchlist4;
 
+import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.IBinder;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,8 +15,15 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 
 public class Util {
@@ -144,5 +154,34 @@ public class Util {
             return null;
         }
     }
+
+    public static void saveUser(User user, Context context) throws IOException {
+        FileOutputStream fos = context.openFileOutput("user_data", Context.MODE_PRIVATE);
+        ObjectOutputStream os = new ObjectOutputStream(fos);
+        os.writeObject(user);
+        os.close();
+        fos.close();
+    }
+
+    public static User loadUser(Context context) throws IOException, ClassNotFoundException {
+        Log.d("load user", "entering");
+        FileInputStream fis = null;
+        try {
+            fis = context.openFileInput("user_data");
+        }
+        catch(FileNotFoundException e){
+            Log.d("not found", "not found file");
+            return null;
+        }
+        ObjectInputStream is = new ObjectInputStream(fis);
+        User obtainedUser = (User) is.readObject();
+        is.close();
+        fis.close();
+
+        return obtainedUser;
+    }
+
+
+
 
 }

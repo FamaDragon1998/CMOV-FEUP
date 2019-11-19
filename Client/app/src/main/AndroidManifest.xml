@@ -33,6 +33,7 @@
         <activity
             android:name=".DetailsTransaction"
             android:label="Transaction Details" />
-    </application>
+   </application>
+
 
 </manifest>

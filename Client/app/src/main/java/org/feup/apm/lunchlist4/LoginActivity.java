@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +37,16 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         queue = Volley.newRequestQueue(this);
+
+        try {
+            User user = Util.loadUser(getApplicationContext());
+            if (user != null)
+                enterApp(user);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
 
         login = findViewById(R.id.login);
         login.setOnClickListener((v)->verifyLogin());
@@ -121,9 +132,7 @@ public class LoginActivity extends AppCompatActivity {
                 response -> {
                     Log.d("vouchers response", response.toString());
                     user.setVouchers(response);
-                    Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                    i.putExtra("user", user);
-                    startActivity(i);
+                    enterApp(user);
                 },
                 error -> {
                     setAndShowAlertDialog("Server Error", "Unexpected Server Error");
@@ -148,6 +157,12 @@ public class LoginActivity extends AppCompatActivity {
         dialog.setTitle(title);
         alertDialog=dialog.create();
         alertDialog.show();
+    }
+
+    private void enterApp(User user){
+        Intent i = new Intent(getApplicationContext(), MainActivity.class);
+        i.putExtra("user", user);
+        startActivity(i);
     }
 
 

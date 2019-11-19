@@ -26,6 +26,7 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.nio.ByteBuffer;
 import java.security.KeyStore;
@@ -106,13 +107,12 @@ public class NewTransaction extends AppCompatActivity {
 
         voucherAdapter();
         discountAdapter();
-        //removeproductAdapter();
         Button removeButton = findViewById(R.id.removeproduct);
-        removeButton.setOnClickListener((v) ->removeproductAdapter());
+        removeButton.setOnClickListener((v) ->removeProductAdapter());
 
     }
 
-    private void removeproductAdapter(){
+    private void removeProductAdapter(){
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Which product to Remove");
@@ -128,9 +128,7 @@ public class NewTransaction extends AppCompatActivity {
             pnames[i]=products.get(i);
         }
 
-        //CharSequence[] products = basket.getProducts().toArray(new CharSequence[basket.getProducts().size()]);
         builder.setItems(pnames, (dialog, which) -> {
-           // TextView productView = findViewById(R.id.selectedVoucherText);
 
             basket.removeProduct(pnames[which].toString());
             adapter.updateContent(basket.getProducts());
@@ -138,9 +136,7 @@ public class NewTransaction extends AppCompatActivity {
             user.setBasket(basket);
 
         });
-
         builder.show();
-
 
     }
 
@@ -270,17 +266,13 @@ public class NewTransaction extends AppCompatActivity {
         if (requestCode == 0) {
             if (resultCode == RESULT_OK) {
                 String contents = data.getStringExtra("SCAN_RESULT");
-                String format = data.getStringExtra("SCAN_RESULT_FORMAT");
                 try {
                     Product productScanned = new Product(contents);
-                    // baMess = contents.getBytes(StandardCharsets.ISO_8859_1);
                     basket.addProducts(productScanned);
                     adapter.updateContent(basket.getProducts());
                     updateTotalBasket();
                     productsListView.setAdapter(adapter);
                     user.setBasket(basket);
-
-
 
                 } catch (Exception ex) {
                     Log.d("error", "exception", ex);
@@ -346,6 +338,11 @@ public class NewTransaction extends AppCompatActivity {
     {
         totalView.setText(basket.getTotal_value() + " €");
         seek.setMax(Math.min((int)Math.floor((double) user.getStored_discount()),(int)basket.getTotal_value()));
+        try {
+            Util.saveUser(user, getApplicationContext());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
