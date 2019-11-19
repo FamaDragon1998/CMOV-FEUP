@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -56,13 +57,7 @@ public class QrCodeActivity extends AppCompatActivity {
         user = (User) getIntent().getSerializableExtra("user");
 
         Button back = findViewById(R.id.back);
-        back.setOnClickListener((v)-> {
-            try {
-                getTransactions(user);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        });
+        back.setOnClickListener((v)-> getUser());
         queue = Volley.newRequestQueue(this);
 
         qrCodeIv = findViewById(R.id.qr);
@@ -150,6 +145,38 @@ public class QrCodeActivity extends AppCompatActivity {
             Log.d("coisu", ex.getMessage());
         }
         return verified;
+    }
+
+    public void getUser()
+    {
+        HashMap info= new HashMap();
+        info.put("name", user.getName());
+
+        String uri = "http:/" + getString(R.string.ip_address)+ ":3000/user/" + user.getUsername();
+        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.GET, uri, null,
+                response -> {
+                    try {
+                        Log.d("user", response.toString());
+                        Object obj = response.get("user");
+                        if (obj.toString().equals("null")){
+                            Log.d("login", "WRONG LOGIN");
+                        }
+                        else {
+                            JSONObject jsonObj = response.getJSONObject("user");
+                            user = new User(jsonObj);
+                            getTransactions(user);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                },
+                error -> {
+                    Log.d("login error", error.toString());
+
+                }
+        ) {
+        };
+        queue.add(jsonobj);
     }
 
     public void getTransactions(User user) throws JSONException {

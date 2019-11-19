@@ -88,7 +88,6 @@ public class NewTransaction extends AppCompatActivity {
         addProductButton.setOnClickListener((v) -> scan());
 
 
-
         finishButton = findViewById(R.id.generateQRcode);
         finishButton.setOnClickListener((v) -> generateQRcode());
 
