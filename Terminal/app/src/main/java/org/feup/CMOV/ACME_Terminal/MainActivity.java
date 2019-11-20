@@ -1,4 +1,4 @@
-package org.feup.apm.scanqr;
+package org.feup.CMOV.ACME_Terminal;
 
 import android.app.AlertDialog;
 import android.content.Intent;

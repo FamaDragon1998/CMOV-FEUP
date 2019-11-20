@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4.Activities;
+package org.feup.CMOV.ACME.Activities;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,9 +23,9 @@ import android.widget.TextView;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 
-import org.feup.apm.lunchlist4.Entities.Transaction;
-import org.feup.apm.lunchlist4.Entities.User;
-import org.feup.apm.lunchlist4.R;
+import org.feup.CMOV.ACME.Entities.Transaction;
+import org.feup.CMOV.ACME.Entities.User;
+import org.feup.CMOV.ACME.R;
 
 import java.io.IOException;
 import java.math.BigInteger;

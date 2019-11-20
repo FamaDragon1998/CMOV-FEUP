@@ -1,4 +1,4 @@
-package org.feup.apm.scanqr;
+package org.feup.CMOV.ACME_Terminal;
 
 class Util {
   static final int KEY_SIZE = 512;

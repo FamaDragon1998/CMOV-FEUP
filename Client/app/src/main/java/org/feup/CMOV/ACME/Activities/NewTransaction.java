@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4.Activities;
+package org.feup.CMOV.ACME.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,10 +13,10 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import org.feup.apm.lunchlist4.Entities.Product;
-import org.feup.apm.lunchlist4.Entities.Transaction;
-import org.feup.apm.lunchlist4.Entities.User;
-import org.feup.apm.lunchlist4.R;
+import org.feup.CMOV.ACME.Entities.Product;
+import org.feup.CMOV.ACME.Entities.Transaction;
+import org.feup.CMOV.ACME.Entities.User;
+import org.feup.CMOV.ACME.R;
 
 import java.io.IOException;
 import java.util.ArrayList;

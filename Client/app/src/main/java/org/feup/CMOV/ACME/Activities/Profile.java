@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4.Activities;
+package org.feup.CMOV.ACME.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.feup.apm.lunchlist4.Entities.User;
-import org.feup.apm.lunchlist4.R;
+import org.feup.CMOV.ACME.Entities.User;
+import org.feup.CMOV.ACME.R;
 
 public class Profile extends AppCompatActivity {
 

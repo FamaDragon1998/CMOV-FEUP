@@ -7,7 +7,7 @@
               android:layout_height="match_parent"
               android:background="#ffffff"
               android:orientation="vertical"
-              tools:context="org.feup.apm.scanqr.MainActivity" >
+              tools:context="org.feup.CMOV.ACME_Terminal.MainActivity" >
 
     <TextView
         android:id="@+id/textView"

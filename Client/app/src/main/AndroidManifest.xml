@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.feup.apm.lunchlist4">
+    package="org.feup.CMOV.ACME">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -12,26 +12,26 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.LoginActivity">
+        <activity android:name="org.feup.CMOV.ACME.Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Register" />
-        <activity android:name=".Activities.Profile" />
+        <activity android:name="org.feup.CMOV.ACME.Activities.Register" />
+        <activity android:name="org.feup.CMOV.ACME.Activities.Profile" />
         <activity
-            android:name=".Activities.QrCodeActivity"
+            android:name="org.feup.CMOV.ACME.Activities.QrCodeActivity"
             android:label="@string/title_activity_qr_code"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Activities.NewTransaction" />
+        <activity android:name="org.feup.CMOV.ACME.Activities.NewTransaction" />
 
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name="org.feup.CMOV.ACME.Activities.MainActivity">
 
         </activity>
         <activity
-            android:name=".Activities.DetailsTransaction"
+            android:name="org.feup.CMOV.ACME.Activities.DetailsTransaction"
             android:label="Transaction Details" />
    </application>
 

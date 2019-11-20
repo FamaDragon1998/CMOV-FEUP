@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4.Activities;
+package org.feup.CMOV.ACME.Activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -20,8 +20,8 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.common.BitMatrix;
 
-import org.feup.apm.lunchlist4.Entities.User;
-import org.feup.apm.lunchlist4.R;
+import org.feup.CMOV.ACME.Entities.User;
+import org.feup.CMOV.ACME.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
