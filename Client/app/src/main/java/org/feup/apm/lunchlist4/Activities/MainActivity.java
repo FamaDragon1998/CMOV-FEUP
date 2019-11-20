@@ -54,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     user = (User) getIntent().getSerializableExtra("user");
-    Log.d("transactions response", String.valueOf(user.getTransactions().size()));
 
+    //getSupportActionBar().setLogo(R.drawable.shopping_cart);
 
     try {
       Util.saveUser(user, getApplicationContext());
