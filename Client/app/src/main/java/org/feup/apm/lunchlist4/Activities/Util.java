@@ -1,11 +1,8 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.lunchlist4.Activities;
 
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.IBinder;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +12,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+
+import org.feup.apm.lunchlist4.Entities.Product;
+import org.feup.apm.lunchlist4.Entities.User;
+import org.feup.apm.lunchlist4.R;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;

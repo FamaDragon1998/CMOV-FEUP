@@ -1,6 +1,4 @@
-package org.feup.apm.lunchlist4;
-
-import android.util.Log;
+package org.feup.apm.lunchlist4.Entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;

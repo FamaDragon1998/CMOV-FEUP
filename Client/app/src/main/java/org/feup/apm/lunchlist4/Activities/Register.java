@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.lunchlist4.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,6 +14,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.feup.apm.lunchlist4.Entities.User;
+import org.feup.apm.lunchlist4.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 

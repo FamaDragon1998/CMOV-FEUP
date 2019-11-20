@@ -12,26 +12,26 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity">
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Activities.Register" />
+        <activity android:name=".Activities.Profile" />
         <activity
-            android:name=".QrCodeActivity"
+            android:name=".Activities.QrCodeActivity"
             android:label="@string/title_activity_qr_code"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".NewTransaction" />
+        <activity android:name=".Activities.NewTransaction" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
 
         </activity>
         <activity
-            android:name=".DetailsTransaction"
+            android:name=".Activities.DetailsTransaction"
             android:label="Transaction Details" />
    </application>
 
