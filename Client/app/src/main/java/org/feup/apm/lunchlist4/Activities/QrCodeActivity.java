@@ -1,10 +1,9 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.lunchlist4.Activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Base64;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,16 +18,15 @@ import com.android.volley.toolbox.Volley;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
+import org.feup.apm.lunchlist4.Entities.User;
+import org.feup.apm.lunchlist4.R;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayOutputStream;
 import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
 import java.security.KeyStore;
 import java.security.PublicKey;
 import java.security.Signature;

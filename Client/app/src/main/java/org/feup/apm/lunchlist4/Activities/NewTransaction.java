@@ -1,40 +1,25 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.lunchlist4.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.EncodeHintType;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.common.BitMatrix;
+import org.feup.apm.lunchlist4.Entities.Product;
+import org.feup.apm.lunchlist4.Entities.Transaction;
+import org.feup.apm.lunchlist4.Entities.User;
+import org.feup.apm.lunchlist4.R;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.nio.ByteBuffer;
-import java.security.KeyStore;
-import java.security.PrivateKey;
-import java.security.Signature;
 import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.List;
 
 public class NewTransaction extends AppCompatActivity {
     static final String ACTION_SCAN = "com.google.zxing.client.android.SCAN";

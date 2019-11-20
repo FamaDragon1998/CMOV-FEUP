@@ -1,4 +1,4 @@
-package org.feup.apm.lunchlist4;
+package org.feup.apm.lunchlist4.Entities;
 
 import org.json.JSONArray;
 import org.json.JSONException;
