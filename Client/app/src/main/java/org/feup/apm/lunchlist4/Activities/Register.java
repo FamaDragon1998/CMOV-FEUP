@@ -59,34 +59,40 @@ public class Register extends AppCompatActivity {
         info.put("password", password.getText().toString());
         info.put("card_number", card_number.getText().toString() );
         info.put("card_cvs", card_cvs.getText().toString() );
+        Log.d("username",username.getText().toString());
 
-        String url = "http:/"+getString(R.string.ip_address)+":3000/user/register"; //IP Address
-        JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(info),
-                response -> {
-                    try {
-                        Object obj = response.get("user");
-                        if (obj.toString().equals("null")){
-                            setAndShowAlertDialog("Register Error", "Please try again");
+        if ((!username.getText().toString().equals("")) && (!name.getText().toString().equals("")) && (!password.getText().toString().equals("")) && (!card_number.getText().toString().equals("")) && (!card_cvs.getText().toString().equals(""))) {
+            String url = "http:/" + getString(R.string.ip_address) + ":3000/user/register"; //IP Address
+            JsonObjectRequest jsonobj = new JsonObjectRequest(Request.Method.POST, url, new JSONObject(info),
+                    response -> {
+                        try {
+                            Object obj = response.get("user");
+                            if (obj.toString().equals("null")) {
+                                setAndShowAlertDialog("Register Error", "Please try again");
+                            } else {
+                                Log.d("user", response.toString());
+                                JSONObject jsonObj = response.getJSONObject("user");
+                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                                i.putExtra("user", new User(jsonObj));
+                                startActivity(i);
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                        else {
-                            Log.d("user", response.toString());
-                            JSONObject jsonObj = response.getJSONObject("user");
-                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                            i.putExtra("user", new User(jsonObj));
-                            startActivity(i);
-                        }
-                    } catch (JSONException e) {
-                        e.printStackTrace();
+                    },
+                    error -> {
+
+                        setAndShowAlertDialog("Server Error or duplicate username", "Try another username. Please try again.");
+                        Log.d("error", error.toString());
+
                     }
-                },
-                error -> {
-                    setAndShowAlertDialog("Server Error", "Unexpected Server Error");
-                    Log.d("error", error.toString());
-
-                }
-        ) {
-        };
-        queue.add(jsonobj);
+            ) {
+            };
+            queue.add(jsonobj);
+        }
+        else {
+            setAndShowAlertDialog("Fill all the fields", "Try again after that");
+        }
     }
 
     public void backLogin()
