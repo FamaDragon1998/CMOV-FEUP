@@ -1,6 +1,0 @@
-<resources>
-    <string name="app_name">ACME Terminal</string>
-    <string name="act_title">Checkout your Basket</string>
-    <string name="bt_qr">Checkout</string>
-    <string name="ip_address">10.227.159.153</string>
-</resources>
