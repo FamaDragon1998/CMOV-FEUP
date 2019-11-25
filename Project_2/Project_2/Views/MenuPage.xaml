@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Project_2.Views.MenuPage"
+             Title="Menu">
+             
+    <StackLayout VerticalOptions="FillAndExpand">
+
+       
+        <StackLayout Margin="40">
+            <Picker Title="Add a City" ItemsSource="{Binding Cities}" SelectedItem="{Binding AddedCity, Mode=TwoWay}" />
+        </StackLayout>
+
+        <ListView x:Name="ListViewMenu"
+                    HasUnevenRows="True">            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10">
+                            <Label Text="{Binding Title}" d:Text="{Binding .}" HorizontalOptions="Center"  FontSize="20"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
