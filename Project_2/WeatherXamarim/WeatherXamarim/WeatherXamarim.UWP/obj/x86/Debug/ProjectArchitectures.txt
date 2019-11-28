@@ -1,0 +1,1 @@
+C:\Users\Ricardo\Documents\GitHub\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\WeatherXamarim.UWP.csproj;x86
