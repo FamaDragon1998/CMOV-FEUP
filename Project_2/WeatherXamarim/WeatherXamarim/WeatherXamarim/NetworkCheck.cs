@@ -35,11 +35,12 @@ namespace WeatherApp
                 var client = new System.Net.Http.HttpClient();
                 var url = urlAuthority + "weather?q=porto,portugal&units=metric&appid=" + appid;
                 Debug.WriteLine("url", url);
-                var response = await client.GetAsync(url);
+                var response = await client.GetAsync(url).ConfigureAwait(false);
+                response.EnsureSuccessStatusCode();
                 Debug.WriteLine("response");
                 Debug.WriteLine(response);
 
-                string json = await response.Content.ReadAsStringAsync();
+                string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 Debug.WriteLine("ParsingJson", json);
 
                 return json;

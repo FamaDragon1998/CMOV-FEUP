@@ -13,19 +13,19 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Image Source="overlay.png" Aspect="Fill" HeightRequest="300" VerticalOptions="StartAndExpand"/>
+        <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="300" VerticalOptions="StartAndExpand"/>
         <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="20,50">
             <ImageButton Source="menu.png" WidthRequest="23" HeightRequest="15" HorizontalOptions="Start" VerticalOptions="Center" />
-            <Label Text="LONDON, GB" FontSize="16" VerticalOptions="Center" TextColor="White"/>
+            <Label x:Name ="City" Text="-, -" FontSize="16" VerticalOptions="Center" TextColor="{StaticResource PrimaryColour}"/>
         </StackLayout>
         <StackLayout Orientation="Vertical" Margin="0,20" HorizontalOptions="Center" VerticalOptions="Center">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                <Image Source="weather.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center"/>
-                <Label Text="12" TextColor="White" FontSize="70" FontAttributes="Bold" VerticalOptions="Center"/>
-                <Label Text="°C" TextColor="White" FontSize="34" VerticalOptions="Center"/>
+                <!-- <Image Source="weather.png" WidthRequest="50" HeightRequest="50" VerticalOptions="Center"/>-->
+                <Label x:Name ="CurrentTemperature" Text="12" TextColor="{StaticResource PrimaryColour}" FontSize="70" FontAttributes="Bold" VerticalOptions="Center"/>
+                <Label Text="°C" TextColor="{StaticResource PrimaryColour}" FontSize="34" VerticalOptions="Center"/>
             </StackLayout>
-            <Label Text="Light intensity drizzle rain" TextColor="White" FontSize="16" HorizontalOptions="Center"/>
-            <Label Text="June 15, 09:03 AM" TextColor="White" FontSize="12" HorizontalOptions="Center"/>
+            <Label x:Name ="Description" Text="Light intensity drizzle rain" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
+            <Label x:Name ="Date" Text="June 15, 09:03 AM" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
         </StackLayout>
         <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="120" VerticalOptions="Start">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -38,28 +38,28 @@
                 <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="humidity.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                        <Label Text="50%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Humidity" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                        <Label x:Name ="Humidity" Text="50%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label  Text="Humidity" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="wind.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                        <Label Text="2.6 m/s" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label x:Name ="Wind" Text="2.6 m/s" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Wind" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="pressure.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                        <Label Text="1011 hpa" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label x:Name ="Pressure" Text="1011 hpa" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Pressure" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="cloudiness.png" HeightRequest="25" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
-                        <Label Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
+                        <Label x:Name ="Cloudiness" Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Cloudiness" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>

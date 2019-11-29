@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using WeatherApp;
 using WeatherApp.Models;
+using WeatherXamarim.Models;
 using Xamarin.Forms;
 
 namespace WeatherXamarim
@@ -23,8 +25,7 @@ namespace WeatherXamarim
 
         public void GetCurrentWeather()
         {
-
-            WeatherList ObjWeatherList = new WeatherList();
+            RootObject root = new RootObject();
             Debug.WriteLine("aqui"); // Call the Result
             Task<string> result = NetworkCheck.GetJSON();
             if (result == null)
@@ -33,14 +34,21 @@ namespace WeatherXamarim
                 return;
             }
             Debug.WriteLine("result:: " + result.Result); // Call the Result
-            /*var json = result.Result;
+            var json = result.Result;
             if (json != "")
             {
-                //Converting JSON Array Objects into generic list  
-                ObjWeatherList = JsonConvert.DeserializeObject<WeatherList>(json);
-            }*/
-            //Binding listview with server response    
-            //WeatherForecastList.ItemsSource = ObjWeatherList.allWeathers;
+                root = JsonConvert.DeserializeObject<RootObject>(json);
+            }
+            //Binding listview with server response 
+            CurrentTemperature.Text = root.main.temp.ToString();
+            City.Text = root.name + ", " + root.sys.country;
+            Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
+            Humidity.Text = root.main.humidity.ToString() + "%";
+            Pressure.Text = root.main.pressure.ToString() + " hpa";
+            Cloudiness.Text = root.clouds.all.ToString() + "%";
+            Wind.Text = root.wind.speed.ToString()+ " m/s";
+            Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
+
         }
 
         public List<Weather> Weathers { get => WeatherData(); }

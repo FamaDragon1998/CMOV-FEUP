@@ -1148,6 +1148,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -2653,6 +2654,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -4257,6 +4259,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -5858,6 +5861,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -7363,6 +7367,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -8967,6 +8972,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -10472,6 +10478,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -12076,6 +12083,7 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
           "Microsoft.Bcl.Build": "1.0.21",
           "Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9",
           "Microsoft.Net.Http": "2.2.29",
@@ -20277,6 +20285,7 @@
   },
   "projectFileDependencyGroups": {
     "UAP,Version=v10.0.16299": [
+      "Microsoft.Bcl >= 1.1.10",
       "Microsoft.Bcl.Build >= 1.0.21",
       "Microsoft.NETCore.UniversalWindowsPlatform >= 6.2.9",
       "Microsoft.Net.Http >= 2.2.29",
@@ -20333,6 +20342,10 @@
     "frameworks": {
       "uap10.0.16299": {
         "dependencies": {
+          "Microsoft.Bcl": {
+            "target": "Package",
+            "version": "[1.1.10, )"
+          },
           "Microsoft.Bcl.Build": {
             "target": "Package",
             "version": "[1.0.21, )"
