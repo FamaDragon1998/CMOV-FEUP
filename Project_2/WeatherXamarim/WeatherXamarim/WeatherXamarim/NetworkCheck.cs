@@ -33,7 +33,9 @@ namespace WeatherApp
                 Debug.WriteLine("has internet");
 
                 var client = new System.Net.Http.HttpClient();
-                var response = await client.GetAsync(urlAuthority + " weather?q=porto,portugal&units=metric&appid=" + appid);
+                var url = urlAuthority + "weather?q=porto,portugal&units=metric&appid=" + appid;
+                Debug.WriteLine("url", url);
+                var response = await client.GetAsync(url);
                 Debug.WriteLine("response");
                 Debug.WriteLine(response);
 
