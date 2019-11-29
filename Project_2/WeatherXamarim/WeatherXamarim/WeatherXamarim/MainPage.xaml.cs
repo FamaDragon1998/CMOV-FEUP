@@ -18,7 +18,7 @@ namespace WeatherXamarim
         {
             InitializeComponent();
             this.BindingContext = this;
-            //GetCurrentWeather();
+            GetCurrentWeather();
         }
 
         public void GetCurrentWeather()
@@ -27,13 +27,18 @@ namespace WeatherXamarim
             WeatherList ObjWeatherList = new WeatherList();
             Debug.WriteLine("aqui"); // Call the Result
             Task<string> result = NetworkCheck.GetJSON();
+            if (result == null)
+            {
+                Debug.WriteLine("No internet! Avisar isso");
+                return;
+            }
             Debug.WriteLine("result:: " + result.Result); // Call the Result
-            var json = result.Result;
+            /*var json = result.Result;
             if (json != "")
             {
                 //Converting JSON Array Objects into generic list  
                 ObjWeatherList = JsonConvert.DeserializeObject<WeatherList>(json);
-            }
+            }*/
             //Binding listview with server response    
             //WeatherForecastList.ItemsSource = ObjWeatherList.allWeathers;
         }

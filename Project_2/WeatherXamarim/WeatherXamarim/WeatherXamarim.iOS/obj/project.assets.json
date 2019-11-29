@@ -2,6 +2,39 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/_._": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.21": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Bcl.Build.targets": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
@@ -31,7 +64,7 @@
           "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
-      "Xamarin.Essentials/1.2.0": {
+      "Xamarin.Essentials/1.3.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -46,7 +79,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.3.0.991211": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -173,10 +206,12 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
           "Newtonsoft.Json": "12.0.3",
           "Xam.Plugin.Connectivity": "3.2.0",
-          "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249"
+          "Xamarin.Essentials": "1.3.1",
+          "Xamarin.Forms": "4.3.0.991211"
         },
         "compile": {
           "bin/placeholder/WeatherXamarim.dll": {}
@@ -187,6 +222,39 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/_._": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.21": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Bcl.Build.targets": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
@@ -216,7 +284,7 @@
           "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
-      "Xamarin.Essentials/1.2.0": {
+      "Xamarin.Essentials/1.3.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -231,7 +299,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.3.0.991211": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -358,10 +426,12 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
           "Newtonsoft.Json": "12.0.3",
           "Xam.Plugin.Connectivity": "3.2.0",
-          "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249"
+          "Xamarin.Essentials": "1.3.1",
+          "Xamarin.Forms": "4.3.0.991211"
         },
         "compile": {
           "bin/placeholder/WeatherXamarim.dll": {}
@@ -372,6 +442,39 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/_._": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.21": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Bcl.Build.targets": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
@@ -401,7 +504,7 @@
           "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
-      "Xamarin.Essentials/1.2.0": {
+      "Xamarin.Essentials/1.3.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -416,7 +519,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.3.0.991211": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -543,10 +646,12 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
           "Newtonsoft.Json": "12.0.3",
           "Xam.Plugin.Connectivity": "3.2.0",
-          "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249"
+          "Xamarin.Essentials": "1.3.1",
+          "Xamarin.Forms": "4.3.0.991211"
         },
         "compile": {
           "bin/placeholder/WeatherXamarim.dll": {}
@@ -557,6 +662,39 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
+      "Microsoft.Bcl/1.1.10": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/_._": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/_._": {}
+        }
+      },
+      "Microsoft.Bcl.Build/1.0.21": {
+        "type": "package",
+        "build": {
+          "build/Microsoft.Bcl.Build.targets": {}
+        }
+      },
+      "Microsoft.Net.Http/2.2.29": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Bcl": "1.1.10",
+          "Microsoft.Bcl.Build": "1.0.14"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll": {},
+          "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll": {}
+        }
+      },
       "Newtonsoft.Json/12.0.3": {
         "type": "package",
         "compile": {
@@ -586,7 +724,7 @@
           "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
-      "Xamarin.Essentials/1.2.0": {
+      "Xamarin.Essentials/1.3.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -601,7 +739,7 @@
           "lib/xamarinios10/Xamarin.Essentials.dll": {}
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.3.0.991211": {
         "type": "package",
         "compile": {
           "lib/Xamarin.iOS10/Xamarin.Forms.Core.dll": {},
@@ -728,10 +866,12 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Microsoft.Bcl.Build": "1.0.21",
+          "Microsoft.Net.Http": "2.2.29",
           "Newtonsoft.Json": "12.0.3",
           "Xam.Plugin.Connectivity": "3.2.0",
-          "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249"
+          "Xamarin.Essentials": "1.3.1",
+          "Xamarin.Forms": "4.3.0.991211"
         },
         "compile": {
           "bin/placeholder/WeatherXamarim.dll": {}
@@ -743,6 +883,181 @@
     }
   },
   "libraries": {
+    "Microsoft.Bcl/1.1.10": {
+      "sha512": "+tTqoh/M1pyL8El3qLy30EcwnAtyvFoDZJtdG9Cbg/WdFbh4N8kyrq198XHuEL7lnJbeD0DRO8jcX5IIOh05cQ==",
+      "type": "package",
+      "path": "microsoft.bcl/1.1.10",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License-Stable.rtf",
+        "lib/Xamarin.iOS10/_._",
+        "lib/monoandroid/_._",
+        "lib/monotouch/_._",
+        "lib/net40/System.IO.dll",
+        "lib/net40/System.IO.xml",
+        "lib/net40/System.Runtime.dll",
+        "lib/net40/System.Runtime.xml",
+        "lib/net40/System.Threading.Tasks.dll",
+        "lib/net40/System.Threading.Tasks.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/_._",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8/System.IO.dll",
+        "lib/portable-net40+sl4+win8/System.IO.xml",
+        "lib/portable-net40+sl4+win8/System.Runtime.dll",
+        "lib/portable-net40+sl4+win8/System.Runtime.xml",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl4+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl4+win8/ensureRedirect.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+sl5+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.IO.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Runtime.xml",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8+wp8+wpa81/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8+wp8+wpa81/ensureRedirect.xml",
+        "lib/portable-net40+win8/System.IO.dll",
+        "lib/portable-net40+win8/System.IO.xml",
+        "lib/portable-net40+win8/System.Runtime.dll",
+        "lib/portable-net40+win8/System.Runtime.xml",
+        "lib/portable-net40+win8/System.Threading.Tasks.dll",
+        "lib/portable-net40+win8/System.Threading.Tasks.xml",
+        "lib/portable-net40+win8/ensureRedirect.xml",
+        "lib/portable-net45+win8+wp8+wpa81/_._",
+        "lib/portable-net45+win8+wpa81/_._",
+        "lib/portable-net451+win81+wpa81/_._",
+        "lib/portable-net451+win81/_._",
+        "lib/portable-win81+wp81+wpa81/_._",
+        "lib/sl4-windowsphone71/System.IO.dll",
+        "lib/sl4-windowsphone71/System.IO.xml",
+        "lib/sl4-windowsphone71/System.Runtime.dll",
+        "lib/sl4-windowsphone71/System.Runtime.xml",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.dll",
+        "lib/sl4-windowsphone71/System.Threading.Tasks.xml",
+        "lib/sl4-windowsphone71/ensureRedirect.xml",
+        "lib/sl4/System.IO.dll",
+        "lib/sl4/System.IO.xml",
+        "lib/sl4/System.Runtime.dll",
+        "lib/sl4/System.Runtime.xml",
+        "lib/sl4/System.Threading.Tasks.dll",
+        "lib/sl4/System.Threading.Tasks.xml",
+        "lib/sl5/System.IO.dll",
+        "lib/sl5/System.IO.xml",
+        "lib/sl5/System.Runtime.dll",
+        "lib/sl5/System.Runtime.xml",
+        "lib/sl5/System.Threading.Tasks.dll",
+        "lib/sl5/System.Threading.Tasks.xml",
+        "lib/win8/_._",
+        "lib/wp8/_._",
+        "lib/wpa81/_._",
+        "microsoft.bcl.1.1.10.nupkg.sha512",
+        "microsoft.bcl.nuspec"
+      ]
+    },
+    "Microsoft.Bcl.Build/1.0.21": {
+      "sha512": "sgHu4mIt0+NVGyI12Bj4hLPypNK55UOH+ologj2LqDCjxq3EbIxe/uAtHjY+fEwbE1dtsAHG8SXHf+V/EYbKTg==",
+      "type": "package",
+      "path": "microsoft.bcl.build/1.0.21",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License-Stable.rtf",
+        "build/Microsoft.Bcl.Build.Tasks.dll",
+        "build/Microsoft.Bcl.Build.targets",
+        "microsoft.bcl.build.1.0.21.nupkg.sha512",
+        "microsoft.bcl.build.nuspec"
+      ]
+    },
+    "Microsoft.Net.Http/2.2.29": {
+      "sha512": "fc4CPEewJ30Xgal+fSq1lYIBt582A7eKlAL7O4HXiYAiTp2VTnA4osSvk7T2n8aS4xTCPVJusQk3yKLT0XSpkg==",
+      "type": "package",
+      "path": "microsoft.net.http/2.2.29",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "License-Stable.rtf",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.XML",
+        "lib/Xamarin.iOS10/System.Net.Http.Extensions.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.dll",
+        "lib/Xamarin.iOS10/System.Net.Http.Primitives.xml",
+        "lib/monoandroid/System.Net.Http.Extensions.XML",
+        "lib/monoandroid/System.Net.Http.Extensions.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.dll",
+        "lib/monoandroid/System.Net.Http.Primitives.xml",
+        "lib/monotouch/System.Net.Http.Extensions.XML",
+        "lib/monotouch/System.Net.Http.Extensions.dll",
+        "lib/monotouch/System.Net.Http.Primitives.dll",
+        "lib/monotouch/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.Extensions.XML",
+        "lib/net40/System.Net.Http.Extensions.dll",
+        "lib/net40/System.Net.Http.Primitives.dll",
+        "lib/net40/System.Net.Http.Primitives.xml",
+        "lib/net40/System.Net.Http.WebRequest.dll",
+        "lib/net40/System.Net.Http.WebRequest.xml",
+        "lib/net40/System.Net.Http.dll",
+        "lib/net40/System.Net.Http.xml",
+        "lib/net40/ensureRedirect.xml",
+        "lib/net45/System.Net.Http.Extensions.XML",
+        "lib/net45/System.Net.Http.Extensions.dll",
+        "lib/net45/System.Net.Http.Primitives.dll",
+        "lib/net45/System.Net.Http.Primitives.xml",
+        "lib/net45/ensureRedirect.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.XML",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.dll",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/System.Net.Http.xml",
+        "lib/portable-net40+sl4+win8+wp71+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8+wpa81/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8+wpa81/ensureRedirect.xml",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.XML",
+        "lib/portable-net45+win8/System.Net.Http.Extensions.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.dll",
+        "lib/portable-net45+win8/System.Net.Http.Primitives.xml",
+        "lib/portable-net45+win8/ensureRedirect.xml",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Extensions.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.XML",
+        "lib/sl4-windowsphone71/System.Net.Http.Primitives.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.dll",
+        "lib/sl4-windowsphone71/System.Net.Http.xml",
+        "lib/win8/System.Net.Http.Extensions.XML",
+        "lib/win8/System.Net.Http.Extensions.dll",
+        "lib/win8/System.Net.Http.Primitives.dll",
+        "lib/win8/System.Net.Http.Primitives.xml",
+        "lib/wpa81/System.Net.Http.Extensions.XML",
+        "lib/wpa81/System.Net.Http.Extensions.dll",
+        "lib/wpa81/System.Net.Http.Primitives.dll",
+        "lib/wpa81/System.Net.Http.Primitives.xml",
+        "microsoft.net.http.2.2.29.nupkg.sha512",
+        "microsoft.net.http.nuspec"
+      ]
+    },
     "Newtonsoft.Json/12.0.3": {
       "sha512": "6mgjfnRB4jKMlzHSl+VD+oUc1IebOZabkbyWj2RiTgWwYPPuaK1H97G1sHqGwPlS5npiF5Q0OrxN1wni2n5QWg==",
       "type": "package",
@@ -889,10 +1204,10 @@
         "xam.plugin.connectivity.nuspec"
       ]
     },
-    "Xamarin.Essentials/1.2.0": {
-      "sha512": "o3i5uAchUpAvAlJX0onYFFiDo6jpKl9vgvrdDtXEuEfum0UDrSx8oGGBUjlFyUoRpvWVumXwo0VS3AbzuwEofg==",
+    "Xamarin.Essentials/1.3.1": {
+      "sha512": "+51728AdZ/qtABGvcIaNXgEoL2jAtxAXLHS8PvGCP0pb6n7twBqYpfgkmwHYVgu+U99szgtL+Jot8L+OXorPcA==",
       "type": "package",
-      "path": "xamarin.essentials/1.2.0",
+      "path": "xamarin.essentials/1.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -920,6 +1235,9 @@
         "lib/netstandard2.0/Xamarin.Essentials.dll",
         "lib/netstandard2.0/Xamarin.Essentials.pdb",
         "lib/netstandard2.0/Xamarin.Essentials.xml",
+        "lib/tizen40/Xamarin.Essentials.dll",
+        "lib/tizen40/Xamarin.Essentials.pdb",
+        "lib/tizen40/Xamarin.Essentials.xml",
         "lib/uap10.0.16299/Xamarin.Essentials.dll",
         "lib/uap10.0.16299/Xamarin.Essentials.pdb",
         "lib/uap10.0.16299/Xamarin.Essentials.pri",
@@ -927,15 +1245,21 @@
         "lib/xamarinios10/Xamarin.Essentials.dll",
         "lib/xamarinios10/Xamarin.Essentials.pdb",
         "lib/xamarinios10/Xamarin.Essentials.xml",
+        "lib/xamarintvos10/Xamarin.Essentials.dll",
+        "lib/xamarintvos10/Xamarin.Essentials.pdb",
+        "lib/xamarintvos10/Xamarin.Essentials.xml",
+        "lib/xamarinwatchos10/Xamarin.Essentials.dll",
+        "lib/xamarinwatchos10/Xamarin.Essentials.pdb",
+        "lib/xamarinwatchos10/Xamarin.Essentials.xml",
         "readme.txt",
-        "xamarin.essentials.1.2.0.nupkg.sha512",
+        "xamarin.essentials.1.3.1.nupkg.sha512",
         "xamarin.essentials.nuspec"
       ]
     },
-    "Xamarin.Forms/4.2.0.709249": {
-      "sha512": "3DWqPSn9kSKJW5mwjmICV/+4IpPQrequEN1VXUhsF0i9KKnfj49jFk9VbJnT9o2aesJAk00NED67XPbSmbxKjw==",
+    "Xamarin.Forms/4.3.0.991211": {
+      "sha512": "cWbxRKy6oPbFvpw2K6Du3bSo34LDyVKYSR6jCDSbB3Ieyj6549bWQbBLUEptRGQQ8fhDTcJQ/ezqwGwxd+7bkg==",
       "type": "package",
-      "path": "xamarin.forms/4.2.0.709249",
+      "path": "xamarin.forms/4.3.0.991211",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1163,9 +1487,12 @@
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsProgressBarStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/FormsTextBoxStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/MasterDetailControlStyle.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/Microsoft.UI.Xaml/DensityStyles/Compact.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/PageControlStyle.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/PickerStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Properties/Xamarin.Forms.Platform.UAP.rd.xml",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/Resources.xbf",
+        "lib/uap10.0/Xamarin.Forms.Platform.UAP/Shell/ShellStyles.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/SliderStyle.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/StepperControl.xbf",
         "lib/uap10.0/Xamarin.Forms.Platform.UAP/TabbedPageStyle.xbf",
@@ -1174,7 +1501,7 @@
         "lib/uap10.0/Xamarin.Forms.Xaml.dll",
         "lib/uap10.0/Xamarin.Forms.Xaml.pdb",
         "lib/uap10.0/Xamarin.Forms.Xaml.xml",
-        "xamarin.forms.4.2.0.709249.nupkg.sha512",
+        "xamarin.forms.4.3.0.991211.nupkg.sha512",
         "xamarin.forms.nuspec"
       ]
     },
@@ -1186,30 +1513,33 @@
   },
   "projectFileDependencyGroups": {
     "Xamarin.iOS,Version=v1.0": [
+      "Microsoft.Bcl.Build >= 1.0.21",
+      "Microsoft.Net.Http >= 2.2.29",
+      "Newtonsoft.Json >= 12.0.3",
       "WeatherXamarim >= 1.0.0",
-      "Xamarin.Essentials >= 1.2.0",
-      "Xamarin.Forms >= 4.2.0.709249"
+      "Xamarin.Essentials >= 1.3.1",
+      "Xamarin.Forms >= 4.3.0.991211"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Ricardo\\.nuget\\packages\\": {},
+    "C:\\Users\\vitor\\.nuget\\packages\\": {},
     "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Ricardo\\Documents\\GitHub\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\WeatherXamarim.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\vitor\\Desktop\\Projects\\CMOV-FEUP\\Project_2\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\WeatherXamarim.iOS.csproj",
       "projectName": "WeatherXamarim.iOS",
-      "projectPath": "C:\\Users\\Ricardo\\Documents\\GitHub\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\WeatherXamarim.iOS.csproj",
-      "packagesPath": "C:\\Users\\Ricardo\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Ricardo\\Documents\\GitHub\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\obj\\",
+      "projectPath": "C:\\Users\\vitor\\Desktop\\Projects\\CMOV-FEUP\\Project_2\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\WeatherXamarim.iOS.csproj",
+      "packagesPath": "C:\\Users\\vitor\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\vitor\\Desktop\\Projects\\CMOV-FEUP\\Project_2\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\Ricardo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\vitor\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -1223,8 +1553,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\Ricardo\\Documents\\GitHub\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.csproj": {
-              "projectPath": "C:\\Users\\Ricardo\\Documents\\GitHub\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.csproj"
+            "C:\\Users\\vitor\\Desktop\\Projects\\CMOV-FEUP\\Project_2\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.csproj": {
+              "projectPath": "C:\\Users\\vitor\\Desktop\\Projects\\CMOV-FEUP\\Project_2\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim\\WeatherXamarim.csproj"
             }
           }
         }
@@ -1233,13 +1563,25 @@
     "frameworks": {
       "xamarinios10": {
         "dependencies": {
+          "Microsoft.Bcl.Build": {
+            "target": "Package",
+            "version": "[1.0.21, )"
+          },
+          "Microsoft.Net.Http": {
+            "target": "Package",
+            "version": "[2.2.29, )"
+          },
+          "Newtonsoft.Json": {
+            "target": "Package",
+            "version": "[12.0.3, )"
+          },
           "Xamarin.Essentials": {
             "target": "Package",
-            "version": "[1.2.0, )"
+            "version": "[1.3.1, )"
           },
           "Xamarin.Forms": {
             "target": "Package",
-            "version": "[4.2.0.709249, )"
+            "version": "[4.3.0.991211, )"
           }
         }
       }

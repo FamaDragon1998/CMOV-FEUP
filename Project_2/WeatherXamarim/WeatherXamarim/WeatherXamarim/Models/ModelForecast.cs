@@ -61,7 +61,7 @@ namespace WeatherApp.Models
 
     public class WeatherList
     {
-        public List<Weather> allWeathers  { get; set;}
+        public List<Weather> allWeathers { get; set; }
     }
 
   /*  public class Sys

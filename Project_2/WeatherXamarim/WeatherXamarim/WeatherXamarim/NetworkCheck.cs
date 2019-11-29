@@ -1,5 +1,6 @@
 ﻿using Plugin.Connectivity;
 using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace WeatherApp
@@ -29,18 +30,26 @@ namespace WeatherApp
             //Check network status   
             if (NetworkCheck.IsInternet())
             {
+                Debug.WriteLine("has internet");
 
                 var client = new System.Net.Http.HttpClient();
                 var response = await client.GetAsync(urlAuthority + " weather?q=porto,portugal&units=metric&appid=" + appid);
+                Debug.WriteLine("response");
+                Debug.WriteLine(response);
+
                 string json = await response.Content.ReadAsStringAsync();
+                Debug.WriteLine("ParsingJson", json);
+
                 return json;
                
             }
             else
             {
+                Debug.WriteLine("no internet");
+                return null;
+
                 //await DisplayAlert("JSONParsing", "No network is available.", "Ok");
             }
-            return "";
             //Hide loader after server response    
             // ProgressLoader.IsVisible = false;
         }
