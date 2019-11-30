@@ -27,8 +27,13 @@ namespace WeatherApp.Models
         public int sunrise { get; set; }
         public int sunset { get; set; }
     }
+    public class RainWeather
+    {
+        public double __invalid_name__1h { get; set; }
+    }
 
-    public class RootObject
+
+    public class RootObjectWeather
     {
         public Coord coord { get; set; }
         public List<Weather> weather { get; set; }
@@ -36,6 +41,7 @@ namespace WeatherApp.Models
         public Main main { get; set; }
         public int visibility { get; set; }
         public Wind wind { get; set; }
+        public RainWeather rain { get; set; }
         public Clouds clouds { get; set; }
         public int dt { get; set; }
         public Sys sys { get; set; }

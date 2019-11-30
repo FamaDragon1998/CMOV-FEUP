@@ -25,7 +25,7 @@ namespace WeatherApp
 
 
 
-        public static async Task<string> GetJSON()
+        public static async Task<string> GetJSON(string city, string type)
         {
             //Check network status   
             if (NetworkCheck.IsInternet())
@@ -33,12 +33,10 @@ namespace WeatherApp
                 Debug.WriteLine("has internet");
 
                 var client = new System.Net.Http.HttpClient();
-                var url = urlAuthority + "weather?q=porto,portugal&units=metric&appid=" + appid;
+                var url = urlAuthority + type + "?q="+city+",portugal&units=metric&appid=" + appid;
                 Debug.WriteLine("url", url);
                 var response = await client.GetAsync(url).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
-                Debug.WriteLine("response");
-                Debug.WriteLine(response);
 
                 string json = await response.Content.ReadAsStringAsync().ConfigureAwait(false);
                 Debug.WriteLine("ParsingJson", json);
@@ -51,7 +49,6 @@ namespace WeatherApp
                 Debug.WriteLine("no internet");
                 return null;
 
-                //await DisplayAlert("JSONParsing", "No network is available.", "Ok");
             }
             //Hide loader after server response    
             // ProgressLoader.IsVisible = false;

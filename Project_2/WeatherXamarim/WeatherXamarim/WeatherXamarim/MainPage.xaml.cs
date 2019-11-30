@@ -20,36 +20,58 @@ namespace WeatherXamarim
         {
             InitializeComponent();
             this.BindingContext = this;
-            GetCurrentWeather();
+            GetServerInformation("porto", "weather");
         }
 
-        public void GetCurrentWeather()
+        public void GetServerInformation(string city, string type)
         {
-            RootObject root = new RootObject();
             Debug.WriteLine("aqui"); // Call the Result
-            Task<string> result = NetworkCheck.GetJSON();
+            Task<string> result = NetworkCheck.GetJSON(city, type);
             if (result == null)
             {
+                DisplayAlert("JSONParsing", "No network is available.", "Ok");
                 Debug.WriteLine("No internet! Avisar isso");
                 return;
             }
             Debug.WriteLine("result:: " + result.Result); // Call the Result
             var json = result.Result;
+            //everything okay
             if (json != "")
             {
-                root = JsonConvert.DeserializeObject<RootObject>(json);
+                if (type.Equals("weather"))
+                    BindWeatherInformation(JsonConvert.DeserializeObject<RootObjectWeather>(json));
+                else if (type.Equals("forecast"))
+                    BindForecastInformation(JsonConvert.DeserializeObject<RootObjectForecast>(json));
+                else
+                    Debug.WriteLine("weather type", "algo merdou");
             }
-            //Binding listview with server response 
+            else
+                DisplayAlert("JSONParsing", "Something went wrong", "Ok");
+
+        }
+        private void BindWeatherInformation(RootObjectWeather root)
+        {
             CurrentTemperature.Text = root.main.temp.ToString();
             City.Text = root.name + ", " + root.sys.country;
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
+            // TODO: ver isto
+            Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
+            if (root.rain.__invalid_name__1h > 0)
+                Description.Text += " (" + root.rain.__invalid_name__1h.ToString() + " mm)";
+
             Humidity.Text = root.main.humidity.ToString() + "%";
             Pressure.Text = root.main.pressure.ToString() + " hpa";
             Cloudiness.Text = root.clouds.all.ToString() + "%";
-            Wind.Text = root.wind.speed.ToString()+ " m/s";
+            Wind.Text = root.wind.speed.ToString() + " m/s";
             Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
-
         }
+
+        private void BindForecastInformation(RootObjectForecast root)
+        {
+            WeatherForecastList.ItemsSource = root.list;
+        }
+
+
 
         public List<Weather> Weathers { get => WeatherData(); }
 
