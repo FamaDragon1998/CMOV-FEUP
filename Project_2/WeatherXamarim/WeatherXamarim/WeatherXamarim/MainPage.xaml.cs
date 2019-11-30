@@ -21,6 +21,8 @@ namespace WeatherXamarim
             InitializeComponent();
             this.BindingContext = this;
             GetServerInformation("porto", "weather");
+            GetServerInformation("porto", "forecast");
+
         }
 
         public void GetServerInformation(string city, string type)
@@ -55,10 +57,11 @@ namespace WeatherXamarim
             City.Text = root.name + ", " + root.sys.country;
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
             // TODO: ver isto
-            Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
-            if (root.rain.__invalid_name__1h > 0)
-                Description.Text += " (" + root.rain.__invalid_name__1h.ToString() + " mm)";
-
+            if (root.rain != null ) {
+                Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
+                if (root.rain.__invalid_name__1h > 0)
+                    Description.Text += " (" + root.rain.__invalid_name__1h.ToString() + " mm)";
+            }
             Humidity.Text = root.main.humidity.ToString() + "%";
             Pressure.Text = root.main.pressure.ToString() + " hpa";
             Cloudiness.Text = root.clouds.all.ToString() + "%";
@@ -68,6 +71,7 @@ namespace WeatherXamarim
 
         private void BindForecastInformation(RootObjectForecast root)
         {
+
             WeatherForecastList.ItemsSource = root.list;
         }
 
