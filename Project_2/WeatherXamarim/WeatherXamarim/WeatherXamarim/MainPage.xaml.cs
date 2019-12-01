@@ -71,6 +71,7 @@ namespace WeatherXamarim
 
         private void BindForecastInformation(RootObjectForecast root)
         {
+            root.list.RemoveRange(8, root.list.Count - 8);
 
             WeatherForecastList.ItemsSource = root.list;
         }

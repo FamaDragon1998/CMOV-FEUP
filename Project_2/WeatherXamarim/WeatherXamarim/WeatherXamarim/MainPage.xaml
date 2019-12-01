@@ -84,6 +84,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                <!-- <Label Text="{Binding main.temp}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
                                 <Image Grid.Column="1" Source="{Binding main.temp}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
@@ -94,20 +95,28 @@
                                 <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
+                                        <Label Text="{Binding dt_txt}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                        <Label Text="Date" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+
+                                    <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding main.temp_max}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Label Text="{Binding main.temp_min}" TextColor="Blue" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Label Text="Temperature" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>
                                 
-                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding main.humidity}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Label Text="Humidity" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>
-                                <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding wind.speed}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
@@ -115,7 +124,7 @@
                                     </StackLayout>
                                 </StackLayout>
 
-                                <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Grid.Column="4" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding main.pressure}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
@@ -123,7 +132,7 @@
                                     </StackLayout>
                                 </StackLayout>
                                 
-                                <StackLayout Grid.Column="4" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <StackLayout Grid.Column="5" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding clouds.all}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
