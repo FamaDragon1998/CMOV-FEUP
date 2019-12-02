@@ -71,7 +71,7 @@
         </StackLayout>
 
 
-        <ListView x:Name="WeatherForecastList" SeparatorVisibility="None"
+        <ListView x:Name="WeatherForecastList" SeparatorVisibility="None" ItemTapped="WeatherForecastList_ItemTapped"
                   Grid.Row="3" Margin="20,0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <ListView.ItemTemplate>
                 <DataTemplate >
@@ -82,17 +82,40 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
+                                  <!--  <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/> -->
                                 </Grid.ColumnDefinitions>
-                               <!-- <Label Text="{Binding main.temp}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
+
+                                <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+
+                                    <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
+                                        <Label Text="{Binding Date}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                        <Label Text="{Binding weather[0].main}" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+
+                                    <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
+                                        <Image Grid.Column="1" Source="humidity.png" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+
+                                <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+
+                                    <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
+                                        <Label Text="{Binding main.TempDifference}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                                
+                                <!-- <Label Text="{Binding main.temp}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
                                 <Image Grid.Column="1" Source="{Binding main.temp}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
                                     <Label Text="{Binding main.temp}" TextColor="Black" FontSize="30" FontAttributes="Bold" VerticalOptions="Center"/>
                                     <Label Text="°C" TextColor="Black" FontSize="15" VerticalOptions="Center"/>
                                 </StackLayout> -->
-                                <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
+                                <!-- <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding dt_txt}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
@@ -138,9 +161,8 @@
                                         <Label Text="{Binding clouds.all}" TextColor="Black" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Label Text="Cloudiness" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                                     </StackLayout>
-                                </StackLayout>
-
-                            </Grid>
+                                </StackLayout>-->
+                                </Grid>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>

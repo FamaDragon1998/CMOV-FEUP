@@ -15,6 +15,15 @@ namespace WeatherApp.Models
         public int grnd_level { get; set; }
         public int humidity { get; set; }
         public double temp_kf { get; set; }
+
+        public string TempDifference
+        {
+
+            get
+            {
+                return string.Format("{0} / {1}", temp_max, temp_min);
+            }
+        }
     }
 
 
@@ -34,6 +43,16 @@ namespace WeatherApp.Models
         public RainForecast rain { get; set; }
         public Sys sys { get; set; }
         public string dt_txt { get; set; }
+
+        public string Date
+        {
+
+            get
+            {
+                DateTime date = Convert.ToDateTime(dt_txt);
+                return date.Hour.ToString() + ":00";
+            }
+        }
     }
 
    

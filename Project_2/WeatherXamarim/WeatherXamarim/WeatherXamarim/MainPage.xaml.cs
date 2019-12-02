@@ -77,6 +77,13 @@ namespace WeatherXamarim
         }
 
 
+        private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            List info = (List) e.Item;
+            await Navigation.PushAsync(new DetailForecastPage(info));
+
+        }
+
 
         public List<Weather> Weathers { get => WeatherData(); }
 
@@ -98,6 +105,7 @@ namespace WeatherXamarim
 
             return tempList;
         }
+
     }
 
 

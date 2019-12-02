@@ -11,7 +11,16 @@ namespace WeatherApp.Models
         public int pressure { get; set; }
         public int humidity { get; set; }
         public double temp_min { get; set; }
-        public int temp_max { get; set; }
+        public double temp_max { get; set; }
+
+        public string TempDifference
+        {
+
+            get
+            {
+                return string.Format("{0} / {1}", temp_max, temp_min);
+            }
+        }
     }
 
     public class Clouds
@@ -50,6 +59,7 @@ namespace WeatherApp.Models
         public string name { get; set; }
         public int cod { get; set; }
     }
+
 
 
 }
