@@ -3,16 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              mc:Ignorable="d"
              x:Class="WeatherXamarim.MainPage">
+
+
 
     <Grid VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="300" VerticalOptions="StartAndExpand"/>
         <StackLayout Orientation="Horizontal" Spacing="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="20,50">
             <ImageButton Source="menu.png" WidthRequest="23" HeightRequest="15" HorizontalOptions="Start" VerticalOptions="Center" />
@@ -82,7 +88,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                  <!--  <ColumnDefinition Width="*"/>
+                                    <!--  <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/> -->
                                 </Grid.ColumnDefinitions>
@@ -108,7 +114,7 @@
                                         <Label Text="{Binding main.TempDifference}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>
-                                
+
                                 <!-- <Label Text="{Binding main.temp}" TextColor="#757575" FontSize="12" VerticalOptions="Center" Margin="20,0"/>
                                 <Image Grid.Column="1" Source="{Binding main.temp}" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
                                 <StackLayout Grid.Column="2" Orientation="Horizontal" Margin="20,0" HorizontalOptions="End" VerticalOptions="Center">
@@ -162,12 +168,17 @@
                                         <Label Text="Cloudiness" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>-->
-                                </Grid>
+                            </Grid>
                         </Frame>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <forms:ChartView x:Name="ForecastChart" HeightRequest="50"/>
+
     </Grid>
+
+
 
 </ContentPage>

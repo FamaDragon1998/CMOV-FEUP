@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using Microcharts;
+using Newtonsoft.Json;
+using SkiaSharp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -8,6 +10,7 @@ using WeatherApp;
 using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
+using Entry = Microcharts.Entry;
 
 namespace WeatherXamarim
 {
@@ -19,12 +22,14 @@ namespace WeatherXamarim
         public MainPage()
         {
             InitializeComponent();
+
             this.BindingContext = this;
             GetServerInformation("porto", "weather");
             GetServerInformation("porto", "forecast");
 
         }
 
+       
         public void GetServerInformation(string city, string type)
         {
             Debug.WriteLine("aqui"); // Call the Result
@@ -74,6 +79,27 @@ namespace WeatherXamarim
             root.list.RemoveRange(8, root.list.Count - 8);
 
             WeatherForecastList.ItemsSource = root.list;
+
+            List<Entry> entries = new List<Entry>();
+
+            foreach (var element in root.list)
+            {
+                float temperature = (float) element.main.temp;
+
+                var entry = new Entry(temperature)
+                {
+                    Color = SKColor.Parse("#FF1493"),
+                    Label = element.Date,
+                    ValueLabel = temperature.ToString() + " ºC"
+                };
+                entries.Add(entry);
+            }
+
+            ForecastChart.Chart = new LineChart { 
+                Entries = entries,
+                LineMode = LineMode.Straight,  
+                LabelTextSize = 30f,
+            };
         }
 
 
@@ -83,7 +109,6 @@ namespace WeatherXamarim
             await Navigation.PushAsync(new DetailForecastPage(info));
 
         }
-
 
         public List<Weather> Weathers { get => WeatherData(); }
 
