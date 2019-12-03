@@ -24,6 +24,7 @@ namespace WeatherXamarim
             InitializeComponent();
 
             this.BindingContext = this;
+            Title = "Porto" + ", Portugal";
             GetServerInformation("porto", "weather");
             GetServerInformation("porto", "forecast");
 
@@ -59,8 +60,8 @@ namespace WeatherXamarim
         private void BindWeatherInformation(RootObjectWeather root)
         {
             CurrentTemperature.Text = root.main.temp.ToString();
-            City.Text = root.name + ", " + root.sys.country;
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
+            SetBackgroundImage(root.weather[0].description);
             // TODO: ver isto
             if (root.rain != null ) {
                 Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
@@ -72,6 +73,43 @@ namespace WeatherXamarim
             Cloudiness.Text = root.clouds.all.ToString() + "%";
             Wind.Text = root.wind.speed.ToString() + " m/s";
             Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
+        }
+
+        private void SetBackgroundImage(string description)
+        {
+            switch (description)
+            {
+                case "clear sky":
+                    WeatherBackground.Source = "sunny.png";
+                    break;
+                case "few clouds":
+                    WeatherBackground.Source = "slightlycloudy.png";
+                    break;
+                case "scattered clouds":
+                    WeatherBackground.Source = "slightlycloudy.png";
+                    break;
+                case "broken clouds":
+                    WeatherBackground.Source = "cloudy.png";
+                    break;
+                case "shower rain":
+                    WeatherBackground.Source = "rainy.png";
+                    break;
+                case "rain":
+                    WeatherBackground.Source = "rainy.png";
+                    break;
+                case "thunderstorm":
+                    WeatherBackground.Source = "zeushatesyou.png";
+                    break;
+                case "mist":
+                    WeatherBackground.Source = "mist.png";
+                    break;
+                case "snow":
+                    WeatherBackground.Source = "snow.png";
+                    break;
+                default:
+                    WeatherBackground.Source = "overlay.png";
+                    break;
+            }
         }
 
         private void BindForecastInformation(RootObjectForecast root)
@@ -131,6 +169,11 @@ namespace WeatherXamarim
             return tempList;
         }
 
+        private void ToggleChartOrList_Clicked(object sender, EventArgs e)
+        {
+            WeatherForecastChart.IsVisible = !WeatherForecastChart.IsVisible;
+            WeatherForecastList.IsVisible = !WeatherForecastList.IsVisible;
+        }
     }
 
 
