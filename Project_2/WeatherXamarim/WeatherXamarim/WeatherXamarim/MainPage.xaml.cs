@@ -53,7 +53,7 @@ namespace WeatherXamarim
                 if (type.Equals("weather"))
                     BindWeatherInformation(JsonConvert.DeserializeObject<RootObjectWeather>(json));
                 else if (type.Equals("forecast"))
-                    BindForecastInformationAsync(JsonConvert.DeserializeObject<RootObjectForecast>(json));
+                    BindForecastInformation(JsonConvert.DeserializeObject<RootObjectForecast>(json));
                 else
                     Debug.WriteLine("weather type", "algo merdou");
             }
@@ -116,7 +116,7 @@ namespace WeatherXamarim
             }
         }
 
-        private async Task BindForecastInformationAsync(RootObjectForecast root)
+        private void BindForecastInformation(RootObjectForecast root)
         {
             root.list.RemoveRange(8, root.list.Count - 8);
 
@@ -126,6 +126,7 @@ namespace WeatherXamarim
 
             foreach (var element in root.list)
             {
+
                 float temperature = (float) element.main.temp;
 
                 var entry = new Entry(temperature)
