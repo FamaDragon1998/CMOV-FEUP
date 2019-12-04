@@ -22,6 +22,15 @@ namespace WeatherApp.Models
         public string main { get; set; }
         public string description { get; set; }
         public string icon { get; set; }
+
+        public string IconUrl
+        {
+
+            get
+            {
+                return "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+            }
+        }
     }
 
 }

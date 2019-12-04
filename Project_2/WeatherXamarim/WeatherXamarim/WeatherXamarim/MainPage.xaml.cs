@@ -5,12 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.IO;
+using System.Net.Http.Headers;
+using System.Net.Http;
 using System.Threading.Tasks;
 using WeatherApp;
 using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
 using Entry = Microcharts.Entry;
+using Newtonsoft.Json.Linq;
 
 namespace WeatherXamarim
 {
@@ -49,7 +53,7 @@ namespace WeatherXamarim
                 if (type.Equals("weather"))
                     BindWeatherInformation(JsonConvert.DeserializeObject<RootObjectWeather>(json));
                 else if (type.Equals("forecast"))
-                    BindForecastInformation(JsonConvert.DeserializeObject<RootObjectForecast>(json));
+                    BindForecastInformationAsync(JsonConvert.DeserializeObject<RootObjectForecast>(json));
                 else
                     Debug.WriteLine("weather type", "algo merdou");
             }
@@ -112,7 +116,7 @@ namespace WeatherXamarim
             }
         }
 
-        private void BindForecastInformation(RootObjectForecast root)
+        private async Task BindForecastInformationAsync(RootObjectForecast root)
         {
             root.list.RemoveRange(8, root.list.Count - 8);
 

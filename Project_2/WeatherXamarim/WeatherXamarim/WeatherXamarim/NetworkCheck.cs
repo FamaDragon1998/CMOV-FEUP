@@ -1,7 +1,11 @@
 ﻿using Plugin.Connectivity;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Threading.Tasks;
+using WeatherApp.Models;
+using Xamarin.Forms;
 
 namespace WeatherApp
 {
@@ -53,5 +57,6 @@ namespace WeatherApp
             //Hide loader after server response    
             // ProgressLoader.IsVisible = false;
         }
+       
     }
 }

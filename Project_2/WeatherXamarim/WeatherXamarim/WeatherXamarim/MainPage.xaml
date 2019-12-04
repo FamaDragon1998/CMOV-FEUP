@@ -90,12 +90,12 @@
                                         <Label Text="{Binding Date}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
                                         <Label Text="{Binding weather[0].main}" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                                     </StackLayout>
-                                </StackLayout>
+                                </StackLayout> 
 
                                 <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
-                                        <Image Grid.Column="1" Source="humidity.png" WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
+                                        <Image Grid.Column="1" Source={ Binding weather[0].IconUrl} WidthRequest="38" HeightRequest="38" HorizontalOptions="Center" VerticalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>
 
