@@ -5,24 +5,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
-using System.Net.Http.Headers;
-using System.Net.Http;
 using System.Threading.Tasks;
 using WeatherApp;
 using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
-using Entry = Microcharts.Entry;
-using Newtonsoft.Json.Linq;
 
 namespace WeatherXamarim
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
+
+
     public partial class MainPage : ContentPage
     {
+        RootObjectForecast forecastRoot;
+
         public MainPage()
         {
             InitializeComponent();
@@ -31,9 +30,7 @@ namespace WeatherXamarim
             Title = "Porto" + ", Portugal";
             GetServerInformation("porto", "weather");
             GetServerInformation("porto", "forecast");
-
         }
-
        
         public void GetServerInformation(string city, string type)
         {
@@ -79,6 +76,27 @@ namespace WeatherXamarim
             Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
         }
 
+      
+        private void BindForecastInformation(RootObjectForecast root)
+        {
+            root.list.RemoveRange(8, root.list.Count - 8);
+            WeatherForecastList.ItemsSource = root.list;
+            forecastRoot = root;
+
+        }
+
+        private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
+        {
+            List info = (List) e.Item;
+            await Navigation.PushAsync(new ForecastDetailPage(info));
+        }
+
+        private async void ForecastChart_clicked(object sender, EventArgs args)
+        {
+            await Navigation.PushAsync(new ForecastChart(forecastRoot));
+
+        }
+
         private void SetBackgroundImage(string description)
         {
             switch (description)
@@ -116,78 +134,7 @@ namespace WeatherXamarim
             }
         }
 
-        private void BindForecastInformation(RootObjectForecast root)
-        {
-            root.list.RemoveRange(8, root.list.Count - 8);
 
-            WeatherForecastList.ItemsSource = root.list;
-
-            List<Entry> entries = new List<Entry>();
-
-            foreach (var element in root.list)
-            {
-
-                float temperature = (float) element.main.temp;
-
-                var entry = new Entry(temperature)
-                {
-                    Color = SKColor.Parse("#FF1493"),
-                    Label = element.Date,
-                    ValueLabel = temperature.ToString() + " ºC"
-                };
-                entries.Add(entry);
-            }
-
-            ForecastChart.Chart = new LineChart { 
-                Entries = entries,
-                LineMode = LineMode.Straight,  
-                LabelTextSize = 30f,
-            };
-        }
-
-
-        private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
-        {
-            List info = (List) e.Item;
-            await Navigation.PushAsync(new DetailForecastPage(info));
-
-        }
-
-        public List<Weather> Weathers { get => WeatherData(); }
-
-        private List<Weather> WeatherData()
-        {
-            var tempList = new List<Weather>();
-            tempList.Add(new Weather { Temp = "22", Date = "Sunday 16", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "21", Date = "Monday 17", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "20", Date = "Tuesday 18", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "12", Date = "Wednesday 19", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "17", Date = "Thursday 20", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "20", Date = "Friday 21", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "22", Date = "Sunday 16", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "21", Date = "Monday 17", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "20", Date = "Tuesday 18", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "12", Date = "Wednesday 19", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "17", Date = "Thursday 20", Icon = "weather.png" });
-            tempList.Add(new Weather { Temp = "20", Date = "Friday 21", Icon = "weather.png" });
-
-            return tempList;
-        }
-
-        private void ToggleChartOrList_Clicked(object sender, EventArgs e)
-        {
-            WeatherForecastChart.IsVisible = !WeatherForecastChart.IsVisible;
-            WeatherForecastList.IsVisible = !WeatherForecastList.IsVisible;
-        }
     }
 
-
-
-
-    public class Weather
-    {
-        public string Temp { get; set; }
-        public string Date { get; set; }
-        public string Icon { get; set; }
-    }
 }
