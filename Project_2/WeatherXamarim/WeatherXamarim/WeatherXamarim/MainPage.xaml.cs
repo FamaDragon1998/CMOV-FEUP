@@ -10,6 +10,7 @@ using WeatherApp;
 using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace WeatherXamarim
 {
@@ -18,20 +19,84 @@ namespace WeatherXamarim
     [DesignTimeVisible(false)]
 
 
+
+
     public partial class MainPage : ContentPage
     {
         RootObjectForecast forecastRoot;
+        private ToolbarItem _saveAddToolBarItem, _saveAddToolBarItem2;
+        public List<String> AllCities;
+        public List<String> FavoriteCities;
 
         public MainPage()
         {
             InitializeComponent();
+            SetupCities();
+            _saveAddToolBarItem = new ToolbarItem()
+            { IconImageSource = "list.png" };
+            ToolbarItems.Add(_saveAddToolBarItem);
+            _saveAddToolBarItem.Clicked += _saveAddToolBarItem_Clicked;
+
+            _saveAddToolBarItem2 = new ToolbarItem()
+            { IconImageSource = "grid.png" };
+            ToolbarItems.Add(_saveAddToolBarItem2);
+            _saveAddToolBarItem2.Clicked += _saveAddToolBarItem_Clicked2;
+
 
             this.BindingContext = this;
-            Title = "Porto" + ", Portugal";
-            GetServerInformation("porto", "weather");
-            GetServerInformation("porto", "forecast");
+            MakeRequest(FavoriteCities[0]);
         }
-       
+
+        public void MakeRequest(string city)
+        {
+            Title = city + ", Portugal";
+            city = city.ToLower();
+            GetServerInformation(city, "weather");
+            GetServerInformation(city, "forecast");
+        }
+
+        private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = addcity;
+            var selectedItem = (String) picker.SelectedItem; // This is the model selected in the picker
+           // Picker picker2 = favoritecities;
+           // var favoritecities =  picker2;
+            Debug.WriteLine("city", selectedItem);
+            var count = 0;
+            
+            if (!FavoriteCities.Contains(selectedItem))
+            {
+                FavoriteCities.Add(selectedItem);
+                favoritecities.Items.Add(selectedItem);
+                foreach (String city in FavoriteCities)
+                {
+
+                    Console.WriteLine($"Element #{count}: {city}");
+                    count++;
+                }
+                
+                OnPropertyChanged("favoritecities");
+
+            }
+        }
+
+        private void OnPickerSelectedIndexChanged2(object sender, EventArgs e)
+        {
+            Picker picker = favoritecities;
+            var selectedItem = (String)picker.SelectedItem; // This is the model selected in the picker
+            MakeRequest(selectedItem);       
+        }
+
+        private void _saveAddToolBarItem_Clicked(object sender, System.EventArgs e)
+        {
+            addcity.Focus();
+        }
+
+        private void _saveAddToolBarItem_Clicked2(object sender, System.EventArgs e)
+        {
+            favoritecities.Focus();
+        }
+
         public void GetServerInformation(string city, string type)
         {
             Debug.WriteLine("aqui"); // Call the Result
@@ -64,7 +129,7 @@ namespace WeatherXamarim
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
             SetBackgroundImage(root.weather[0].description);
             // TODO: ver isto
-            if (root.rain != null ) {
+            if (root.rain != null) {
                 Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
                 if (root.rain.__invalid_name__1h > 0)
                     Description.Text += " (" + root.rain.__invalid_name__1h.ToString() + " mm)";
@@ -76,7 +141,7 @@ namespace WeatherXamarim
             Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
         }
 
-      
+
         private void BindForecastInformation(RootObjectForecast root)
         {
             root.list.RemoveRange(8, root.list.Count - 8);
@@ -87,7 +152,7 @@ namespace WeatherXamarim
 
         private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
-            List info = (List) e.Item;
+            List info = (List)e.Item;
             await Navigation.PushAsync(new ForecastDetailPage(info));
         }
 
@@ -134,7 +199,46 @@ namespace WeatherXamarim
             }
         }
 
+        private void SetupCities()
+        {
+            FavoriteCities = new List<String>() {"Porto"};
+            AllCities = new List<String>()
+            {
+               "Aveiro",
+               "Beja",
+               "Braga",
+               "Bragança",
+               "Castelo Branco",
+               "Coimbra",
+               "Évora",
+               "Faro",
+               "Guarda",
+               "Leiria",
+               "Lisboa",
+               "Portalegre",
+               "Porto",
+               "Santarém",
+               "Setúbal",
+               "Viana do Castelo",
+               "Vila Real",
+               "Viseu"
+            };
+            addcity.ItemsSource = AllCities;
+            favoritecities.Items.Add(FavoriteCities[0]);
+        }
 
+
+
+    }
+
+    public class Districts
+    {
+        public string Name { get; set; }
+
+        public Districts(string name)
+        {
+            Name = name;
+        }
     }
 
 }
