@@ -103,6 +103,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="add.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
@@ -130,7 +131,29 @@
     <Content Include="Assets\Wide310x150Logo.scale-100.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <Content Include="bg.png" />
+    <Content Include="cloudiness.png" />
+    <Content Include="cloudy.png" />
+    <Content Include="dashboard.png" />
+    <Content Include="grid.png" />
+    <Content Include="gridcolor.png" />
+    <Content Include="humidity.png" />
+    <Content Include="list.png" />
+    <Content Include="listcolor.png" />
+    <Content Include="menu.png" />
+    <Content Include="mist.png" />
+    <Content Include="overlay.png" />
+    <Content Include="place.png" />
+    <Content Include="pressure.png" />
     <Content Include="Properties\Default.rd.xml" />
+    <Content Include="rainy.png" />
+    <Content Include="settings.png" />
+    <Content Include="slightlycloudy.png" />
+    <Content Include="snow.png" />
+    <Content Include="sunny.png" />
+    <Content Include="weather.png" />
+    <Content Include="wind.png" />
+    <Content Include="zeushatesyou.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

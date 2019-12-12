@@ -64,9 +64,15 @@ C:\Users\Ricardo\Documents\GitHub\WeatherXamarim\WeatherXamarim\WeatherXamarim.i
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\WeatherXamarim.iOS.exe.config
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\WeatherXamarim.iOS.exe
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\WeatherXamarim.iOS.pdb
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.dll
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.iOS.dll
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.Forms.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\System.Net.Http.Extensions.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\System.Net.Http.Primitives.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Newtonsoft.Json.dll
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.dll
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.Views.iOS.dll
+C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.Views.Forms.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\System.Net.Http.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Plugin.Connectivity.Abstractions.dll
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Plugin.Connectivity.Abstractions.pdb
@@ -130,9 +136,3 @@ C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamari
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\obj\iPhone\Debug\WeatherXamarim.iOS.csproj.CopyComplete
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\obj\iPhone\Debug\WeatherXamarim.iOS.exe
 C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\obj\iPhone\Debug\WeatherXamarim.iOS.pdb
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.dll
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.iOS.dll
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\Microcharts.Forms.dll
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.dll
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.Views.iOS.dll
-C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.iOS\bin\iPhone\Debug\SkiaSharp.Views.Forms.dll

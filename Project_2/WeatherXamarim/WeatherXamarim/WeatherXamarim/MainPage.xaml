@@ -78,8 +78,7 @@
         </Frame>
         <StackLayout Grid.Row="2" BackgroundColor="Transparent" Orientation="Horizontal" Margin="20" HorizontalOptions="Center" HeightRequest="200">
             <Label Text="24 hour Forecast" TextColor="#7D7D7D" FontSize="20"  HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
-            <Button Text="Chart" Clicked="ForecastChart_clicked" HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
-
+            <ImageButton Source="chart.png" Clicked="ForecastChart_clicked" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
 
 

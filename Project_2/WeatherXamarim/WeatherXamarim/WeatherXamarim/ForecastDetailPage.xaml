@@ -23,32 +23,32 @@
 
             <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Description" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.weather[0].description}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name ="Description" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Description" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.weather[0].description}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name ="coiso" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Humidity" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.main.humidity}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name ="Humidity" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Cloudiness" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.clouds.all}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name ="Clouds"  TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Wind Speed" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.wind.speed)}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name="Wind_Speed" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
             <StackLayout Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" VerticalOptions="Center">
                 <Label Text="Wind angle" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-                <Label Text="{Binding info.wind.deg}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
+                <Label x:Name="Wind_Deg" Text="{Binding info.wind.deg}" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
             </StackLayout>
 
         </Grid>

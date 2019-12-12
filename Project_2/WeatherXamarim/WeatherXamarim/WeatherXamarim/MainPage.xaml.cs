@@ -32,15 +32,16 @@ namespace WeatherXamarim
         {
             InitializeComponent();
             SetupCities();
-            _saveAddToolBarItem = new ToolbarItem()
-            { IconImageSource = "list.png" };
-            ToolbarItems.Add(_saveAddToolBarItem);
-            _saveAddToolBarItem.Clicked += _saveAddToolBarItem_Clicked;
-
+   
             _saveAddToolBarItem2 = new ToolbarItem()
-            { IconImageSource = "grid.png" };
+            { IconImageSource = "fav.png" };
             ToolbarItems.Add(_saveAddToolBarItem2);
             _saveAddToolBarItem2.Clicked += _saveAddToolBarItem_Clicked2;
+
+            _saveAddToolBarItem = new ToolbarItem()
+            { IconImageSource = "add.png" };
+            ToolbarItems.Add(_saveAddToolBarItem);
+            _saveAddToolBarItem.Clicked += _saveAddToolBarItem_Clicked;
 
 
             this.BindingContext = this;
@@ -175,28 +176,30 @@ namespace WeatherXamarim
                 case "scattered clouds":
                     WeatherBackground.Source = "slightlycloudy.png";
                     break;
-                case "broken clouds":
-                    WeatherBackground.Source = "cloudy.png";
-                    break;
-                case "shower rain":
-                    WeatherBackground.Source = "rainy.png";
-                    break;
-                case "rain":
-                    WeatherBackground.Source = "rainy.png";
-                    break;
                 case "thunderstorm":
                     WeatherBackground.Source = "zeushatesyou.png";
                     break;
-                case "mist":
-                    WeatherBackground.Source = "mist.png";
-                    break;
-                case "snow":
-                    WeatherBackground.Source = "snow.png";
-                    break;
                 default:
-                    WeatherBackground.Source = "overlay.png";
+                    if (description.Contains("rain"))
+                    {
+                        WeatherBackground.Source = "rainy.png";
+                    }
+                    else if (description.Contains("clouds"))
+                    {
+                        WeatherBackground.Source = "cloudy.png";
+                    }
+                    else if (description.Contains("mist"))
+                    {
+                        WeatherBackground.Source = "mist.png";
+                    }
+                    else if (description.Contains("snow"))
+                    {
+                        WeatherBackground.Source = "snow.png";
+                    }
+                    else WeatherBackground.Source = "overlay.png";
                     break;
             }
+        
         }
 
         private void SetupCities()
