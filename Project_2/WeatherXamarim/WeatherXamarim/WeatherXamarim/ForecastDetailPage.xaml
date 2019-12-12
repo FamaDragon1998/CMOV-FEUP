@@ -9,7 +9,7 @@
     
     <ContentPage.Content>
 
-        <Grid VerticalOptions="CenterAndExpand">
+        <Grid VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
