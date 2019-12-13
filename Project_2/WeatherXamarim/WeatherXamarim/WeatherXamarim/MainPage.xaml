@@ -15,22 +15,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackLayout>
-            <Picker Title="Add a city" 
+            <Picker Title="Add a city to your favorites" 
                     x:Name="addcity"
                     TitleColor="Red" 
                     SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
 
         </StackLayout>
         <StackLayout>
-            <Picker Title="Which city" 
+            <Picker Title="Pick a city" 
                     x:Name="favoritecities"
                     TitleColor="Red" 
                     SelectedIndexChanged="OnPickerSelectedIndexChanged2"/>
-
         </StackLayout>
 
-        <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="250" VerticalOptions="StartAndExpand"/>
-        <StackLayout Orientation="Vertical" Margin="0,20" HorizontalOptions="Center" VerticalOptions="Center">
+        <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="210" VerticalOptions="StartAndExpand"/>
+        <StackLayout Orientation="Vertical" Margin="0,20" HorizontalOptions="Center" VerticalOptions="Start">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label x:Name ="CurrentTemperature" Text="12" TextColor="{StaticResource PrimaryColour}" FontSize="70" FontAttributes="Bold" VerticalOptions="Center"/>
                 <Label Text="°C" TextColor="{StaticResource PrimaryColour}" FontSize="34" VerticalOptions="Center"/>
@@ -38,7 +37,7 @@
             <Label x:Name ="Description" Text="Light intensity drizzle rain" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
             <Label x:Name ="Date" Text="June 15, 09:03 AM" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
         </StackLayout>
-        <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="320" VerticalOptions="Start">
+        <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="250" VerticalOptions="Start">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -47,28 +46,28 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                    <Image Source="humidity.png" HeightRequest="25" HorizontalOptions="Center"/>
+                    <Image Source="humidity.png" HeightRequest="20" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="Humidity" Text="50%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label  Text="Humidity" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                    <Image Source="wind.png" HeightRequest="25" HorizontalOptions="Center"/>
+                    <Image Source="wind.png" HeightRequest="20" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="Wind" Text="2.6 m/s" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Wind" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                    <Image Source="pressure.png" HeightRequest="25" HorizontalOptions="Center"/>
+                    <Image Source="pressure.png" HeightRequest="20" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="Pressure" Text="1011 hpa" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Pressure" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="3" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
-                    <Image Source="cloudiness.png" HeightRequest="25" HorizontalOptions="Center"/>
+                    <Image Source="cloudiness.png" HeightRequest="20" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="Cloudiness" Text="24%" TextColor="Black" FontSize="14" FontAttributes="Bold" HorizontalOptions="Center"/>
                         <Label Text="Cloudiness" TextColor="#7D7D7D" FontSize="11" HorizontalOptions="Center"/>
@@ -76,7 +75,7 @@
                 </StackLayout>
             </Grid>
         </Frame>
-        <StackLayout Grid.Row="2" BackgroundColor="Transparent" Orientation="Horizontal" Margin="20" HorizontalOptions="Center" HeightRequest="200">
+        <StackLayout Grid.Row="2" BackgroundColor="Transparent" Orientation="Horizontal" Margin="10" HorizontalOptions="Center" >
             <Label Text="24 hour Forecast" TextColor="#7D7D7D" FontSize="20"  HorizontalOptions="FillAndExpand" VerticalOptions="Start"/>
             <ImageButton Source="chart.png" Clicked="ForecastChart_clicked" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
         </StackLayout>
@@ -93,9 +92,6 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
-                                    <!--  <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/> -->
                                 </Grid.ColumnDefinitions>
 
                                 <StackLayout Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
