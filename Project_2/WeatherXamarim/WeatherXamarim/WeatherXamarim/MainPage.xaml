@@ -37,7 +37,7 @@
             <Label x:Name ="Description" Text="Light intensity drizzle rain" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
             <Label x:Name ="Date" Text="June 15, 09:03 AM" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
         </StackLayout>
-        <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="250" VerticalOptions="Start">
+        <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="225" VerticalOptions="Start">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -86,7 +86,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate >
                     <ViewCell>
-                        <Frame BackgroundColor="White" BorderColor="#F0F0F0" Padding="3" Margin="0,0,0,5" HasShadow="False">
+                        <Frame BackgroundColor="White" CornerRadius="5" BorderColor="#cfcfcf" Padding="3" Margin="0,0,0,5" HasShadow="False">
                             <Grid HeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -113,6 +113,7 @@
 
                                     <StackLayout Spacing="3" HorizontalOptions="CenterAndExpand">
                                         <Label Text="{Binding main.TempDifference}" TextColor="Red" FontSize="12" FontAttributes="Bold" HorizontalOptions="Center"/>
+                                        <Label Text="Max   Min" FontSize="11" FontAttributes="Bold" HorizontalOptions="Center"/>
                                     </StackLayout>
                                 </StackLayout>
 

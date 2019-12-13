@@ -21,7 +21,16 @@ namespace WeatherApp.Models
 
             get
             {
-                return string.Format("{0} / {1}", temp_max, temp_min);
+                return string.Format("{0} / {1}", temp_max.ToString("0"), temp_min.ToString("0"));
+            }
+        }
+
+        public string tempRound
+        {
+
+            get
+            {
+                return Math.Round(temp).ToString("0.0");
             }
         }
     }

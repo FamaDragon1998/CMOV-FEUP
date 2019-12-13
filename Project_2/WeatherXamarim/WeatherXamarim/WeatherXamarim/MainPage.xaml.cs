@@ -109,7 +109,7 @@ namespace WeatherXamarim
         }
         private void BindWeatherInformation(RootObjectWeather root)
         {
-            CurrentTemperature.Text = root.main.temp.ToString();
+            CurrentTemperature.Text = root.main.temp.ToString("0.0");
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
             SetBackgroundImage(root.weather[0].description);
             if (root.rain != null) {

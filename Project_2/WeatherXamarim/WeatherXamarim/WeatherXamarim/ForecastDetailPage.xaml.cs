@@ -15,7 +15,7 @@ namespace WeatherXamarim
             InitializeComponent();
             Title = info.Date + " Forecast";
             WeatherBackground.Source = info.weather[0].IconUrl;
-            temperature.Text = info.main.temp.ToString();
+            temperature.Text = info.main.temp.ToString("0.0");
            /* Humidity.Text = info.main.humidity.ToString() + "%";
             Clouds.Text = info.clouds.all.ToString() + "%";
             Wind_Speed.Text = info.wind.speed.ToString() + " m/s";
