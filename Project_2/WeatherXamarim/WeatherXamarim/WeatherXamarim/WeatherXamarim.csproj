@@ -25,10 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="ForecastChart.xaml">
+    <EmbeddedResource Update="Pages\ForecastChart.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="ForecastDetailPage.xaml">
+    <EmbeddedResource Update="Pages\ForecastDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
