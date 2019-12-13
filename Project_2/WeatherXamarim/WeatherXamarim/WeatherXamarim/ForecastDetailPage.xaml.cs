@@ -12,10 +12,12 @@ namespace WeatherXamarim
         
         public ForecastDetailPage(List info)
         {
-
+            
             InitializeComponent();
             Title = info.Date + " Forecast";
-            Humidity.Text = info.main.humidity.ToString() + "%";
+            WeatherBackground.Source = info.weather[0].IconUrl;
+            temperature.Text = info.main.temp.ToString();
+           /* Humidity.Text = info.main.humidity.ToString() + "%";
             Clouds.Text = info.clouds.all.ToString() + "%";
             Wind_Speed.Text = info.wind.speed.ToString() + " m/s";
             Wind_Deg.Text = info.wind.deg.ToString() + "º";
@@ -25,7 +27,7 @@ namespace WeatherXamarim
             {
                 if (info.rain.__invalid_name__3h > 0)
                     Description.Text += " (" + info.rain.__invalid_name__3h.ToString() + " mm)";
-            }
+            }*/
         }
     }
 }
