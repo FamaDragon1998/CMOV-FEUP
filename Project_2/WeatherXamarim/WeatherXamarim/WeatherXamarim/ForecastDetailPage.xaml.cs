@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using WeatherApp.Models;
+﻿using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

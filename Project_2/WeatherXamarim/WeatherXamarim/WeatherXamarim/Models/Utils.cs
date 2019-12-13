@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace WeatherXamarim.Models
 {
@@ -16,6 +14,7 @@ namespace WeatherXamarim.Models
                 default: return input.First().ToString().ToUpper() + input.Substring(1);
             }
         }
+      
     }
 }
 
