@@ -1,6 +1,4 @@
-﻿using Microcharts;
-using Newtonsoft.Json;
-using SkiaSharp;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,16 +8,12 @@ using WeatherApp;
 using WeatherApp.Models;
 using WeatherXamarim.Models;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
 
 namespace WeatherXamarim
 {
     // Learn more about making custom code visible in the Xamarin.Forms previewer
     // by visiting https://aka.ms/xamarinforms-previewer
     [DesignTimeVisible(false)]
-
-
-
 
     public partial class MainPage : ContentPage
     {
@@ -60,21 +54,11 @@ namespace WeatherXamarim
         {
             Picker picker = addcity;
             var selectedItem = (String) picker.SelectedItem; // This is the model selected in the picker
-           // Picker picker2 = favoritecities;
-           // var favoritecities =  picker2;
-            Debug.WriteLine("city", selectedItem);
-            var count = 0;
             
             if (!FavoriteCities.Contains(selectedItem))
             {
                 FavoriteCities.Add(selectedItem);
                 favoritecities.Items.Add(selectedItem);
-                foreach (String city in FavoriteCities)
-                {
-
-                    Console.WriteLine($"Element #{count}: {city}");
-                    count++;
-                }
                 
                 OnPropertyChanged("favoritecities");
 
@@ -100,7 +84,6 @@ namespace WeatherXamarim
 
         public void GetServerInformation(string city, string type)
         {
-            Debug.WriteLine("aqui"); // Call the Result
             Task<string> result = NetworkCheck.GetJSON(city, type);
             if (result == null)
             {
@@ -129,7 +112,6 @@ namespace WeatherXamarim
             CurrentTemperature.Text = root.main.temp.ToString();
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
             SetBackgroundImage(root.weather[0].description);
-            // TODO: ver isto
             if (root.rain != null) {
                 Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
                 if (root.rain.__invalid_name__1h > 0)
@@ -148,7 +130,6 @@ namespace WeatherXamarim
             root.list.RemoveRange(8, root.list.Count - 8);
             WeatherForecastList.ItemsSource = root.list;
             forecastRoot = root;
-
         }
 
         private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
@@ -229,9 +210,6 @@ namespace WeatherXamarim
             addcity.ItemsSource = AllCities;
             favoritecities.Items.Add(FavoriteCities[0]);
         }
-
-
-
     }
 
     public class Districts

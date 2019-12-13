@@ -1,11 +1,7 @@
 ﻿using Plugin.Connectivity;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Threading.Tasks;
-using WeatherApp.Models;
-using Xamarin.Forms;
 
 namespace WeatherApp
 {
@@ -28,7 +24,6 @@ namespace WeatherApp
         }
 
 
-
         public static async Task<string> GetJSON(string city, string type)
         {
             //Check network status   
@@ -37,7 +32,7 @@ namespace WeatherApp
                 Debug.WriteLine("has internet");
 
                 var client = new System.Net.Http.HttpClient();
-                var url = urlAuthority + type + "?q="+city+",portugal&units=metric&appid=" + appid;
+                var url = urlAuthority + type + "?q="+city+",pt&units=metric&appid=" + appid;
                 Debug.WriteLine("url", url);
                 var response = await client.GetAsync(url).ConfigureAwait(false);
                 response.EnsureSuccessStatusCode();
@@ -54,8 +49,6 @@ namespace WeatherApp
                 return null;
 
             }
-            //Hide loader after server response    
-            // ProgressLoader.IsVisible = false;
         }
        
     }
