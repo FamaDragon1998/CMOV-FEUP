@@ -69,15 +69,7 @@ namespace WeatherXamarim
         }
 
         private void RemoveCitySelectedIndexChanged(object sender, EventArgs e)
-        {
-            Picker picker = removeCities;
-            var selectedItem = (string)picker.SelectedItem; // This is the model selected in the picker
-            
-            FavoriteCities.Remove(selectedItem);
-            favoritecities.Items.Remove(selectedItem);  // It's removing all the cities.
-            picker.Items.Remove(selectedItem);
-
-        }
+        {}
 
         private void FavoriteCitiesSelectedIndexChanged(object sender, EventArgs e)
         {
@@ -160,6 +152,24 @@ namespace WeatherXamarim
         private void favoriteButton_Clicked(object sender, System.EventArgs e)
         {
             favoritecities.Focus();
+        }
+
+
+        private void removeCities_Unfocused(object sender, FocusEventArgs e)
+        {
+            Picker picker = removeCities;
+            Debug.WriteLine("size", removeCities.Items.Count.ToString());
+
+            var selectedItem = (string)picker.SelectedItem; // This is the model selected in the picker
+            Debug.WriteLine("inddex init : ", picker.SelectedIndex);
+
+            FavoriteCities.Remove(selectedItem);
+            favoritecities.Items.Remove(selectedItem);
+            picker.Items.Remove(selectedItem);
+            Debug.WriteLine("inddex end: ", picker.SelectedIndex);
+            picker.SelectedItem = null;
+            OnPropertyChanged("removeCities");
+
         }
 
         private void removeCityButton_Clicked(object sender, System.EventArgs e)

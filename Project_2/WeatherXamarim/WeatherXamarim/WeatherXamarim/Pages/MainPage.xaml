@@ -14,19 +14,22 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        
         <StackLayout>
             <Picker Title="Add a city to your favorites" 
                     x:Name="addcity"
                     TitleColor="Red" 
                     SelectedIndexChanged="AddCitySelectedIndexChanged"/>
-
         </StackLayout>
+        
         <StackLayout>
             <Picker Title="Remove a city from your favorites" 
                     x:Name="removeCities"
                     TitleColor="Red" 
+                    Unfocused="removeCities_Unfocused"
                     SelectedIndexChanged="RemoveCitySelectedIndexChanged"/>
         </StackLayout>
+        
         <StackLayout>
             <Picker Title="Pick a city" 
                     x:Name="favoritecities"
