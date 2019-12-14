@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         
-        <StackLayout>
+        <StackLayout >
             <Picker Title="Add a city to your favorites" 
                     x:Name="addcity"
                     TitleColor="Red" 
