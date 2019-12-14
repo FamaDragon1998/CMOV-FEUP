@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-12-13T14:56:40.342</Modified>
+      <Modified>2019-12-14T17:54:28.323</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\WeatherXamarim.UWP.exe">
       <PackagePath>entrypoint\WeatherXamarim.UWP.exe</PackagePath>
-      <Modified>2019-12-13T14:56:38.473</Modified>
+      <Modified>2019-12-14T17:54:25.971</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\.nuget\packages\microcharts\0.7.1\lib\uap\Microcharts.Uwp.dll">
       <PackagePath>Microcharts.Uwp.dll</PackagePath>
@@ -128,7 +128,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim\bin\Debug\netstandard2.0\WeatherXamarim.dll">
       <PackagePath>WeatherXamarim.dll</PackagePath>
-      <Modified>2019-12-13T13:54:14.549</Modified>
+      <Modified>2019-12-14T17:31:07.041</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Microsoft\Xamarin\NuGet\win2d.uwp\1.20.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -140,11 +140,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim\bin\Debug\netstandard2.0\WeatherXamarim.dll.config">
       <PackagePath>WeatherXamarim.dll.config</PackagePath>
-      <Modified>2019-12-13T11:53:33.878</Modified>
+      <Modified>2019-12-13T15:01:08.296</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\add.png">
       <PackagePath>add.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.580</Modified>
+      <Modified>2019-12-12T16:32:06.532</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
@@ -184,7 +184,7 @@
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-200.png">
       <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.535</Modified>
+      <Modified>2019-12-14T17:47:28.342</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-400.png">
       <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
@@ -283,91 +283,107 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bg.png">
       <PackagePath>bg.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.581</Modified>
+      <Modified>2019-11-28T17:16:49.512</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\chart.png">
+      <PackagePath>chart.png</PackagePath>
+      <Modified>2019-12-12T16:51:36.420</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\cloudiness.png">
       <PackagePath>cloudiness.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.583</Modified>
+      <Modified>2019-11-28T17:16:49.512</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\cloudy.png">
       <PackagePath>cloudy.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.585</Modified>
+      <Modified>2019-11-30T18:47:30.435</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\dashboard.png">
       <PackagePath>dashboard.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.587</Modified>
+      <Modified>2019-11-28T17:16:49.513</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\fav.png">
+      <PackagePath>fav.png</PackagePath>
+      <Modified>2019-12-12T16:32:06.540</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\grid.png">
       <PackagePath>grid.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.588</Modified>
+      <Modified>2019-11-28T17:16:49.513</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\gridcolor.png">
-      <PackagePath>gridcolor.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.590</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\gridColor.png">
+      <PackagePath>gridColor.png</PackagePath>
+      <Modified>2019-11-28T17:16:49.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\humidity.png">
       <PackagePath>humidity.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.592</Modified>
+      <Modified>2019-11-28T17:16:49.514</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\list.png">
       <PackagePath>list.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.539</Modified>
+      <Modified>2019-11-28T17:16:49.515</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\listcolor.png">
-      <PackagePath>listcolor.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.541</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\listColor.png">
+      <PackagePath>listColor.png</PackagePath>
+      <Modified>2019-11-28T17:16:49.515</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\menu.png">
       <PackagePath>menu.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.542</Modified>
+      <Modified>2019-11-28T17:16:49.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\mist.png">
       <PackagePath>mist.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.546</Modified>
+      <Modified>2019-12-03T10:55:03.344</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\overlay.png">
       <PackagePath>overlay.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.548</Modified>
+      <Modified>2019-11-28T17:16:49.516</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\place.png">
       <PackagePath>place.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.550</Modified>
+      <Modified>2019-11-28T17:16:49.517</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\pressure.png">
       <PackagePath>pressure.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.552</Modified>
+      <Modified>2019-11-28T17:16:49.517</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\rainy.png">
       <PackagePath>rainy.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.554</Modified>
+      <Modified>2019-11-30T18:47:30.439</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\remove.png">
+      <PackagePath>remove.png</PackagePath>
+      <Modified>2019-12-14T14:28:34.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\settings.png">
       <PackagePath>settings.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.556</Modified>
+      <Modified>2019-11-28T17:16:49.518</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\slightlycloudy.png">
       <PackagePath>slightlycloudy.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.559</Modified>
+      <Modified>2019-11-30T18:47:30.443</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\snow.png">
       <PackagePath>snow.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.562</Modified>
+      <Modified>2019-12-03T10:55:03.350</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\splash_logo.png">
+      <PackagePath>splash_logo.png</PackagePath>
+      <Modified>2019-12-14T17:27:29.869</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\sunny.png">
       <PackagePath>sunny.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.564</Modified>
+      <Modified>2019-11-30T18:47:30.443</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\weather.png">
       <PackagePath>weather.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.571</Modified>
+      <Modified>2019-11-28T17:16:49.518</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\wind.png">
       <PackagePath>wind.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.573</Modified>
+      <Modified>2019-11-28T17:16:49.518</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\zeushatesyou.png">
       <PackagePath>zeushatesyou.png</PackagePath>
-      <Modified>2019-12-12T14:33:22.577</Modified>
+      <Modified>2019-11-30T18:47:30.447</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Properties\Default.rd.xml">
       <PackagePath>Properties\Default.rd.xml</PackagePath>
@@ -379,15 +395,15 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\Microsoft.UI.Xaml\DensityStyles\Compact.xbf">
       <PackagePath>Microsoft.UI.Xaml\DensityStyles\Compact.xbf</PackagePath>
-      <Modified>2019-12-13T14:56:38.282</Modified>
+      <Modified>2019-12-14T17:54:25.720</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2019-12-13T14:56:38.282</Modified>
+      <Modified>2019-12-14T17:54:25.720</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2019-12-13T14:56:38.282</Modified>
+      <Modified>2019-12-14T17:54:25.721</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Program Files %28x86%29\Microsoft SDKs\Windows Kits\10\ExtensionSDKs\Microsoft.UniversalCRT.Debug\10.0.18362.0\\redist\Debug\x86\ucrtbased.dll">
       <PackagePath>ucrtbased.dll</PackagePath>
@@ -407,11 +423,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-12-13T11:53:48.596</Modified>
+      <Modified>2019-12-14T17:54:26.803</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\Core\WeatherXamarim.UWP.exe">
       <PackagePath>WeatherXamarim.UWP.exe</PackagePath>
-      <Modified>2019-12-13T14:56:40.319</Modified>
+      <Modified>2019-12-14T17:54:28.315</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

@@ -120,7 +120,7 @@ namespace WeatherXamarim
             Wind.Text = root.wind.speed.ToString() + " m/s";
             Date.Text = DateTime.Today.Date.ToString("dd/MM/yyyy");
         }
-
+        
 
         private void BindForecastInformation(RootObjectForecast root)
         {
@@ -158,15 +158,10 @@ namespace WeatherXamarim
         private void removeCities_Unfocused(object sender, FocusEventArgs e)
         {
             Picker picker = removeCities;
-            Debug.WriteLine("size", removeCities.Items.Count.ToString());
-
             var selectedItem = (string)picker.SelectedItem; // This is the model selected in the picker
-            Debug.WriteLine("inddex init : ", picker.SelectedIndex);
-
             FavoriteCities.Remove(selectedItem);
             favoritecities.Items.Remove(selectedItem);
             picker.Items.Remove(selectedItem);
-            Debug.WriteLine("inddex end: ", picker.SelectedIndex);
             picker.SelectedItem = null;
             OnPropertyChanged("removeCities");
 
