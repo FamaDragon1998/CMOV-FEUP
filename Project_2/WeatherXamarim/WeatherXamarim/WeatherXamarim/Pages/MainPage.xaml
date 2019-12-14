@@ -18,14 +18,20 @@
             <Picker Title="Add a city to your favorites" 
                     x:Name="addcity"
                     TitleColor="Red" 
-                    SelectedIndexChanged="OnPickerSelectedIndexChanged"/>
+                    SelectedIndexChanged="AddCitySelectedIndexChanged"/>
 
+        </StackLayout>
+        <StackLayout>
+            <Picker Title="Remove a city from your favorites" 
+                    x:Name="removeCities"
+                    TitleColor="Red" 
+                    SelectedIndexChanged="RemoveCitySelectedIndexChanged"/>
         </StackLayout>
         <StackLayout>
             <Picker Title="Pick a city" 
                     x:Name="favoritecities"
                     TitleColor="Red" 
-                    SelectedIndexChanged="OnPickerSelectedIndexChanged2"/>
+                    SelectedIndexChanged="FavoriteCitiesSelectedIndexChanged"/>
         </StackLayout>
 
         <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="210" VerticalOptions="StartAndExpand"/>

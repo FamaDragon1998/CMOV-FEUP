@@ -18,7 +18,7 @@ namespace WeatherXamarim
     public partial class MainPage : ContentPage
     {
         RootObjectForecast forecastRoot;
-        private ToolbarItem _saveAddToolBarItem, _saveAddToolBarItem2;
+        private ToolbarItem addCityButton, favoritesButton, removeCityButton;
         public List<String> AllCities;
         public List<String> FavoriteCities;
 
@@ -26,19 +26,23 @@ namespace WeatherXamarim
         {
             InitializeComponent();
             SetupCities();
-   
-            _saveAddToolBarItem2 = new ToolbarItem()
-            { IconImageSource = "fav.png" };
-            ToolbarItems.Add(_saveAddToolBarItem2);
-            _saveAddToolBarItem2.Clicked += _saveAddToolBarItem_Clicked2;
 
-            _saveAddToolBarItem = new ToolbarItem()
+            addCityButton = new ToolbarItem()
             { IconImageSource = "add.png" };
-            ToolbarItems.Add(_saveAddToolBarItem);
-            _saveAddToolBarItem.Clicked += _saveAddToolBarItem_Clicked;
+            ToolbarItems.Add(addCityButton);
+            addCityButton.Clicked += addCityButton_Clicked;
 
+            favoritesButton = new ToolbarItem()
+            { IconImageSource = "fav.png" };
+            ToolbarItems.Add(favoritesButton);
+            favoritesButton.Clicked += favoriteButton_Clicked;
+            
+            removeCityButton = new ToolbarItem()
+            { IconImageSource = "remove.png" };
+            ToolbarItems.Add(removeCityButton);
+            removeCityButton.Clicked += removeCityButton_Clicked;
 
-            this.BindingContext = this;
+            BindingContext = this;
             MakeRequest(FavoriteCities[0]);
         }
 
@@ -50,7 +54,7 @@ namespace WeatherXamarim
             GetServerInformation(city, "forecast");
         }
 
-        private void OnPickerSelectedIndexChanged(object sender, EventArgs e)
+        private void AddCitySelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = addcity;
             var selectedItem = (String) picker.SelectedItem; // This is the model selected in the picker
@@ -59,28 +63,29 @@ namespace WeatherXamarim
             {
                 FavoriteCities.Add(selectedItem);
                 favoritecities.Items.Add(selectedItem);
-                
+                removeCities.Items.Add(selectedItem);
                 OnPropertyChanged("favoritecities");
-
             }
         }
 
-        private void OnPickerSelectedIndexChanged2(object sender, EventArgs e)
+        private void RemoveCitySelectedIndexChanged(object sender, EventArgs e)
+        {
+            Picker picker = removeCities;
+            var selectedItem = (string)picker.SelectedItem; // This is the model selected in the picker
+            
+            FavoriteCities.Remove(selectedItem);
+            favoritecities.Items.Remove(selectedItem);  // It's removing all the cities.
+            picker.Items.Remove(selectedItem);
+
+        }
+
+        private void FavoriteCitiesSelectedIndexChanged(object sender, EventArgs e)
         {
             Picker picker = favoritecities;
             var selectedItem = (String)picker.SelectedItem; // This is the model selected in the picker
             MakeRequest(selectedItem);       
         }
 
-        private void _saveAddToolBarItem_Clicked(object sender, System.EventArgs e)
-        {
-            addcity.Focus();
-        }
-
-        private void _saveAddToolBarItem_Clicked2(object sender, System.EventArgs e)
-        {
-            favoritecities.Focus();
-        }
 
         public void GetServerInformation(string city, string type)
         {
@@ -111,7 +116,7 @@ namespace WeatherXamarim
         {
             CurrentTemperature.Text = root.main.temp.ToString("0.0");
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
-            SetBackgroundImage(root.weather[0].description);
+            WeatherBackground.Source = Utils.GetBackgroundImage(root.weather[0].description);
             if (root.rain != null) {
                 Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
                 if (root.rain.__invalid_name__1h > 0)
@@ -132,6 +137,7 @@ namespace WeatherXamarim
             forecastRoot = root;
         }
 
+
         private async void WeatherForecastList_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             List info = (List)e.Item;
@@ -144,44 +150,23 @@ namespace WeatherXamarim
 
         }
 
-        private void SetBackgroundImage(string description)
+
+        // Focusing toolbar items
+        private void addCityButton_Clicked(object sender, System.EventArgs e)
         {
-            switch (description)
-            {
-                case "clear sky":
-                    WeatherBackground.Source = "sunny.png";
-                    break;
-                case "few clouds":
-                    WeatherBackground.Source = "slightlycloudy.png";
-                    break;
-                case "scattered clouds":
-                    WeatherBackground.Source = "slightlycloudy.png";
-                    break;
-                case "thunderstorm":
-                    WeatherBackground.Source = "zeushatesyou.png";
-                    break;
-                default:
-                    if (description.Contains("rain"))
-                    {
-                        WeatherBackground.Source = "rainy.png";
-                    }
-                    else if (description.Contains("clouds"))
-                    {
-                        WeatherBackground.Source = "cloudy.png";
-                    }
-                    else if (description.Contains("mist"))
-                    {
-                        WeatherBackground.Source = "mist.png";
-                    }
-                    else if (description.Contains("snow"))
-                    {
-                        WeatherBackground.Source = "snow.png";
-                    }
-                    else WeatherBackground.Source = "overlay.png";
-                    break;
-            }
-        
+            addcity.Focus();
         }
+
+        private void favoriteButton_Clicked(object sender, System.EventArgs e)
+        {
+            favoritecities.Focus();
+        }
+
+        private void removeCityButton_Clicked(object sender, System.EventArgs e)
+        {
+            removeCities.Focus();
+        }
+
 
         private void SetupCities()
         {
@@ -209,16 +194,7 @@ namespace WeatherXamarim
             };
             addcity.ItemsSource = AllCities;
             favoritecities.Items.Add(FavoriteCities[0]);
-        }
-    }
-
-    public class Districts
-    {
-        public string Name { get; set; }
-
-        public Districts(string name)
-        {
-            Name = name;
+            removeCities.Items.Add(FavoriteCities[0]);
         }
     }
 
