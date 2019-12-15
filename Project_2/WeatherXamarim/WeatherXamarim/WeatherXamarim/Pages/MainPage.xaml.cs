@@ -147,12 +147,22 @@ namespace WeatherXamarim
         private void addCityButton_Clicked(object sender, System.EventArgs e)
         {
             addcity.Focus();
+
         }
 
         private void favoriteButton_Clicked(object sender, System.EventArgs e)
         {
+
             favoritecities.Focus();
         }
+
+
+        private void removeCityButton_Clicked(object sender, System.EventArgs e)
+        {
+
+            removeCities.Focus();
+        }
+
 
 
         private void removeCities_Unfocused(object sender, FocusEventArgs e)
@@ -166,12 +176,6 @@ namespace WeatherXamarim
             OnPropertyChanged("removeCities");
 
         }
-
-        private void removeCityButton_Clicked(object sender, System.EventArgs e)
-        {
-            removeCities.Focus();
-        }
-
 
         private void SetupCities()
         {

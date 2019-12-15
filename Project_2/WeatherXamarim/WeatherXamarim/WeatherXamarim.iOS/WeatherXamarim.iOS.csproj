@@ -24,7 +24,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <MtouchArch>x86_64</MtouchArch>
-    <MtouchLink>None</MtouchLink>
+    <MtouchLink>SdkOnly</MtouchLink>
     <MtouchDebug>true</MtouchDebug>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
@@ -162,5 +162,101 @@
       <Project>{AC42C5E4-CB81-41F3-B0F6-3B862EFCB583}</Project>
       <Name>WeatherXamarim</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\splash_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\sunny.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\weather.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\wind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\zeushatesyou.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\add.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\bg.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\chart.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cloudiness.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\cloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dashboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-568h%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Default-Portrait%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fav.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\grid.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\gridColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\humidity.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\list.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\listColor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\mist.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\overlay.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\place.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\pressure.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\rainy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\remove.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\slightlycloudy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\snow.png" />
   </ItemGroup>
 </Project>

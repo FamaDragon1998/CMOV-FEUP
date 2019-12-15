@@ -22,8 +22,6 @@ namespace WeatherXamarim
             windangle.Text = info.wind.deg.ToString() + "º";
             description.Text = Utils.FirstCharToUpper(info.weather[0].description);
             WeatherBackground.Source = Utils.GetBackgroundImage(info.weather[0].description);
-            date.Text = info.Date.ToString();
-            //SetBackgroundImage(root.weather[0].description);
             /*if (info.rain != null)
             {
                 if (info.rain.__invalid_name__3h > 0)

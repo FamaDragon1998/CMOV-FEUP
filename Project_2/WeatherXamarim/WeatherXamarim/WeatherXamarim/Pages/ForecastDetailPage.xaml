@@ -12,14 +12,13 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="170" VerticalOptions="StartAndExpand"/>
+        <Image x:Name ="WeatherBackground" Source="overlay.png" Aspect="Fill" HeightRequest="200" VerticalOptions="StartAndExpand"/>
         <StackLayout   VerticalOptions="CenterAndExpand"  HorizontalOptions="FillAndExpand">
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Label x:Name ="temperature" Text="12" TextColor="{StaticResource PrimaryColour}" FontSize="70" FontAttributes="Bold" VerticalOptions="Center"/>
                 <Label Text="°C" TextColor="{StaticResource PrimaryColour}" FontSize="34" VerticalOptions="Center"/>
             </StackLayout>
             <Label x:Name ="description" Text="Light intensity drizzle rain" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
-            <Label x:Name ="date" Text="June 15, 09:03 AM" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
         </StackLayout>
 
         <StackLayout  Grid.Row="2"  VerticalOptions="CenterAndExpand"  HorizontalOptions="FillAndExpand">
@@ -32,14 +31,14 @@
                     <Image Source="wind.png" HeightRequest="50" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="wind" Text="2.6 m/s" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Wind" TextColor="#7D7D7D" FontSize="14" HorizontalOptions="Center"/>
+                        <Label Text="Wind Speed" TextColor="#7D7D7D" FontSize="14" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
                 <StackLayout Grid.Column="2" Orientation="Vertical" Spacing="10" HorizontalOptions="CenterAndExpand">
                     <Image Source="pressure.png" HeightRequest="50" HorizontalOptions="Center"/>
                     <StackLayout Spacing="7" HorizontalOptions="CenterAndExpand">
                         <Label x:Name ="windangle" Text="1011 hpa" TextColor="Black" FontSize="18" FontAttributes="Bold" HorizontalOptions="Center"/>
-                        <Label Text="Windangle" TextColor="#7D7D7D" FontSize="14" HorizontalOptions="Center"/>
+                        <Label Text="Wind Angle" TextColor="#7D7D7D" FontSize="14" HorizontalOptions="Center"/>
                     </StackLayout>
                 </StackLayout>
             </Grid>

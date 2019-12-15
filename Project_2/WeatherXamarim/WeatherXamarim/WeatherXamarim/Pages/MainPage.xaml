@@ -46,7 +46,7 @@
             <Label x:Name ="Description" Text="Light intensity drizzle rain" TextColor="{StaticResource PrimaryColour}" FontSize="16" HorizontalOptions="Center"/>
             <Label x:Name ="Date" Text="June 15, 09:03 AM" TextColor="{StaticResource PrimaryColour}" FontSize="12" HorizontalOptions="Center"/>
         </StackLayout>
-        <Frame Grid.Row="1" HasShadow="True" CornerRadius="10" Margin="20,-40,20,0" Padding="0" HeightRequest="225" VerticalOptions="Start">
+        <Frame Grid.Row="1" HasShadow="True" BorderColor="Silver" CornerRadius="10" BackgroundColor="White" Margin="20,-40,20,0" Padding="0" HeightRequest="225" VerticalOptions="Start">
             <Grid HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -96,7 +96,7 @@
                 <DataTemplate >
                     <ViewCell>
                         <Frame BackgroundColor="White" CornerRadius="5" BorderColor="#cfcfcf" Padding="3" Margin="0,0,0,5" HasShadow="False">
-                            <Grid HeightRequest="500" HorizontalOptions="FillAndExpand" VerticalOptions="Start">
+                            <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Start">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="*"/>
