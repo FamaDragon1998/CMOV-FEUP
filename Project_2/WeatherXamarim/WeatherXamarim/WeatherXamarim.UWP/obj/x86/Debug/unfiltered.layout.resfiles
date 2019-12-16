@@ -1,5 +1,7 @@
 WinMetadata\Windows.winmd
 add.png
+app_icon.png
+Assets\app_icon.scale-200.png
 Assets\LargeTile.scale-100.png
 Assets\LargeTile.scale-200.png
 Assets\LargeTile.scale-400.png

@@ -59,6 +59,13 @@
     <CodesignKey>iPhone Developer</CodesignKey>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
   </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>app_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
@@ -259,5 +266,11 @@
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\snow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\app_icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="app_icon.ico" />
   </ItemGroup>
 </Project>

@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="add.png" />
+    <Content Include="Assets\app_icon.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-400.png" />
@@ -148,6 +149,7 @@
     <Content Include="mist.png" />
     <Content Include="overlay.png" />
     <Content Include="place.png" />
+    <Content Include="app_icon.png" />
     <Content Include="pressure.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="rainy.png" />
