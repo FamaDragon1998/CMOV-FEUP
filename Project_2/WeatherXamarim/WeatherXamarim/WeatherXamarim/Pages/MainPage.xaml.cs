@@ -26,25 +26,13 @@ namespace WeatherXamarim
         {
             InitializeComponent();
             SetupCities();
-
-            addCityButton = new ToolbarItem()
-            { IconImageSource = "add.png" };
-            ToolbarItems.Add(addCityButton);
-            addCityButton.Clicked += addCityButton_Clicked;
-
-            favoritesButton = new ToolbarItem()
-            { IconImageSource = "fav.png" };
-            ToolbarItems.Add(favoritesButton);
-            favoritesButton.Clicked += favoriteButton_Clicked;
-            
-            removeCityButton = new ToolbarItem()
-            { IconImageSource = "remove.png" };
-            ToolbarItems.Add(removeCityButton);
-            removeCityButton.Clicked += removeCityButton_Clicked;
+            SetupPickers();
+          
 
             BindingContext = this;
             MakeRequest(FavoriteCities[0]);
         }
+
 
         public void MakeRequest(string city)
         {
@@ -150,6 +138,8 @@ namespace WeatherXamarim
 
         }
 
+
+
         private void favoriteButton_Clicked(object sender, System.EventArgs e)
         {
 
@@ -164,7 +154,6 @@ namespace WeatherXamarim
         }
 
 
-
         private void removeCities_Unfocused(object sender, FocusEventArgs e)
         {
             Picker picker = removeCities;
@@ -175,6 +164,24 @@ namespace WeatherXamarim
             picker.SelectedItem = null;
             OnPropertyChanged("removeCities");
 
+        }
+
+        private void SetupPickers()
+        {
+            addCityButton = new ToolbarItem()
+            { IconImageSource = "add.png" };
+            ToolbarItems.Add(addCityButton);
+            addCityButton.Clicked += addCityButton_Clicked;
+
+            favoritesButton = new ToolbarItem()
+            { IconImageSource = "fav.png" };
+            ToolbarItems.Add(favoritesButton);
+            favoritesButton.Clicked += favoriteButton_Clicked;
+
+            removeCityButton = new ToolbarItem()
+            { IconImageSource = "remove.png" };
+            ToolbarItems.Add(removeCityButton);
+            removeCityButton.Clicked += removeCityButton_Clicked;
         }
 
         private void SetupCities()
