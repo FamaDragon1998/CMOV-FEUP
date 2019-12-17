@@ -26,8 +26,8 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="WeatherXamarim.UWP.exe" EntryPoint="WeatherXamarim.UWP.App">
-      <uap:VisualElements DisplayName="WeatherSans" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\app_icon.png" Description="WeatherSans" BackgroundColor="transparent">
-        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png">
+      <uap:VisualElements DisplayName="WeatherSans" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\app_icon.png" Description="WeatherSans" BackgroundColor="white">
+        <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png" Square310x310Logo="Assets\LargeTile.png" Square71x71Logo="Assets\SmallTile.png" ShortName="WeatherSans">
           <uap:ShowNameOnTiles>
             <uap:ShowOn Tile="square150x150Logo" />
             <uap:ShowOn Tile="wide310x150Logo" />
@@ -155,8 +155,8 @@
   <build:Metadata>
     <build:Item Name="TargetFrameworkMoniker" Value=".NETCore,Version=v5.0" />
     <build:Item Name="VisualStudio" Version="16.0" />
-    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Professional 2019" />
-    <build:Item Name="OperatingSystem" Version="10.0.18362.1 (WinBuild.160101.0800)" />
+    <build:Item Name="VisualStudioEdition" Value="Microsoft Visual Studio Community 2019" />
+    <build:Item Name="OperatingSystem" Version="10.0.17763.1 (WinBuild.160101.0800)" />
     <build:Item Name="Microsoft.Build.AppxPackage.dll" Version="16.0.29311.281" />
     <build:Item Name="ProjectGUID" Value="{D3C7935E-A81A-49F1-A72B-9D50924DE42B}" />
     <build:Item Name="OptimizingToolset" Value="None" />

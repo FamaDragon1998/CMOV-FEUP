@@ -104,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="add.png" />
+    <Content Include="Assets\app_icon.png" />
     <Content Include="Assets\app_icon.scale-200.png" />
     <Content Include="Assets\LargeTile.scale-100.png" />
     <Content Include="Assets\LargeTile.scale-200.png" />
@@ -115,6 +116,11 @@
     <Content Include="Assets\SplashScreen.scale-150.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\SplashScreen.scale-400.png" />
+    <Content Include="Assets\splash_logo.png" />
+    <Content Include="Assets\splash_logo.scale-100.png" />
+    <Content Include="Assets\splash_logo.scale-125.png" />
+    <Content Include="Assets\splash_logo.scale-150.png" />
+    <Content Include="Assets\splash_logo.scale-200.png" />
     <Content Include="Assets\splash_logo.scale-400.png" />
     <Content Include="Assets\Square150x150Logo.scale-100.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
