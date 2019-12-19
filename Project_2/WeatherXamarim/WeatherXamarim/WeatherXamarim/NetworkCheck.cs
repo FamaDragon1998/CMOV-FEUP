@@ -18,7 +18,6 @@ namespace WeatherApp
             }
             else
             {
-                // write your code if there is no Internet available      
                 return false;
             }
         }
@@ -45,9 +44,7 @@ namespace WeatherApp
             }
             else
             {
-                Debug.WriteLine("no internet");
                 return null;
-
             }
         }
        

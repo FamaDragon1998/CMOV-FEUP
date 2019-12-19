@@ -19,7 +19,7 @@
     <DeployOptionalPackages>false</DeployOptionalPackages>
     <WindowsSdkPath>C:\Program Files %28x86%29\Windows Kits\10\</WindowsSdkPath>
     <LayoutDir>C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\AppX</LayoutDir>
-    <RegisteredManifestChecksum>3413EAAD50E5085EC608EBB9F8952EC41B030FEFA7F79041D87A97FFC0036141</RegisteredManifestChecksum>
+    <RegisteredManifestChecksum>DD67C27D15185A03237F500755C913DAAE4BC0602A1668D52074497FF95B1510</RegisteredManifestChecksum>
     <RegisteredPackageMoniker>524fbc18-c48e-4aa0-b685-b052069dda6c_1.0.0.0_x86__rw1mwfgejq984</RegisteredPackageMoniker>
     <RegisteredUserModeAppID>524fbc18-c48e-4aa0-b685-b052069dda6c_rw1mwfgejq984!App</RegisteredUserModeAppID>
     <RegisteredPackageID>524fbc18-c48e-4aa0-b685-b052069dda6c</RegisteredPackageID>
@@ -30,13 +30,13 @@
     <AppXManifest Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\Core\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-12-16T16:45:04.714</Modified>
+      <Modified>2019-12-19T11:38:03.052</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\WeatherXamarim.UWP.exe">
       <PackagePath>entrypoint\WeatherXamarim.UWP.exe</PackagePath>
-      <Modified>2019-12-16T16:45:02.664</Modified>
+      <Modified>2019-12-19T11:38:00.807</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\.nuget\packages\microcharts\0.7.1\lib\uap\Microcharts.Uwp.dll">
       <PackagePath>Microcharts.Uwp.dll</PackagePath>
@@ -128,7 +128,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim\bin\Debug\netstandard2.0\WeatherXamarim.dll">
       <PackagePath>WeatherXamarim.dll</PackagePath>
-      <Modified>2019-12-16T13:17:13.540</Modified>
+      <Modified>2019-12-17T13:42:46.466</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Microsoft\Xamarin\NuGet\win2d.uwp\1.20.0\lib\uap10.0\Microsoft.Graphics.Canvas.winmd">
       <PackagePath>Microsoft.Graphics.Canvas.winmd</PackagePath>
@@ -146,142 +146,230 @@
       <PackagePath>add.png</PackagePath>
       <Modified>2019-12-12T16:32:06.532</Modified>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-lightunplated_targetsize-16.png">
+      <PackagePath>Assets\app_icon.altform-lightunplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.522</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-lightunplated_targetsize-24.png">
+      <PackagePath>Assets\app_icon.altform-lightunplated_targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.529</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-lightunplated_targetsize-256.png">
+      <PackagePath>Assets\app_icon.altform-lightunplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.568</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-lightunplated_targetsize-32.png">
+      <PackagePath>Assets\app_icon.altform-lightunplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.537</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-lightunplated_targetsize-48.png">
+      <PackagePath>Assets\app_icon.altform-lightunplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.545</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-unplated_targetsize-16.png">
+      <PackagePath>Assets\app_icon.altform-unplated_targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.468</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-unplated_targetsize-24.png">
+      <PackagePath>Assets\app_icon.altform-unplated_targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.476</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-unplated_targetsize-256.png">
+      <PackagePath>Assets\app_icon.altform-unplated_targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.515</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-unplated_targetsize-32.png">
+      <PackagePath>Assets\app_icon.altform-unplated_targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.483</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.altform-unplated_targetsize-48.png">
+      <PackagePath>Assets\app_icon.altform-unplated_targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.491</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.scale-100.png">
+      <PackagePath>Assets\app_icon.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.352</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.scale-125.png">
+      <PackagePath>Assets\app_icon.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.363</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.scale-150.png">
+      <PackagePath>Assets\app_icon.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.374</Modified>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.scale-200.png">
       <PackagePath>Assets\app_icon.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-12-16T16:44:24.900</Modified>
+      <Modified>2019-12-17T13:03:37.385</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.scale-400.png">
+      <PackagePath>Assets\app_icon.scale-400.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.403</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.targetsize-16.png">
+      <PackagePath>Assets\app_icon.targetsize-16.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.412</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.targetsize-24.png">
+      <PackagePath>Assets\app_icon.targetsize-24.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.420</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.targetsize-256.png">
+      <PackagePath>Assets\app_icon.targetsize-256.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.461</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.targetsize-32.png">
+      <PackagePath>Assets\app_icon.targetsize-32.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.431</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\app_icon.targetsize-48.png">
+      <PackagePath>Assets\app_icon.targetsize-48.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:03:37.442</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-100.png">
       <PackagePath>Assets\LargeTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.532</Modified>
+      <Modified>2019-12-17T13:04:59.697</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-125.png">
+      <PackagePath>Assets\LargeTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:59.736</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-150.png">
+      <PackagePath>Assets\LargeTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:59.781</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-200.png">
       <PackagePath>Assets\LargeTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.533</Modified>
+      <Modified>2019-12-17T13:04:59.832</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\LargeTile.scale-400.png">
       <PackagePath>Assets\LargeTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.533</Modified>
+      <Modified>2019-12-17T13:04:59.983</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SmallTile.scale-100.png">
       <PackagePath>Assets\SmallTile.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.534</Modified>
+      <Modified>2019-12-17T13:04:31.962</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SmallTile.scale-125.png">
+      <PackagePath>Assets\SmallTile.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:31.980</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SmallTile.scale-150.png">
+      <PackagePath>Assets\SmallTile.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:31.999</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SmallTile.scale-200.png">
       <PackagePath>Assets\SmallTile.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.534</Modified>
+      <Modified>2019-12-17T13:04:32.018</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SmallTile.scale-400.png">
       <PackagePath>Assets\SmallTile.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.534</Modified>
+      <Modified>2019-12-17T13:04:32.045</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-100.png">
-      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.535</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\splash_logo.scale-100.png">
+      <PackagePath>Assets\splash_logo.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:02:57.785</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-150.png">
-      <PackagePath>Assets\SplashScreen.scale-150.png</PackagePath>
-      <Modified>2019-12-16T14:18:06.490</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\splash_logo.scale-125.png">
+      <PackagePath>Assets\splash_logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:02:57.832</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-200.png">
-      <PackagePath>Assets\SplashScreen.scale-200.png</PackagePath>
-      <Modified>2019-12-14T17:47:28.342</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\splash_logo.scale-150.png">
+      <PackagePath>Assets\splash_logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:02:57.882</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\SplashScreen.scale-400.png">
-      <PackagePath>Assets\SplashScreen.scale-400.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.536</Modified>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\splash_logo.scale-200.png">
+      <PackagePath>Assets\splash_logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:02:57.956</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\splash_logo.scale-400.png">
       <PackagePath>Assets\splash_logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-12-16T14:20:41.608</Modified>
+      <Modified>2019-12-17T13:02:58.220</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square150x150Logo.scale-100.png">
       <PackagePath>Assets\Square150x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.536</Modified>
+      <Modified>2019-12-17T13:04:39.848</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square150x150Logo.scale-125.png">
+      <PackagePath>Assets\Square150x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:39.870</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square150x150Logo.scale-150.png">
+      <PackagePath>Assets\Square150x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:39.893</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square150x150Logo.scale-200.png">
       <PackagePath>Assets\Square150x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.537</Modified>
+      <Modified>2019-12-17T13:04:39.919</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square150x150Logo.scale-400.png">
       <PackagePath>Assets\Square150x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.537</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.altform-unplated_targetsize-16.png">
-      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-16.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.538</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.altform-unplated_targetsize-256.png">
-      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-256.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.538</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.altform-unplated_targetsize-48.png">
-      <PackagePath>Assets\Square44x44Logo.altform-unplated_targetsize-48.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.539</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.scale-100.png">
-      <PackagePath>Assets\Square44x44Logo.scale-100.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.539</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.scale-200.png">
-      <PackagePath>Assets\Square44x44Logo.scale-200.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.540</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.scale-400.png">
-      <PackagePath>Assets\Square44x44Logo.scale-400.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.540</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.targetsize-16.png">
-      <PackagePath>Assets\Square44x44Logo.targetsize-16.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.540</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.targetsize-256.png">
-      <PackagePath>Assets\Square44x44Logo.targetsize-256.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.541</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Square44x44Logo.targetsize-48.png">
-      <PackagePath>Assets\Square44x44Logo.targetsize-48.png</PackagePath>
-      <Modified>2019-11-28T17:16:49.541</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\StoreLogo.scale-100.png">
-      <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.542</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\StoreLogo.scale-200.png">
-      <PackagePath>Assets\StoreLogo.scale-200.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.543</Modified>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\StoreLogo.scale-400.png">
-      <PackagePath>Assets\StoreLogo.scale-400.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.543</Modified>
+      <Modified>2019-12-17T13:04:39.971</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Wide310x150Logo.scale-100.png">
       <PackagePath>Assets\Wide310x150Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.543</Modified>
+      <Modified>2019-12-17T13:04:51.791</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Wide310x150Logo.scale-125.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-125.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:51.816</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Wide310x150Logo.scale-150.png">
+      <PackagePath>Assets\Wide310x150Logo.scale-150.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2019-12-17T13:04:51.847</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Wide310x150Logo.scale-200.png">
       <PackagePath>Assets\Wide310x150Logo.scale-200.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.544</Modified>
+      <Modified>2019-12-17T13:04:51.881</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\Assets\Wide310x150Logo.scale-400.png">
       <PackagePath>Assets\Wide310x150Logo.scale-400.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2019-11-28T17:16:49.544</Modified>
+      <Modified>2019-12-17T13:04:51.958</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bg.png">
       <PackagePath>bg.png</PackagePath>
@@ -345,7 +433,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\app_icon.png">
       <PackagePath>app_icon.png</PackagePath>
-      <Modified>2019-12-16T16:44:24.900</Modified>
+      <Modified>2019-12-17T13:02:19.633</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\pressure.png">
       <PackagePath>pressure.png</PackagePath>
@@ -370,6 +458,10 @@
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\snow.png">
       <PackagePath>snow.png</PackagePath>
       <Modified>2019-12-15T14:01:10.194</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\splash_logo.png">
+      <PackagePath>splash_logo.png</PackagePath>
+      <Modified>2019-12-17T13:02:19.108</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\sunny.png">
       <PackagePath>sunny.png</PackagePath>
@@ -425,11 +517,11 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2019-12-16T16:45:03.479</Modified>
+      <Modified>2019-12-17T13:05:10.622</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\vitor\Desktop\Projects\CMOV-FEUP\Project_2\WeatherXamarim\WeatherXamarim\WeatherXamarim.UWP\bin\x86\Debug\Core\WeatherXamarim.UWP.exe">
       <PackagePath>WeatherXamarim.UWP.exe</PackagePath>
-      <Modified>2019-12-16T16:45:04.692</Modified>
+      <Modified>2019-12-19T11:38:03.022</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

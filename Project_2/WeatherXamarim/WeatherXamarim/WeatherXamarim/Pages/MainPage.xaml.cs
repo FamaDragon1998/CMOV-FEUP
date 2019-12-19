@@ -27,8 +27,6 @@ namespace WeatherXamarim
             InitializeComponent();
             SetupCities();
             SetupPickers();
-          
-
             BindingContext = this;
             MakeRequest(FavoriteCities[0]);
         }
@@ -73,12 +71,11 @@ namespace WeatherXamarim
             if (result == null)
             {
                 DisplayAlert("JSONParsing", "No network is available.", "Ok");
-                Debug.WriteLine("No internet! Avisar isso");
+                Debug.WriteLine("No internet!");
                 return;
             }
             Debug.WriteLine("result:: " + result.Result); // Call the Result
             var json = result.Result;
-            //everything okay
             if (json != "")
             {
                 if (type.Equals("weather"))
@@ -86,7 +83,7 @@ namespace WeatherXamarim
                 else if (type.Equals("forecast"))
                     BindForecastInformation(JsonConvert.DeserializeObject<RootObjectForecast>(json));
                 else
-                    Debug.WriteLine("weather type", "algo merdou");
+                    Debug.WriteLine("weather type", "something went wrong");
             }
             else
                 DisplayAlert("JSONParsing", "Something went wrong", "Ok");
@@ -98,7 +95,7 @@ namespace WeatherXamarim
             Description.Text = Utils.FirstCharToUpper(root.weather[0].description);
             WeatherBackground.Source = Utils.GetBackgroundImage(root.weather[0].description);
             if (root.rain != null) {
-                Debug.WriteLine("itgonrain", root.rain.__invalid_name__1h.ToString());
+                Debug.WriteLine("raining info", root.rain.__invalid_name__1h.ToString());
                 if (root.rain.__invalid_name__1h > 0)
                     Description.Text += " (" + root.rain.__invalid_name__1h.ToString() + " mm)";
             }
